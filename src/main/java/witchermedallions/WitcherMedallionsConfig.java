@@ -14,7 +14,6 @@ public class WitcherMedallionsConfig extends ConfigWrapper<witchermedallions.Wit
     private final Option<java.lang.Integer> activeDetectionSize = this.optionForKey(new Option.Key("activeDetectionSize"));
     private final Option<java.lang.Integer> passiveDetectionXZ = this.optionForKey(new Option.Key("passiveDetectionXZ"));
     private final Option<java.lang.Integer> passiveDetectionY = this.optionForKey(new Option.Key("passiveDetectionY"));
-
     private final Option<java.lang.Boolean> medallionSounds = this.optionForKey(new Option.Key("medallionSounds"));
 
     private WitcherMedallionsConfig() {
@@ -66,6 +65,7 @@ public class WitcherMedallionsConfig extends ConfigWrapper<witchermedallions.Wit
     public void medallionSounds(boolean value) {
         medallionSounds.set(value);
     }
+
 
 
 
