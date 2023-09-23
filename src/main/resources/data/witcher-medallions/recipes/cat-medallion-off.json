@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "witcher-medallions:cat-head"
+  },
+  "addition": {
+    "item": "minecraft:chain"
+  },
+  "result": {
+    "item": "witcher-medallions:cat-medallion-off"
+  }
+}

@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "witchermedallions.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+      "MixinWitcherMonstersClient",
+      "MixinWitcherMonstersWorld",
+      "MixinWitcherMonsterDetector"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

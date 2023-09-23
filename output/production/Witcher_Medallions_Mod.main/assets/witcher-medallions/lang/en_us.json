@@ -1,0 +1,62 @@
+{
+    "itemGroup.witcher-medallions.witcher_medallions": "Witcher Medallions",
+
+    "item.witcher-medallions.magic-core": "Magic Core",
+
+    "item.witcher-medallions.wolf-medallion": "Wolf Medallion",
+
+    "item.witcher-medallions.cat-medallion": "Cat Medallion",
+
+    "item.witcher-medallions.bear-medallion": "Bear Medallion",
+
+    "item.witcher-medallions.griffin-medallion": "Griffin Medallion",
+
+    "item.witcher-medallions.viper-medallion": "Viper Medallion",
+
+    "item.witcher-medallions.manticore-medallion": "Manticore Medallion",
+
+    "item.witcher-medallions.ancient-wolf-medallion": "Ancient Wolf Medallion",
+
+    "tooltip.witcher-medallions.wolfmedalliontp": "Symbol of the mighty warriors of Kaer Morhen",
+
+    "tooltip.witcher-medallions.catmedalliontp": "Symbol of the agile butchers of Dyn Marv",
+
+    "tooltip.witcher-medallions.bearmedalliontp": "Symbol of the fierce fighters of Haern Caduch",
+
+    "tooltip.witcher-medallions.griffinmedalliontp": "Symbol of the wise knights of Kaer Seren",
+
+    "tooltip.witcher-medallions.vipermedalliontp": "Symbol of the ruthless assassins of Gorthur Gvaed",
+
+    "tooltip.witcher-medallions.manticoremedalliontp": "Symbol of the enigmatic swordsmen of Zerrikania",
+
+    "tooltip.witcher-medallions.ancientwolfmedalliontp": "A symbol of Kaer Morhen, from a forgotten age",
+
+    "key.category.witchermedallions.medallions": "Witcher Medallions",
+
+    "key.witchermedallions.activemedallion": "Active Medallion",
+
+    "witcher-medallions.medallion_activate_sound": "Witcher Medallion activates",
+
+    "witcher-medallions.medallion_restartcooldown_sound": "Witcher Medallion recharges",
+
+    "witcher-medallions.medallion-wolf_sound": "Wolf Medallion Sounds",
+
+
+    "text.config.witchermedallions-config.title": "Witcher Medallions Config",
+
+    "text.config.witchermedallions-config.option.MobList": "Detectable mobs with the Witcher Medallions",
+
+    "text.config.witchermedallions-config.option.MobList.tooltip": "Add or remove mobs for detection! \nThe format is 'entity.<ModId>.<EntityId>'",
+
+    "text.config.witchermedallions-config.option.activeDetectionSize": "Active Detection - Size",
+
+    "text.config.witchermedallions-config.option.activeDetectionSize.tooltip": "Size (XYZ) for the active detection.\n(When you press the keybind)",
+
+    "text.config.witchermedallions-config.option.passiveDetectionXZ": "Passive Detection - XZ Size",
+
+    "text.config.witchermedallions-config.option.passiveDetectionXZ.tooltip": "Size (XZ) for the passive detection.\n(Small motion animation)",
+
+    "text.config.witchermedallions-config.option.passiveDetectionY": "Passive Detection - Y Size",
+
+    "text.config.witchermedallions-config.option.passiveDetectionY.tooltip": "Size (Y) for the passive detection.\nIt must be less than or equal to XZ size."
+}

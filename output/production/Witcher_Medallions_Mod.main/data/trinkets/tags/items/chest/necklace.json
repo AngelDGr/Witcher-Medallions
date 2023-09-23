@@ -1,0 +1,12 @@
+{
+    "replace": false,
+    "values": [
+      "witcher-medallions:wolf-medallion",
+      "witcher-medallions:cat-medallion",
+      "witcher-medallions:bear-medallion",
+      "witcher-medallions:griffin-medallion",
+      "witcher-medallions:viper-medallion",
+      "witcher-medallions:manticore-medallion",
+      "witcher-medallions:ancient-wolf-medallion"
+    ]
+  }

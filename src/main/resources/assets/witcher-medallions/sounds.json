@@ -1,0 +1,53 @@
+{
+    "medallion_activate_sound": {
+        "subtitle": "witcher-medallions.medallion_activate_sound",
+        "sounds": [
+          "witcher-medallions:medallion_activate_sound"
+        ]
+      },
+
+      "medallion_restartcooldown_sound": {
+        "subtitle": "witcher-medallions.medallion_restartcooldown_sound",
+        "sounds": [
+          "witcher-medallions:medallion_restartcooldown_sound"
+        ]
+      },
+
+
+      "medallion-wolf_sound": {
+        "subtitle": "witcher-medallions.medallion-wolf_sound",
+        "sounds": [
+          "witcher-medallions:medallion-wolf_sound"
+        ]
+      },
+    "medallion-cat_sound": {
+      "subtitle": "witcher-medallions.medallion-cat_sound",
+      "sounds": [
+        "witcher-medallions:medallion-cat_sound"
+        ]
+      },
+    "medallion-bear_sound": {
+      "subtitle": "witcher-medallions.medallion-bear_sound",
+      "sounds": [
+        "witcher-medallions:medallion-bear_sound"
+        ]
+      },
+    "medallion-griffin_sound": {
+      "subtitle": "witcher-medallions.medallion-griffin_sound",
+      "sounds": [
+        "witcher-medallions:medallion-griffin_sound"
+        ]
+      },
+    "medallion-viper_sound": {
+      "subtitle": "witcher-medallions.medallion-viper_sound",
+      "sounds": [
+        "witcher-medallions:medallion-viper_sound"
+       ]
+      },
+    "medallion-manticore_sound": {
+      "subtitle": "witcher-medallions.medallion-manticore_sound",
+      "sounds": [
+        "witcher-medallions:medallion-manticore_sound"
+        ]
+      }
+}

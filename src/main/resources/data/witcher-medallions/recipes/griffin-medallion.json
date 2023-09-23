@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "witcher-medallions:griffin-medallion-off"
+  },
+  "addition": {
+    "item": "witcher-medallions:magic-nucleus"
+  },
+  "result": {
+    "item": "witcher-medallions:griffin-medallion"
+  }
+}

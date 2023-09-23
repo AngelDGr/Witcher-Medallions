@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "witcher-medallions:viper-symbol"
+  },
+  "addition": {
+    "item": "minecraft:chain"
+  },
+  "result": {
+    "item": "witcher-medallions:viper-medallion-off"
+  }
+}

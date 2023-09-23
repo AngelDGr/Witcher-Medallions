@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "tag": "witcher-medallions:metalbase_medallion"
+  },
+  "addition": {
+    "tag": "witcher-medallions:manticoremedallion_ingredient"
+  },
+  "result": {
+    "item": "witcher-medallions:manticore-head"
+  }
+}

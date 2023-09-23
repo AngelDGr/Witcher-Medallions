@@ -1,0 +1,25 @@
+{
+    "medallion_activate_sound": {
+        "subtitle": "witcher-medallions.medallion_activate_sound",
+        "sounds": [
+          "witcher-medallions:medallion_activate_sound"
+        ]
+      },
+
+      "medallion_restartcooldown_sound": {
+        "subtitle": "witcher-medallions.medallion_restartcooldown_sound",
+        "sounds": [
+          "witcher-medallions:medallion_restartcooldown_sound"
+        ]
+      },
+
+      "medallion-wolf_sound": {
+        "subtitle": "witcher-medallions.medallion-wolf_sound",
+        "sounds": [
+          "witcher-medallions:medallion-wolf_sound"
+        ]
+      }
+
+      
+
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "witcher-medallions:griffin-head"
+  },
+  "addition": {
+    "item": "minecraft:chain"
+  },
+  "result": {
+    "item": "witcher-medallions:griffin-medallion-off"
+  }
+}

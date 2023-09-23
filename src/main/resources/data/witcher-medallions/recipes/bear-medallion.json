@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "witcher-medallions:bear-medallion-off"
+  },
+  "addition": {
+    "item": "witcher-medallions:magic-nucleus"
+  },
+  "result": {
+    "item": "witcher-medallions:bear-medallion"
+  }
+}

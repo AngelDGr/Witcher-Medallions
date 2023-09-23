@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LGL",
+    "GEG",
+    "LGL"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+
+  "result": {
+    "item": "witcher-medallions:magic-nucleus",
+    "count": 1
+  }
+}
