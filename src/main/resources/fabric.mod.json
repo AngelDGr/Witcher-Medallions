@@ -11,7 +11,7 @@
 		"homepage": "https://legacy.curseforge.com/members/angeldgr/projects",
 		"sources": "https://github.com/AngelDGr/Witcher-Medallions/"
 	},
-	"license": "MIT License",
+	"license": "MIT",
 	"icon": "assets/witcher-medallions/icon.png",
 	"environment": "*",
 	"entrypoints": {
