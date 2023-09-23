@@ -8,8 +8,8 @@
 		"Tenebris Mors"
 	],
 	"contact": {
-		"homepage": "",
-		"sources": "https://legacy.curseforge.com/members/angeldgr/projects"
+		"homepage": "https://legacy.curseforge.com/members/angeldgr/projects",
+		"sources": "https://github.com/AngelDGr/Witcher-Medallions/"
 	},
 	"license": "MIT License",
 	"icon": "assets/witcher-medallions/icon.png",
