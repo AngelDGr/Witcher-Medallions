@@ -26,17 +26,10 @@
 								"up": {"uv": [1, 73], "uv_size": [23, 0]},
 								"down": {"uv": [1, 73], "uv_size": [23, 0]}
 							}
-						}
-					]
-				},
-				{
-					"name": "MedallionHead",
-					"parent": "ViperMedallion",
-					"pivot": [0.05, 1.25, 1.5],
-					"cubes": [
+						},
 						{
-							"origin": [-0.15, 1.19, 1.456],
-							"size": [0.2, 0.28, 0.096],
+							"origin": [-0.15, 1.14, 1.456],
+							"size": [0.2, 0.33, 0.096],
 							"uv": {
 								"north": {"uv": [0, 0], "uv_size": [1.2, 1]},
 								"east": {"uv": [0, 0], "uv_size": [0.8, 1]},
@@ -47,6 +40,11 @@
 							}
 						}
 					]
+				},
+				{
+					"name": "MedallionHead",
+					"parent": "ViperMedallion",
+					"pivot": [0.05, 1.25, 1.5]
 				},
 				{
 					"name": "Viper",

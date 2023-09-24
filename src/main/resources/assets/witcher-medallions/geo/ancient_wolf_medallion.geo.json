@@ -26,14 +26,7 @@
 								"up": {"uv": [4, 61], "uv_size": [23, 0]},
 								"down": {"uv": [4, 61], "uv_size": [23, 0]}
 							}
-						}
-					]
-				},
-				{
-					"name": "MedallionHead",
-					"parent": "AncientWolfMedallion",
-					"pivot": [0.1, 0.3, 1],
-					"cubes": [
+						},
 						{
 							"origin": [-0.1, 0.12, 0.89],
 							"size": [0.2, 0.25, 0.06],
@@ -47,6 +40,11 @@
 							}
 						}
 					]
+				},
+				{
+					"name": "MedallionHead",
+					"parent": "AncientWolfMedallion",
+					"pivot": [0.1, 0.3, 1]
 				},
 				{
 					"name": "Coin",
