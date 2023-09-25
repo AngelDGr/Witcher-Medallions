@@ -79,6 +79,6 @@
     "text.config.witchermedallions-config.option.medallionSounds": "Medallions make sounds",
     "text.config.witchermedallions-config.option.medallionSounds.tooltip": "Active o deactivate the sounds for the passive detection",
 
-    "text.config.witchermedallions-config.option.medallionHaveSoulbound": "Medallions have Soulbound",
-    "text.config.witchermedallions-config.option.medallionHaveSoulbound.tooltip": "Makes you keep the medallion equipped when you die"
+    "text.config.witchermedallions-config.option.medallionsHaveSoulbound": "Medallions have Soulbound",
+    "text.config.witchermedallions-config.option.medallionsHaveSoulbound.tooltip": "Makes you keep the medallion equipped when you die"
 }
