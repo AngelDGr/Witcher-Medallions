@@ -13,7 +13,7 @@
 * The medallion you have equipped will have a "soulbound" enchantment by default, so you will keep it even when you die.
 * The medallion has two ways of detecting monsters, passive and active.
 
-[For a more extensive description, visit  <a href="https://modrinth.com/mod/witcher-medallions">Modrinth</a> or  <a href="curseforge.com/minecraft/mc-mods/witcher-medallions">Curseforge</a>]
+[For a more extensive description, visit  <a href="https://modrinth.com/mod/witcher-medallions">Modrinth</a> or <a href="www.curseforge.com/minecraft/mc-mods/witcher-medallions">Curseforge</a>]
 
 <u></u><h2><strong>Credits and Recommended mods:</strong></span></h2>
 * Thanks to <a href="https://legacy.curseforge.com/members/mlodziak00/projects">Mlodziak00</a> for helping me with the Trinkets+Geckolib integration! Check the <a href="https://www.curseforge.com/minecraft/mc-mods/familiarity">Familiarity</a> mod! </p>
