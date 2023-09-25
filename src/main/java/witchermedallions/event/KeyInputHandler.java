@@ -58,7 +58,9 @@ public class KeyInputHandler {
                     //Time cooldown last
                     if (ticks==0)
                     {
-                    MinecraftClient.getInstance().player.playSound(ModItems.MEDALLION_RESTARTCOOLDOWN_SOUND, SoundCategory.PLAYERS, 2, 1);
+                        if(MinecraftClient.getInstance().player!=null){
+                        MinecraftClient.getInstance().player.playSound(ModItems.MEDALLION_RESTARTCOOLDOWN_SOUND, SoundCategory.PLAYERS, 2, 1);
+                        }
                     cooldown=false;
                     }
                 }
