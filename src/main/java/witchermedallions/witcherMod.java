@@ -9,6 +9,7 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3f;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +38,8 @@ public class witcherMod implements ModInitializer {
 		GeckoLib.initialize();
 		ModItems.registerModItems();
 		ModGroups.registerGroupItems();
+//		SoulboundMedallions.registerTrinketDropCallback();
+//		ServerPlayerEvents.COPY_FROM.register(SoulboundMedallions::copySoulBoundItems);
 	}
 
 	//DetectsMedallions	
@@ -72,5 +75,9 @@ public class witcherMod implements ModInitializer {
 	public static boolean hasTrinket(LivingEntity entity, Item trinket) {
 		return getTrinkets(entity).isEquipped(trinket);
     }
+
+	public static boolean hasTrinketStack(LivingEntity entity, ItemStack trinket) {
+		return getTrinkets(entity).isEquipped(trinket.getItem());
+	}
 
 }

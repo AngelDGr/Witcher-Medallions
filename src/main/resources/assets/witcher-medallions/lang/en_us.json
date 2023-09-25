@@ -65,22 +65,20 @@
     "text.config.witchermedallions-config.title": "Witcher Medallions Config",
 
     "text.config.witchermedallions-config.option.MobList": "Detectable mobs with the Witcher Medallions",
-
     "text.config.witchermedallions-config.option.MobList.tooltip": "Add or remove mobs for detection! \nThe format is 'entity.<ModId>.<EntityId>'",
 
     "text.config.witchermedallions-config.option.activeDetectionSize": "Active Detection - Size",
-
     "text.config.witchermedallions-config.option.activeDetectionSize.tooltip": "Size (XYZ) for the active detection.\n(When you press the keybind)",
 
     "text.config.witchermedallions-config.option.passiveDetectionXZ": "Passive Detection - XZ Size",
-
     "text.config.witchermedallions-config.option.passiveDetectionXZ.tooltip": "Size (XZ) for the passive detection.\n(Small motion animation)",
 
     "text.config.witchermedallions-config.option.passiveDetectionY": "Passive Detection - Y Size",
-
     "text.config.witchermedallions-config.option.passiveDetectionY.tooltip": "Size (Y) for the passive detection.\nIt must be less than or equal to XZ size.",
 
     "text.config.witchermedallions-config.option.medallionSounds": "Medallions make sounds",
+    "text.config.witchermedallions-config.option.medallionSounds.tooltip": "Active o deactivate the sounds for the passive detection",
 
-    "text.config.witchermedallions-config.option.medallionSounds.tooltip": "Active o deactivate the sounds for the passive detection"
+    "text.config.witchermedallions-config.option.medallionHaveSoulbound": "Medallions have Soulbound",
+    "text.config.witchermedallions-config.option.medallionHaveSoulbound.tooltip": "Makes you keep the medallion equipped when you die"
 }

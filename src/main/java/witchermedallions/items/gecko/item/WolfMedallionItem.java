@@ -1,8 +1,11 @@
 package witchermedallions.items.gecko.item;
 
 import dev.emi.trinkets.api.SlotReference;
+import dev.emi.trinkets.api.TrinketEnums;
 import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.client.TrinketRenderer;
+import dev.emi.trinkets.api.event.TrinketDropCallback;
+import dev.emi.trinkets.api.Trinket;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.model.EntityModel;
@@ -26,7 +29,7 @@ import witchermedallions.witcherMod;
 import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
-public class WolfMedallionItem extends TrinketItem implements IAnimatable, TrinketRenderer {
+public class WolfMedallionItem extends TrinketItem implements IAnimatable, TrinketRenderer{
     public AnimationFactory factory = new InstancedAnimationFactory(this);
 	
 	public WolfMedallionItem(Settings settings) {
@@ -71,5 +74,11 @@ public class WolfMedallionItem extends TrinketItem implements IAnimatable, Trink
         super.appendTooltip(stack, world, tooltip, context);
     }
 
-   
+    @Override
+    public TrinketEnums.DropRule getDropRule(ItemStack stack, SlotReference slot, LivingEntity entity) {
+        if(witcherMod.CONFIG.medallionsHaveSoulbound())
+        {return TrinketEnums.DropRule.KEEP;}
+        else
+        {return TrinketEnums.DropRule.DEFAULT;}
+    }
 }

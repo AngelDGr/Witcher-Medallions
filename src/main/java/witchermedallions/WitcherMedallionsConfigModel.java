@@ -75,4 +75,5 @@ public class WitcherMedallionsConfigModel {
     public int passiveDetectionXZ = 15;
     public int passiveDetectionY = 4;
     public boolean medallionSounds = true;
+    public boolean medallionsHaveSoulbound = true;
 }

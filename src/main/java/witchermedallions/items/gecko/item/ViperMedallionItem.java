@@ -1,6 +1,7 @@
 package witchermedallions.items.gecko.item;
 
 import dev.emi.trinkets.api.SlotReference;
+import dev.emi.trinkets.api.TrinketEnums;
 import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.client.TrinketRenderer;
 import net.minecraft.client.item.TooltipContext;
@@ -73,5 +74,12 @@ public class ViperMedallionItem extends TrinketItem implements IAnimatable, Trin
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("tooltip.witcher-medallions.vipermedalliontp").formatted(Formatting.GREEN));
         super.appendTooltip(stack, world, tooltip, context);
+    }
+    @Override
+    public TrinketEnums.DropRule getDropRule(ItemStack stack, SlotReference slot, LivingEntity entity) {
+        if(witcherMod.CONFIG.medallionsHaveSoulbound())
+        {return TrinketEnums.DropRule.KEEP;}
+        else
+        {return TrinketEnums.DropRule.DEFAULT;}
     }
 }

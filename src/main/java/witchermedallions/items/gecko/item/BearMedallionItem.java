@@ -2,6 +2,7 @@ package witchermedallions.items.gecko.item;
 
 import java.util.List;
 
+import dev.emi.trinkets.api.TrinketEnums;
 import org.jetbrains.annotations.Nullable;
 
 import dev.emi.trinkets.api.SlotReference;
@@ -75,5 +76,12 @@ public class BearMedallionItem extends TrinketItem implements IAnimatable, Trink
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("tooltip.witcher-medallions.bearmedalliontp").formatted(Formatting.DARK_GREEN));
         super.appendTooltip(stack, world, tooltip, context);
+    }
+    @Override
+    public TrinketEnums.DropRule getDropRule(ItemStack stack, SlotReference slot, LivingEntity entity) {
+        if(witcherMod.CONFIG.medallionsHaveSoulbound())
+        {return TrinketEnums.DropRule.KEEP;}
+        else
+        {return TrinketEnums.DropRule.DEFAULT;}
     }
 }
