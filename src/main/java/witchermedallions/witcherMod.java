@@ -1,7 +1,7 @@
 package witchermedallions;
 
 import net.fabricmc.api.ModInitializer;
-//Patataaaaaaaaa
+
 //Minecraft Libraries
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.model.EntityModel;
