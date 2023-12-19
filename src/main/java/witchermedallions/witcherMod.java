@@ -1,7 +1,7 @@
 package witchermedallions;
 
 import net.fabricmc.api.ModInitializer;
-
+//Patataaaaaaa
 //Minecraft Libraries
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.model.EntityModel;
@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.bernie.geckolib3.GeckoLib;
 
-import dev.emi.trinkets.api.TrinketComponent;
+//import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import witchermedallions.items.ModGroups;
 import witchermedallions.items.ModItems;
