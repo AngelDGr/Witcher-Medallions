@@ -1,5 +1,6 @@
 package witchermedallions;
 
+import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import net.fabricmc.api.ModInitializer;
 
 //Minecraft Libraries
@@ -10,15 +11,19 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Vec3f;
+//import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
+import net.minecraft.util.math.Vec3i;
+import org.joml.Vector3f;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import software.bernie.geckolib3.GeckoLib;
+//import software.bernie.geckolib3.GeckoLib;
 
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import witchermedallions.items.ModGroups;
 import witchermedallions.items.ModItems;
+import witchermedallions.items.gecko.item.WolfMedallionItem;
 
 public class witcherMod implements ModInitializer {
 	//Data initializer
@@ -35,11 +40,10 @@ public class witcherMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		GeckoLib.initialize();
+
 		ModItems.registerModItems();
 		ModGroups.registerGroupItems();
-//		SoulboundMedallions.registerTrinketDropCallback();
-//		ServerPlayerEvents.COPY_FROM.register(SoulboundMedallions::copySoulBoundItems);
+
 	}
 
 	//DetectsMedallions	
@@ -49,6 +53,12 @@ public class witcherMod implements ModInitializer {
         return TrinketsApi.getTrinketComponent(entity).get();
     }
 
+//    public static void registerTrinketsRenderer() {
+//        TrinketRendererRegistry.registerRenderer(ModRegistry.MONOCLE_ITEM.get(), (ItemStack itemStack, SlotReference slotReference, EntityModel<? extends LivingEntity> entityModel, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, LivingEntity livingEntity, float v, float v1, float v2, float v3, float v4, float v5) -> {
+//            WolfMedallionItem.render(itemStack, poseStack, entityModel, multiBufferSource, i, ModRenderTypes::armorCutoutTranslucentNoCull);
+//        });
+//    }
+
 	@SuppressWarnings({ "unchecked" })
 	public static void medallionTrinket(MatrixStack matrices, EntityModel<? extends LivingEntity> model,
 										LivingEntity entity, float headYaw, float headPitch) {
@@ -56,18 +66,22 @@ public class witcherMod implements ModInitializer {
 		if (entity.isInSwimmingPose() || entity.isFallFlying()) {
 			if(model instanceof PlayerEntityModel)
 			{
+
 				PlayerEntityModel<AbstractClientPlayerEntity> ctx = (PlayerEntityModel<AbstractClientPlayerEntity>) model;
-				matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(ctx.head.roll));
+				matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(ctx.head.roll)
+//						getDegreesQuaternion(ctx.head.roll)
+			);
 			}
-			matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(headYaw));
-			matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(-45.0F));
+
+			matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(headYaw));
+			matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-45.0F));
 		} else {
 
 			if (entity.isInSneakingPose() && !model.riding) {
 				matrices.translate(0F, 0F, 0F);
 			}
-			matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(headYaw));
-			matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(headPitch));
+			matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(headYaw));
+			matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(headPitch));
 		}
 		matrices.translate(0F, 0F, 0F);
 	}
@@ -75,9 +89,5 @@ public class witcherMod implements ModInitializer {
 	public static boolean hasTrinket(LivingEntity entity, Item trinket) {
 		return getTrinkets(entity).isEquipped(trinket);
     }
-
-	public static boolean hasTrinketStack(LivingEntity entity, ItemStack trinket) {
-		return getTrinkets(entity).isEquipped(trinket.getItem());
-	}
 
 }

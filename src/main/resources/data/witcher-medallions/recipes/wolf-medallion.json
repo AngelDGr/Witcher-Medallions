@@ -1,12 +1,15 @@
 {
-  "type": "minecraft:smithing",
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:gold_nugget"
+  },
   "base": {
     "item": "witcher-medallions:wolf-medallion-off"
   },
-  "addition": {
-    "item": "witcher-medallions:magic-nucleus"
-  },
   "result": {
     "item": "witcher-medallions:wolf-medallion"
+  },
+  "template": {
+    "item": "witcher-medallions:magic-nucleus"
   }
 }

@@ -3,10 +3,10 @@ package witchermedallions.items.gecko.models;
 import witchermedallions.witcherMod;
 import witchermedallions.items.gecko.item.ManticoreMedallionItem;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
 
-public class ManticoreMedallionModel extends AnimatedGeoModel<ManticoreMedallionItem> {
+public class ManticoreMedallionModel extends GeoModel<ManticoreMedallionItem> {
  
     @Override
     public Identifier getModelResource(ManticoreMedallionItem object) {

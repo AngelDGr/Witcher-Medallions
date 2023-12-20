@@ -1,6 +1,6 @@
 package witchermedallions.items.gecko.renderer.off;
 
-import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
+import software.bernie.geckolib.renderer.GeoItemRenderer;
 import witchermedallions.items.gecko.item.off.CatMedallionOffItem;
 import witchermedallions.items.gecko.models.off.CatMedallionOffModel;
 

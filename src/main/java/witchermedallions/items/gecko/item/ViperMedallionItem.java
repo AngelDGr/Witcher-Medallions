@@ -7,6 +7,7 @@ import dev.emi.trinkets.api.client.TrinketRenderer;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 
 import net.minecraft.entity.LivingEntity;
@@ -15,55 +16,79 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
 
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.core.manager.InstancedAnimationFactory;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.animatable.client.RenderProvider;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.RenderUtils;
+
+import witchermedallions.items.gecko.renderer.ViperMedallionRenderer;
 import witchermedallions.witcherMod;
 
 import org.jetbrains.annotations.Nullable;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-public class ViperMedallionItem extends TrinketItem implements IAnimatable, TrinketRenderer {
-    public AnimationFactory factory = new InstancedAnimationFactory(this);
-	
-	public ViperMedallionItem(Settings settings) {
-		super(settings);
-		
-	}
+public class ViperMedallionItem extends TrinketItem implements GeoItem, TrinketRenderer {
+    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
 
-    @SuppressWarnings("all")
-	private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+    public ViperMedallionItem(Settings settings) {
+        super(settings);
+    }
+
+    //Geckolib4
+    @Override
+    public void createRenderer(Consumer<Object> consumer) {
+        consumer.accept(new RenderProvider() {
+            private final ViperMedallionRenderer renderer = new ViperMedallionRenderer();
+
+            @Override
+            public BuiltinModelItemRenderer getCustomRenderer() {
+                return this.renderer;
+            }
+        });
+    }
+    @Override
+    public Supplier<Object> getRenderProvider() {
+        return renderProvider;
+    }
+
+    @Override
+    public double getTick(Object itemStack) {
+        return RenderUtils.getCurrentTick();
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
+    }
+
+    private  <T extends GeoAnimatable> PlayState predicate(AnimationState<ViperMedallionItem> tAnimationState) {
         if(witcherMod.NearMob_Viper){
-            event.getController().setAnimation(new AnimationBuilder().loop("medallion_animation"));
+            tAnimationState.getController().setAnimation(RawAnimation.begin().then("medallion_animation", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
         }
 
         if (witcherMod.NearMob_Viper==false){
-            event.getController().setAnimation(new AnimationBuilder().loop("idle"));
+            tAnimationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
         }
-
         return PlayState.CONTINUE;
-	}
+
+    }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 
-	// AnimationData
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
-	public void registerControllers(AnimationData animationData) {
-        animationData.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
-    }
-
+    //Trinkets
 	@Override
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         // ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();

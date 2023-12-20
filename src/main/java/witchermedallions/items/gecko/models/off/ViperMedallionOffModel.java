@@ -1,12 +1,11 @@
 package witchermedallions.items.gecko.models.off;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 import witchermedallions.items.gecko.item.off.ViperMedallionOffItem;
-import witchermedallions.items.gecko.item.off.WolfMedallionOffItem;
 import witchermedallions.witcherMod;
 
-public class ViperMedallionOffModel extends AnimatedGeoModel<ViperMedallionOffItem> {
+public class ViperMedallionOffModel extends GeoModel<ViperMedallionOffItem> {
 
     @Override
     public Identifier getModelResource(ViperMedallionOffItem object) {

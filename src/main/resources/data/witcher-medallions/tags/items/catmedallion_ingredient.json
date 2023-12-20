@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "minecraft:string",
-    "#minecraft:fishes"
+    "minecraft:cod",
+    "minecraft:pufferfish",
+    "minecraft:tropical_fish"
   ]
 }

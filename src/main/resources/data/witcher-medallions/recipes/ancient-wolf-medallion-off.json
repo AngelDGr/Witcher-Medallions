@@ -1,12 +1,15 @@
 {
-  "type": "minecraft:smithing",
-  "base": {
-    "item": "witcher-medallions:ancient-wolf-coin"
-  },
+  "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "minecraft:chain"
+    "item": "minecraft:paper"
+  },
+  "base": {
+    "tag": "witcher-medallions:metalbase_medallion"
   },
   "result": {
     "item": "witcher-medallions:ancient-wolf-medallion-off"
+  },
+  "template": {
+    "item": "minecraft:chain"
   }
 }

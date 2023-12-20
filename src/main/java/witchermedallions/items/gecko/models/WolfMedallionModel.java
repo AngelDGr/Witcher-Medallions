@@ -3,9 +3,9 @@ package witchermedallions.items.gecko.models;
 import witchermedallions.witcherMod;
 import witchermedallions.items.gecko.item.WolfMedallionItem;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class WolfMedallionModel extends AnimatedGeoModel<WolfMedallionItem> {
+public class WolfMedallionModel extends GeoModel<WolfMedallionItem> {
 
     @Override
     public Identifier getModelResource(WolfMedallionItem object) {

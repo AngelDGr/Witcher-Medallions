@@ -26,19 +26,19 @@ import witchermedallions.items.ModItems;
 
 @Mixin(ClientPlayerEntity.class)
 public abstract class MixinWitcherMonsterDetector extends AbstractClientPlayerEntity  {
-    public MixinWitcherMonsterDetector(ClientWorld world, GameProfile profile, PlayerPublicKey publicKey) {
-        super(world, profile, publicKey);
+    public MixinWitcherMonsterDetector(ClientWorld world, GameProfile profile) {
+        super(world, profile);
     }
 
     @Inject(method = "tickMovement()V", at = @At("HEAD"))
     public void tickMovement(CallbackInfo ci) {
-        detectNearbyMobs_Wolf(this.world, this);
-        detectNearbyMobs_Cat(this.world, this);
-        detectNearbyMobs_Bear(this.world, this);
-        detectNearbyMobs_Griffin(this.world, this);
-        detectNearbyMobs_Viper(this.world, this);
-        detectNearbyMobs_Manticore(this.world, this);
-        detectNearbyMobs_AncientWolf(this.world, this);
+        detectNearbyMobs_Wolf(this.getWorld(), this);
+        detectNearbyMobs_Cat(this.getWorld(), this);
+        detectNearbyMobs_Bear(this.getWorld(), this);
+        detectNearbyMobs_Griffin(this.getWorld(), this);
+        detectNearbyMobs_Viper(this.getWorld(), this);
+        detectNearbyMobs_Manticore(this.getWorld(), this);
+        detectNearbyMobs_AncientWolf(this.getWorld(), this);
         }
     private static boolean detectTrinket(PlayerEntity player, Item medallion){
             return
