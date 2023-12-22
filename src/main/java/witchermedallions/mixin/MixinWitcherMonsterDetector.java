@@ -240,7 +240,7 @@ public abstract class MixinWitcherMonsterDetector extends AbstractClientPlayerEn
                 //Inventory
                 &&  queryPlayerInventory(player, new ItemStack(medallion))
                 //OR Equipped
-                ||  (witcherMod.hasTrinket(player, medallion));
+                ||  (witcherMod.hasTrinketEquipped(player, medallion));
     }
     @Unique
     private static boolean queryPlayerInventory(PlayerEntity player, ItemStack item) {

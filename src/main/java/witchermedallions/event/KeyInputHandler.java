@@ -34,13 +34,13 @@ public class KeyInputHandler {
                     //DetectMedallion
                     if (!cooldown) {
                         if (
-                               (witcherMod.hasTrinket(client.player, ModItems.Witcher_WolfMedallion))
-                            || (witcherMod.hasTrinket(client.player, ModItems.Witcher_CatMedallion))
-                            || (witcherMod.hasTrinket(client.player, ModItems.Witcher_BearMedallion))
-                            || (witcherMod.hasTrinket(client.player, ModItems.Witcher_GriffinMedallion))
-                            || (witcherMod.hasTrinket(client.player, ModItems.Witcher_ViperMedallion))
-                            || (witcherMod.hasTrinket(client.player, ModItems.Witcher_ManticoreMedallion))
-                            || (witcherMod.hasTrinket(client.player, ModItems.Witcher_AncientWolfMedallion))
+                               (witcherMod.hasTrinketEquipped(client.player, ModItems.Witcher_WolfMedallion))
+                            || (witcherMod.hasTrinketEquipped(client.player, ModItems.Witcher_CatMedallion))
+                            || (witcherMod.hasTrinketEquipped(client.player, ModItems.Witcher_BearMedallion))
+                            || (witcherMod.hasTrinketEquipped(client.player, ModItems.Witcher_GriffinMedallion))
+                            || (witcherMod.hasTrinketEquipped(client.player, ModItems.Witcher_ViperMedallion))
+                            || (witcherMod.hasTrinketEquipped(client.player, ModItems.Witcher_ManticoreMedallion))
+                            || (witcherMod.hasTrinketEquipped(client.player, ModItems.Witcher_AncientWolfMedallion))
                         ) {
                             outliningMonsters = true;
                             ticks = 200;

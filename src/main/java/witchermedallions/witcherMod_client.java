@@ -3,6 +3,7 @@ package witchermedallions;
 import dev.emi.trinkets.api.client.TrinketRenderer;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import net.fabricmc.api.ClientModInitializer;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import software.bernie.geckolib.renderer.GeoItemRenderer;
 import witchermedallions.event.KeyInputHandler;
 import witchermedallions.event.PlayMedallionSound;
@@ -30,7 +31,24 @@ public class witcherMod_client implements ClientModInitializer {
                 KeyInputHandler.register();
                 registerClient();
                 PlayMedallionSound.registerSounds();
-//                TrinketRendererRegistry.registerRenderer(WolfMedallionItem);
+
+                //Medallions
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_WolfMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_CatMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_BearMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_GriffinMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_ViperMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_ManticoreMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_AncientWolfMedallion);
+
+                //Medallions off
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_OffWolfMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_OffCatMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_OffBearMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_OffGriffinMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_OffViperMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_OffManticoreMedallion);
+                witcherMod.RegisterTrinketRender(ModItems.Witcher_OffAncientWolfMedallion);
 	}
 
 
