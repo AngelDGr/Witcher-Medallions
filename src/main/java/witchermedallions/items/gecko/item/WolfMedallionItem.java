@@ -4,8 +4,6 @@ import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketEnums;
 import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.client.TrinketRenderer;
-import dev.emi.trinkets.api.event.TrinketDropCallback;
-import dev.emi.trinkets.api.Trinket;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.model.EntityModel;
@@ -26,6 +24,7 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.RenderUtils;
 
+import witchermedallions.items.ModItems;
 import witchermedallions.items.gecko.renderer.WolfMedallionRenderer;
 import witchermedallions.witcherMod;
 
@@ -70,17 +69,7 @@ public class WolfMedallionItem extends TrinketItem implements GeoItem, TrinketRe
     }
 
     private  <T extends GeoAnimatable> PlayState predicate(AnimationState<WolfMedallionItem> tAnimationState) {
-        if(witcherMod.NearMob_Wolf){
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("medallion_animation", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-
-        if (witcherMod.NearMob_Wolf==false){
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-        return PlayState.CONTINUE;
-
+        return ModItems.AnimationDetection(tAnimationState, witcherMod.NearStrongMagic_Wolf, witcherMod.NearMob_Wolf);
     }
 
     @Override

@@ -32,6 +32,7 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.RenderUtils;
 
+import witchermedallions.items.ModItems;
 import witchermedallions.items.gecko.renderer.AncientWolfMedallionRenderer;
 import witchermedallions.witcherMod;
 
@@ -71,17 +72,8 @@ public class AncientWolfMedallionItem extends TrinketItem implements GeoItem, Tr
     }
 
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<AncientWolfMedallionItem> tAnimationState) {
-        if(witcherMod.NearMob_AncientWolf){
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("medallion_animation", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
 
-        if (witcherMod.NearMob_AncientWolf==false){
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-        return PlayState.CONTINUE;
-
+        return ModItems.AnimationDetection(tAnimationState, witcherMod.NearStrongMagic_AncientWolf, witcherMod.NearMob_AncientWolf);
     }
 
     @Override

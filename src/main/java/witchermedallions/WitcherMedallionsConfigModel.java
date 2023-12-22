@@ -71,9 +71,54 @@ public class WitcherMedallionsConfigModel {
             )
     );
 
+    public List<String> StrongMagicSourcesList = new ArrayList<>(List.of
+            (
+                    //MagicBlocks
+                    "block.minecraft.enchanting_table",
+                        //End
+                        "block.minecraft.end_portal_frame",
+                        "block.minecraft.end_portal",
+                        "block.minecraft.ender_chest",
+                        "block.minecraft.dragon_egg",
+
+                    "block.minecraft.nether_portal",
+
+                        //Soul
+                        "block.minecraft.soul_sand",
+                        "block.minecraft.soul_fire",
+                        "block.minecraft.soul_torch",
+                        "block.minecraft.soul_lantern",
+                        "block.minecraft.soul_campfire",
+                        //Amethyst
+                        "block.minecraft.budding_amethyst",
+                        //Sculk
+                        "block.minecraft.sculk",
+                        "block.minecraft.sculk_vein",
+                        "block.minecraft.sculk_catalyst",
+                        "block.minecraft.sculk_shrieker",
+                        "block.minecraft.sculk_sensor",
+                        "block.minecraft.calibrated_sculk_sensor",
+
+                    "block.minecraft.beacon",
+                    "block.minecraft.conduit",
+                    "block.minecraft.respawn_anchor",
+                    "block.minecraft.spawner",
+
+                    //StrongEntities
+                    "entity.minecraft.wither",
+                    "entity.minecraft.ender_dragon",
+                    "entity.minecraft.elder_guardian",
+                    "entity.minecraft.warden"
+
+            )
+    );
+
     public int activeDetectionSize = 35;
     public int passiveDetectionXZ = 15;
     public int passiveDetectionY = 4;
+    public int StrongpassiveDetectionXZ = 20;
+    public int StrongpassiveDetectionY = 8;
+    public boolean StrongDetectionForBlocks = true;
     public boolean medallionSounds = true;
     public boolean medallionsHaveSoulbound = true;
 }

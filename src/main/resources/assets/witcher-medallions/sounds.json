@@ -49,5 +49,42 @@
       "sounds": [
         "witcher-medallions:medallion-manticore_sound"
         ]
-      }
+      },
+
+  "medallion-wolf-strong_sound": {
+    "subtitle": "witcher-medallions.medallion-wolf-strong_sound",
+    "sounds": [
+      "witcher-medallions:medallion-wolf-strong_sound"
+    ]
+  },
+  "medallion-cat-strong_sound": {
+    "subtitle": "witcher-medallions.medallion-cat-strong_sound",
+    "sounds": [
+      "witcher-medallions:medallion-cat-strong_sound"
+    ]
+  },
+  "medallion-bear-strong_sound": {
+    "subtitle": "witcher-medallions.medallion-bear-strong_sound",
+    "sounds": [
+      "witcher-medallions:medallion-bear-strong_sound"
+    ]
+  },
+  "medallion-griffin-strong_sound": {
+    "subtitle": "witcher-medallions.medallion-griffin-strong_sound",
+    "sounds": [
+      "witcher-medallions:medallion-griffin-strong_sound"
+    ]
+  },
+  "medallion-viper-strong_sound": {
+    "subtitle": "witcher-medallions.medallion-viper-strong_sound",
+    "sounds": [
+      "witcher-medallions:medallion-viper-strong_sound"
+    ]
+  },
+  "medallion-manticore-strong_sound": {
+    "subtitle": "witcher-medallions.medallion-manticore-strong_sound",
+    "sounds": [
+      "witcher-medallions:medallion-manticore-strong_sound"
+    ]
+  }
 }

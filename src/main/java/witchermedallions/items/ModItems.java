@@ -11,9 +11,15 @@ import net.minecraft.util.Identifier;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.Registries;
 
+import software.bernie.geckolib.core.animation.Animation;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
 import witchermedallions.items.gecko.item.*;
 import witchermedallions.items.gecko.item.off.*;
 import witchermedallions.witcherMod;
+
+
+import software.bernie.geckolib.core.animation.*;
 
 public class ModItems {
 		// Register method
@@ -33,7 +39,23 @@ public class ModItems {
 		}
 	private static final RegistryKey<ItemGroup> WITCHERMEDALLIONSGROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(witcherMod.MODID, "witcher-medallions"));
 
-	public static SoundEvent MEDALLION_ACTIVATE_SOUND= registerSoundEvent("medallion_activate_sound");
+	public static PlayState AnimationDetection(AnimationState tAnimationState, Boolean boolStrong, Boolean boolNormal){
+		if(boolStrong){
+			tAnimationState.getController().setAnimation(RawAnimation.begin().then("medallion_animation_strong", Animation.LoopType.LOOP));
+			return PlayState.CONTINUE;
+		}
+
+		else if(boolNormal){
+			tAnimationState.getController().setAnimation(RawAnimation.begin().then("medallion_animation", Animation.LoopType.LOOP));
+			return PlayState.CONTINUE;
+		}
+		else{
+			tAnimationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+			return PlayState.CONTINUE;
+		}
+	};
+		
+		public static SoundEvent MEDALLION_ACTIVATE_SOUND= registerSoundEvent("medallion_activate_sound");
 		public static SoundEvent MEDALLION_RESTARTCOOLDOWN_SOUND= registerSoundEvent("medallion_restartcooldown_sound");
 		public static SoundEvent WOLFMEDALLION_SOUND= registerSoundEvent("medallion-wolf_sound");
 		public static SoundEvent CATMEDALLION_SOUND= registerSoundEvent("medallion-cat_sound");
@@ -41,7 +63,14 @@ public class ModItems {
 		public static SoundEvent GRIFFINMEDALLION_SOUND= registerSoundEvent("medallion-griffin_sound");
 		public static SoundEvent VIPERMEDALLION_SOUND= registerSoundEvent("medallion-viper_sound");
 		public static SoundEvent MANTICOREMEDALLION_SOUND= registerSoundEvent("medallion-manticore_sound");
-	
+
+		public static SoundEvent STRONGWOLFMEDALLION_SOUND= registerSoundEvent("medallion-wolf-strong_sound");
+		public static SoundEvent STRONGCATMEDALLION_SOUND= registerSoundEvent("medallion-cat-strong_sound");
+		public static SoundEvent STRONGBEARMEDALLION_SOUND= registerSoundEvent("medallion-bear-strong_sound");
+		public static SoundEvent STRONGGRIFFINMEDALLION_SOUND= registerSoundEvent("medallion-griffin-strong_sound");
+		public static SoundEvent STRONGVIPERMEDALLION_SOUND= registerSoundEvent("medallion-viper-strong_sound");
+		public static SoundEvent STRONGMANTICOREMEDALLION_SOUND= registerSoundEvent("medallion-manticore-strong_sound");
+
 	//Items Creation
 
 	//WolfMedallion

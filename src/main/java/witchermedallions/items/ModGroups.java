@@ -47,13 +47,7 @@ public class ModGroups{
 							registerModItem(entries,ModItems.Witcher_MagicCore);
 
 						}).build());
-//		WitcherMedallions =
-//				FabricItemGroup.builder(
-////						new Identifier("witcherMod.MODID","witcher_medallions")
-//						)
-//						.displayName(Text.translatable("itemgroup.witcher-medallions"))
-//						.icon(() -> new ItemStack(ModItems.Witcher_WolfMedallion)).build();
-//		new Identifier(witcherMod.MODID,"witcher_medallions")
+
 	public static void registerGroupItems() {
 		witcherMod.LOGGER.info("Registering Item Groups for " + witcherMod.MODID);
 	}

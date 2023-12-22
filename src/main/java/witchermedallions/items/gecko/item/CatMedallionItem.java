@@ -30,14 +30,8 @@ import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInst
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.RenderUtils;
-import software.bernie.geckolib.animatable.GeoItem;
-import software.bernie.geckolib.animatable.client.RenderProvider;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.RenderUtils;
 
+import witchermedallions.items.ModItems;
 import witchermedallions.items.gecko.renderer.CatMedallionRenderer;
 import witchermedallions.witcherMod;
 
@@ -80,17 +74,7 @@ public class CatMedallionItem extends TrinketItem implements GeoItem, TrinketRen
     }
 
     private  <T extends GeoAnimatable> PlayState predicate(AnimationState<CatMedallionItem> tAnimationState) {
-        if(witcherMod.NearMob_Cat){
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("medallion_animation", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-
-        if (witcherMod.NearMob_Cat==false){
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-        return PlayState.CONTINUE;
-
+        return ModItems.AnimationDetection(tAnimationState, witcherMod.NearStrongMagic_Cat, witcherMod.NearMob_Cat);
     }
 
     @Override

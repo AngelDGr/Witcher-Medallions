@@ -7,6 +7,7 @@ import software.bernie.geckolib.renderer.GeoItemRenderer;
 import witchermedallions.event.KeyInputHandler;
 import witchermedallions.event.PlayMedallionSound;
 import witchermedallions.items.ModItems;
+import witchermedallions.items.gecko.item.WolfMedallionItem;
 import witchermedallions.items.gecko.renderer.*;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
@@ -29,6 +30,7 @@ public class witcherMod_client implements ClientModInitializer {
                 KeyInputHandler.register();
                 registerClient();
                 PlayMedallionSound.registerSounds();
+//                TrinketRendererRegistry.registerRenderer(WolfMedallionItem);
 	}
 
 

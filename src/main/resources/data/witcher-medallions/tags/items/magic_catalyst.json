@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:gold_ingot",
+    "minecraft:lapis_lazuli",
+    "minecraft:blaze_powder",
+    "minecraft:ghast_tear",
+    "minecraft:echo_shard",
+    "minecraft:amethyst_shard"
+  ]
+}
