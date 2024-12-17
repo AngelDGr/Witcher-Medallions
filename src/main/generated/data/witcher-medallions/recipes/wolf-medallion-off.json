@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:bone"
+  },
+  "base": {
+    "tag": "witcher-medallions:metal_base_medallion"
+  },
+  "result": {
+    "item": "witcher-medallions:wolf-medallion-off"
+  },
+  "template": {
+    "item": "minecraft:chain"
+  }
+}

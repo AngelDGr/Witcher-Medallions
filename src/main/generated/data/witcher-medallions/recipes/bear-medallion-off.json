@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "witcher-medallions:bear_medallion_ingredient"
+  },
+  "base": {
+    "tag": "witcher-medallions:metal_base_medallion"
+  },
+  "result": {
+    "item": "witcher-medallions:bear-medallion-off"
+  },
+  "template": {
+    "item": "minecraft:chain"
+  }
+}

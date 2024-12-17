@@ -24,21 +24,32 @@
     "item.witcher-medallions.ancient-wolf-medallion": "Ancient Wolf Medallion",
     "item.witcher-medallions.ancient-wolf-medallion-off": "Deactivated Ancient Wolf Medallion",
 
-    "tooltip.witcher-medallions.wolfmedalliontp": "Symbol of the mighty warriors of Kaer Morhen",
+    "tooltip.witcher-medallions.wolf_medallion_tooltip_1": "Symbol of the mighty warriors",
+    "tooltip.witcher-medallions.wolf_medallion_tooltip_2": "of Kaer Morhen",
 
-    "tooltip.witcher-medallions.catmedalliontp": "Symbol of the agile butchers of Dyn Marv",
+    "tooltip.witcher-medallions.cat_medallion_tooltip_1": "Symbol of the agile butchers",
+    "tooltip.witcher-medallions.cat_medallion_tooltip_2": "of Dyn Marv",
 
-    "tooltip.witcher-medallions.bearmedalliontp": "Symbol of the fierce fighters of Haern Caduch",
+    "tooltip.witcher-medallions.bear_medallion_tooltip_1": "Symbol of the fierce fighters",
+    "tooltip.witcher-medallions.bear_medallion_tooltip_2": "of Haern Caduch",
 
-    "tooltip.witcher-medallions.griffinmedalliontp": "Symbol of the wise knights of Kaer Seren",
+    "tooltip.witcher-medallions.griffin_medallion_tooltip_1": "Symbol of the wise knights",
+    "tooltip.witcher-medallions.griffin_medallion_tooltip_2": "of Kaer Seren",
 
-    "tooltip.witcher-medallions.vipermedalliontp": "Symbol of the ruthless assassins of Gorthur Gvaed",
+    "tooltip.witcher-medallions.viper_medallion_tooltip_1": "Symbol of the ruthless assassins",
+    "tooltip.witcher-medallions.viper_medallion_tooltip_2": "of Gorthur Gvaed",
 
-    "tooltip.witcher-medallions.manticoremedalliontp": "Symbol of the enigmatic swordsmen of Zerrikania",
+    "tooltip.witcher-medallions.manticore_medallion_tooltip_1": "Symbol of the enigmatic swordsmen",
+    "tooltip.witcher-medallions.manticore_medallion_tooltip_2": "of Zerrikania",
 
-    "tooltip.witcher-medallions.ancientwolfmedalliontp": "A symbol of Kaer Morhen, from a forgotten age",
+    "tooltip.witcher-medallions.ancient_wolf_medallion_tooltip_1": "A symbol of Kaer Morhen, from",
+    "tooltip.witcher-medallions.ancient_wolf_medallion_tooltip_2": "a forgotten age",
+
 
     "tooltip.witcher-medallions.off": "A deactivated medallion, imbue with concentrated magic to make it work",
+    "tooltip.witcher-medallions.off_1": "A deactivated medallion, imbue with",
+    "tooltip.witcher-medallions.off_2": "concentrated magic to make it work",
+
 
     "key.category.witchermedallions.medallions": "Witcher Medallions",
 
@@ -65,7 +76,7 @@
     "text.config.witchermedallions-config.title": "Witcher Medallions Config",
 
     "text.config.witchermedallions-config.option.MobList": "Detectable mobs with the Witcher Medallions",
-    "text.config.witchermedallions-config.option.MobList.tooltip": "Add or remove mobs for detection! \nThe format is 'entity.<ModId>.<EntityId>'",
+    "text.config.witchermedallions-config.option.MobList.tooltip": "Add or remove mobs for detection! \nUse the id with the format '<ModId>:<Entity/BlockId>'",
 
     "text.config.witchermedallions-config.option.activeDetectionSize": "Active Detection - Size",
     "text.config.witchermedallions-config.option.activeDetectionSize.tooltip": "Size (XYZ) for the active detection.\n(When you press the keybind)",
@@ -83,7 +94,7 @@
     "text.config.witchermedallions-config.option.medallionsHaveSoulbound.tooltip": "Makes you keep the medallion equipped when you die",
 
     "text.config.witchermedallions-config.option.StrongMagicSourcesList": "Mobs or blocks with strong magical auras",
-    "text.config.witchermedallions-config.option.StrongMagicSourcesList.tooltip": "Add or remove mobs or blocks for strong detection! \nThe format is 'entity/block.<ModId>.<Entity/BlockId>'",
+    "text.config.witchermedallions-config.option.StrongMagicSourcesList.tooltip": "Add or remove mobs or blocks for strong detection! \nUse the id with the format '<ModId>:<Entity/BlockId>'",
 
     "text.config.witchermedallions-config.option.StrongDetectionForBlocks": "Strong Detection for Blocks",
     "text.config.witchermedallions-config.option.StrongDetectionForBlocks.tooltip": "The block detection can cause performance issues, so deactivate if it's necessary",

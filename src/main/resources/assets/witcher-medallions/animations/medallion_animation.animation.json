@@ -3,7 +3,7 @@
 	"animations": {
 		"medallion_animation": {
 			"loop": true,
-			"animation_length": 0.41667,
+			"animation_length": 0.4167,
 			"bones": {
 				"MedallionHead": {
 					"rotation": {

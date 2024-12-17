@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "pattern": [
+    "LGL",
+    "GEG",
+    "LGL"
+  ],
+  "result": {
+    "item": "witcher-medallions:magic-nucleus"
+  },
+  "show_notification": true
+}

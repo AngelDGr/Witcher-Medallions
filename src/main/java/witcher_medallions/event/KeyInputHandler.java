@@ -1,0 +1,78 @@
+package witcher_medallions.event;
+
+import org.lwjgl.glfw.GLFW;
+
+import net.minecraft.client.MinecraftClient;
+
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+
+
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.sound.SoundCategory;
+
+
+import witcher_medallions.WitcherMedallions_Main;
+import witcher_medallions.items.WitcherMedallions_Items;
+
+
+public class KeyInputHandler {
+    public static final String KEY_CATEGORY_MEDALLIONS = "key.category.witchermedallions.medallions";
+    public static final String KEY_ACTIVE_MEDALLION = "key.witchermedallions.activemedallion";
+
+    public static KeyBinding medallion_key;
+    public static boolean outliningMonsters = false;
+    private static boolean cooldown = false;
+    private static int ticks = 0;
+
+    @SuppressWarnings("all")
+    public static void registerKeyInputs(){
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+                while(medallion_key.wasPressed()) {
+                    //DetectMedallion
+                    if (!cooldown) {
+                        if (
+                               (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_WolfMedallion))
+                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_CatMedallion))
+                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_BearMedallion))
+                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_GriffinMedallion))
+                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_ViperMedallion))
+                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_ManticoreMedallion))
+                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_AncientWolfMedallion))
+                        ) {
+                            outliningMonsters = true;
+                            ticks = 200;
+                            cooldown = true;
+                            MinecraftClient.getInstance().player.playSound(WitcherMedallions_Items.MEDALLION_ACTIVATE_SOUND, SoundCategory.PLAYERS, 2, 1);
+                        }
+                    }
+                }
+                if (cooldown) {
+                    --ticks;
+                    //Time that the effect shows up
+                    if (ticks == 100) {
+                        outliningMonsters= false;
+                    }
+                    //Time cooldown last
+                    if (ticks==0) {
+                        if(MinecraftClient.getInstance().player!=null){
+                        MinecraftClient.getInstance().player.playSound(WitcherMedallions_Items.MEDALLION_RESTART_COOLDOWN_SOUND, SoundCategory.PLAYERS, 2, 1);
+                        }
+                    cooldown=false;
+                    }
+                }
+            });
+    }
+
+    public static void register(){
+        medallion_key = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        KEY_ACTIVE_MEDALLION,
+        InputUtil.Type.KEYSYM,
+        GLFW.GLFW_KEY_T,
+        KEY_CATEGORY_MEDALLIONS
+        ));
+        registerKeyInputs();
+    }
+
+}

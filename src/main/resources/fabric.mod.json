@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "witcher-medallions",
-	"version": "2.0.1",
+	"version": "3.0.0",
 	"name": "Witcher Medallions",
 	"description": "A simple mod that adds Witcher Medallions!",
 	"authors": [
@@ -16,11 +16,15 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"witchermedallions.witcherMod"
+          "witcher_medallions.WitcherMedallions_Main"
 		],
 
 		"client": [
-			"witchermedallions.witcherMod_client"
+			"witcher_medallions.WitcherMedallions_Client"
+		],
+
+		"fabric-datagen": [
+			"witcher_medallions.WitcherMedallions_DataGenerator"
 		]
 	},
 	"mixins": [
@@ -45,6 +49,10 @@
 			"links": {
 				"modmenu.curseforge": "https://legacy.curseforge.com/members/tenebris_mors/projects"
 			}
+		},
+
+		"loom:injected_interfaces": {
+			"net/minecraft/class_1657": ["witcher_medallions/injected/PlayerEntityMixinMedallions"]
 		}
 	}
 }
