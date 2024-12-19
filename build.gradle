@@ -28,10 +28,6 @@ repositories {
 		name ='OwO-Lib'
 		url 'https://maven.wispforest.io' 
 	}
-//	 maven {
-//        name = 'GeckoLib'
-//        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
-//    }
 
 	maven {
 		name = 'GeckoLib'
@@ -92,7 +88,7 @@ dependencies {
 	modImplementation "dev.emi:trinkets:${trinkets_version}"
 
 	//GeckoLib Dependency
-	modImplementation "software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${project.geckolib_version}"
+	modImplementation "software.bernie.geckolib:geckolib-fabric-1.19:${project.geckolib_version}"
 	implementation("com.eliotlash.mclib:mclib:20")
 
 	//OwO-Lib Dependency
