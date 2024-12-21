@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
@@ -13,12 +13,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import witcher_medallions.items.WitcherMedallions_Items;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
 
 public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint {
     @Override
@@ -35,11 +36,13 @@ public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint 
         public ItemTagGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
             super(output, completableFuture);
         }
+        public static final TagKey<Item> TRINKET_TAG =
+                TagKey.of(RegistryKeys.ITEM, Identifier.of("trinkets","chest/necklace"));
 
         @Override
         protected void configure(RegistryWrapper.WrapperLookup arg) {
             this.getOrCreateTagBuilder(WitcherMedallions_Items.BEAR_MEDALLION_INGREDIENT)
-                    .add(Items.LEATHER)
+                    .addOptionalTag(Identifier.of("more_rpg_classes", "polar_bear_fur"))
                     .add(Items.SALMON)
                     .add(Items.COOKED_SALMON);
 
@@ -62,21 +65,33 @@ public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint 
                     .add(Items.GHAST_TEAR)
                     .add(Items.AMETHYST_SHARD);
 
-            this.getOrCreateTagBuilder(WitcherMedallions_Items.METAL_BASE_MEDALLIONS)
-                    .add(Items.IRON_INGOT)
-                    .addOptionalTag(new Identifier("c", "silver_ingot"))
-                    .addOptionalTag(new Identifier("c", "silver_ingots"));
+
+            this.getOrCreateTagBuilder(TRINKET_TAG)
+                    .add(WitcherMedallions_Items.Witcher_WolfMedallion,
+                            WitcherMedallions_Items.Witcher_CatMedallion,
+                            WitcherMedallions_Items.Witcher_BearMedallion,
+                            WitcherMedallions_Items.Witcher_GriffinMedallion,
+                            WitcherMedallions_Items.Witcher_ViperMedallion,
+                            WitcherMedallions_Items.Witcher_ManticoreMedallion,
+                            WitcherMedallions_Items.Witcher_AncientWolfMedallion)
+                    .add(WitcherMedallions_Items.Witcher_OffWolfMedallion,
+                            WitcherMedallions_Items.Witcher_OffCatMedallion,
+                            WitcherMedallions_Items.Witcher_OffBearMedallion,
+                            WitcherMedallions_Items.Witcher_OffGriffinMedallion,
+                            WitcherMedallions_Items.Witcher_OffViperMedallion,
+                            WitcherMedallions_Items.Witcher_OffManticoreMedallion,
+                            WitcherMedallions_Items.Witcher_OffAncientWolfMedallion);
         }
     }
 
     private static class RecipesGenerator extends FabricRecipeProvider {
 
-        public RecipesGenerator(FabricDataOutput output) {
-            super(output);
+        public RecipesGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+            super(output,registriesFuture);
         }
 
         @Override
-        public void generate(Consumer<RecipeJsonProvider> exporter) {
+        public void generate(RecipeExporter exporter) {
             //Magic Nucleus
             {
                 ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, WitcherMedallions_Items.Witcher_MagicCore)
@@ -90,17 +105,6 @@ public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint 
                         .offerTo(exporter);
             }
 
-            //Off
-            {
-                createMedallionOffRecipe(exporter, Ingredient.ofItems(Items.BONE), WitcherMedallions_Items.Witcher_OffWolfMedallion);
-                createMedallionOffRecipe(exporter, Ingredient.fromTag(WitcherMedallions_Items.CAT_MEDALLION_INGREDIENT), WitcherMedallions_Items.Witcher_OffCatMedallion);
-                createMedallionOffRecipe(exporter, Ingredient.fromTag(WitcherMedallions_Items.BEAR_MEDALLION_INGREDIENT), WitcherMedallions_Items.Witcher_OffBearMedallion);
-                createMedallionOffRecipe(exporter, Ingredient.ofItems(Items.FEATHER), WitcherMedallions_Items.Witcher_OffGriffinMedallion);
-                createMedallionOffRecipe(exporter, Ingredient.ofItems(Items.FERMENTED_SPIDER_EYE), WitcherMedallions_Items.Witcher_OffViperMedallion);
-                createMedallionOffRecipe(exporter, Ingredient.fromTag(WitcherMedallions_Items.MANTICORE_MEDALLION_INGREDIENT), WitcherMedallions_Items.Witcher_OffManticoreMedallion);
-                createMedallionOffRecipe(exporter, Ingredient.ofItems(Items.PAPER), WitcherMedallions_Items.Witcher_OffAncientWolfMedallion);
-            }
-
             //On
             {
                 createMedallionRecipe(exporter, WitcherMedallions_Items.Witcher_OffWolfMedallion, WitcherMedallions_Items.Witcher_WolfMedallion);
@@ -111,26 +115,9 @@ public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint 
                 createMedallionRecipe(exporter, WitcherMedallions_Items.Witcher_OffManticoreMedallion, WitcherMedallions_Items.Witcher_ManticoreMedallion);
                 createMedallionRecipe(exporter, WitcherMedallions_Items.Witcher_OffAncientWolfMedallion, WitcherMedallions_Items.Witcher_AncientWolfMedallion);
             }
-
         }
 
-        private void createMedallionOffRecipe(Consumer<RecipeJsonProvider> exporter, Ingredient addition, Item medallion){
-            SmithingTransformRecipeJsonBuilder.create(
-                    //Template
-                    Ingredient.ofItems(Items.CHAIN),
-                    //Base
-                    Ingredient.fromTag(WitcherMedallions_Items.METAL_BASE_MEDALLIONS),
-                    //Addition
-                    addition,
-                    //Category
-                    RecipeCategory.COMBAT,
-                    //Result
-                    medallion)
-                    .criterion(FabricRecipeProvider.hasItem(Items.CHAIN), FabricRecipeProvider.conditionsFromItem(Items.CHAIN))
-                    .offerTo(exporter, RecipeProvider.getItemPath(medallion));
-        }
-
-        private void createMedallionRecipe(Consumer<RecipeJsonProvider> exporter, Item OFF_Medallion, Item ON_Medallion){
+        private void createMedallionRecipe(RecipeExporter exporter, Item OFF_Medallion, Item ON_Medallion){
             SmithingTransformRecipeJsonBuilder.create(
                             //Template
                             Ingredient.ofItems(WitcherMedallions_Items.Witcher_MagicCore),
@@ -147,6 +134,4 @@ public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint 
                     .offerTo(exporter, RecipeProvider.getItemPath(ON_Medallion));
         }
     }
-
-
 }

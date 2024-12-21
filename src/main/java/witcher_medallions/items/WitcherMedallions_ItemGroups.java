@@ -14,7 +14,7 @@ public class WitcherMedallions_ItemGroups {
 	//ItemGroup
 	@SuppressWarnings("unused")
 		public static final ItemGroup WitcherMedallions = Registry.register(Registries.ITEM_GROUP,
-				new Identifier(WitcherMedallions_Main.MOD_ID, "witcher_medallions"),
+				Identifier.of(WitcherMedallions_Main.MOD_ID, "witcher_medallions"),
 				FabricItemGroup.builder().displayName(Text.translatable("itemgroup.witcher-medallions"))
 						.icon(() -> new ItemStack(WitcherMedallions_Items.Witcher_WolfMedallion))
 						.entries((displayContext, entries) -> {

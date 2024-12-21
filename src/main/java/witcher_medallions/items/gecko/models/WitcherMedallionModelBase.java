@@ -14,17 +14,17 @@ public class WitcherMedallionModelBase extends GeoModel<MedallionBaseItem> {
     }
 
     public Identifier getTexture_ON(){
-        return new Identifier(WitcherMedallions_Main.MOD_ID, "textures/item/"+getType()+"/"+getType()+"_medallion.png");
+        return Identifier.of(WitcherMedallions_Main.MOD_ID, "textures/item/"+getType()+"/"+getType()+"_medallion.png");
     }
     public Identifier getNeckTexture_ON(){
-        return new Identifier(WitcherMedallions_Main.MOD_ID, "textures/item/"+getType()+"/"+getType()+"_medallion_neck.png");
+        return Identifier.of(WitcherMedallions_Main.MOD_ID, "textures/item/"+getType()+"/"+getType()+"_medallion_neck.png");
     }
 
     public Identifier getTexture_OFF(){
-        return new Identifier(WitcherMedallions_Main.MOD_ID, "textures/item/"+getType()+"/"+getType()+"_off_medallion.png");
+        return Identifier.of(WitcherMedallions_Main.MOD_ID, "textures/item/"+getType()+"/"+getType()+"_off_medallion.png");
     }
     public Identifier getNeckTexture_OFF(){
-        return new Identifier(WitcherMedallions_Main.MOD_ID, "textures/item/"+getType()+"/"+getType()+"_off_medallion_neck.png");
+        return Identifier.of(WitcherMedallions_Main.MOD_ID, "textures/item/"+getType()+"/"+getType()+"_off_medallion_neck.png");
     }
 
     public String getType(){
@@ -38,11 +38,11 @@ public class WitcherMedallionModelBase extends GeoModel<MedallionBaseItem> {
 
     @Override
     public Identifier getModelResource(MedallionBaseItem object) {
-        return new Identifier(WitcherMedallions_Main.MOD_ID, "geo/"+getType()+"_medallion.geo.json");
+        return Identifier.of(WitcherMedallions_Main.MOD_ID, "geo/"+getType()+"_medallion.geo.json");
     }
 
     @Override
     public Identifier getAnimationResource(MedallionBaseItem animatable) {
-        return new Identifier(WitcherMedallions_Main.MOD_ID, "animations/medallion_animation.animation.json");
+        return Identifier.of(WitcherMedallions_Main.MOD_ID, "animations/medallion_animation.animation.json");
     }
 }

@@ -26,13 +26,15 @@ public class WitcherMedallionRenderer extends GeoItemRenderer<MedallionBaseItem>
 
     //To have two different textures
     @Override
-    public void render(ItemStack stack, ModelTransformationMode transformType, MatrixStack poseStack, VertexConsumerProvider bufferSource, int packedLight, int packedOverlay) {
+    public void render(ItemStack stack, ModelTransformationMode transformType, MatrixStack poseStack,
+                       VertexConsumerProvider bufferSource, int packedLight, int packedOverlay) {
         this.animatable = (MedallionBaseItem) stack.getItem();
         this.currentItemStack = stack;
         this.renderPerspective = transformType;
+        float partialTick = MinecraftClient.getInstance().getRenderTickCounter().getTickDelta(true);
 
         if (transformType == ModelTransformationMode.GUI) {
-            renderInGui(transformType, poseStack, bufferSource, packedLight, packedOverlay);
+            renderInGui(transformType, poseStack, bufferSource, packedLight, packedOverlay, partialTick);
         }
         else if((transformType == ModelTransformationMode.HEAD || transformType == ModelTransformationMode.FIXED) && model instanceof WitcherMedallionModelBase witcherMedallionModel) {
 
@@ -41,18 +43,18 @@ public class WitcherMedallionRenderer extends GeoItemRenderer<MedallionBaseItem>
                     //Different texture as a necklace
                     getNeckTextureLocation(witcherMedallionModel),
 
-                    bufferSource, MinecraftClient.getInstance().getTickDelta());
+                    bufferSource, partialTick);
             VertexConsumer buffer = ItemRenderer.getDirectItemGlintConsumer(bufferSource, renderType, false, this.currentItemStack != null && this.currentItemStack.hasGlint());
 
             defaultRender(poseStack, this.animatable, bufferSource, renderType, buffer,
-                    0, MinecraftClient.getInstance().getTickDelta(), packedLight);
+                    0, partialTick, packedLight);
 
         } else {
-            RenderLayer renderType = getRenderType(this.animatable, getTextureLocation(this.animatable), bufferSource, MinecraftClient.getInstance().getTickDelta());
+            RenderLayer renderType = getRenderType(this.animatable, getTextureLocation(this.animatable), bufferSource, partialTick);
             VertexConsumer buffer = ItemRenderer.getDirectItemGlintConsumer(bufferSource, renderType, false, this.currentItemStack != null && this.currentItemStack.hasGlint());
 
             defaultRender(poseStack, this.animatable, bufferSource, renderType, buffer,
-                    0, MinecraftClient.getInstance().getTickDelta(), packedLight);
+                    0, partialTick, packedLight);
         }
     }
 }

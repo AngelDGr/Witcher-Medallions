@@ -1,45 +1,52 @@
 package witcher_medallions.items.medallions;
 
+import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketEnums;
-import net.minecraft.client.item.TooltipContext;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
-import software.bernie.geckolib.animatable.client.RenderProvider;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.client.GeoRenderProvider;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.PlayState;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.util.GeckoLibUtil;
 import witcher_medallions.WitcherMedallions_Main;
 import witcher_medallions.items.MedallionBaseItem;
+import witcher_medallions.items.WitcherMedallions_Items;
+import witcher_medallions.util.MiscUtil;
 
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
     protected final RawAnimation SWING_ANIMATION = RawAnimation.begin().thenLoop("medallion_animation");
     protected final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
     protected final RawAnimation STRONG_ANIMATION = RawAnimation.begin().thenLoop("medallion_animation_strong");
 
-    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-    private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
     public ActivedMedallionBaseItem(Settings settings) {
         super(settings);
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
@@ -58,10 +65,10 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
     }
 
     @Override
-    public void createRenderer(Consumer<Object> consumer) {
-        consumer.accept(new RenderProvider() {
+    public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
+        consumer.accept(new GeoRenderProvider() {
             @Override
-            public BuiltinModelItemRenderer getCustomRenderer() {
+            public @Nullable BuiltinModelItemRenderer getGeoItemRenderer() {
                 return (BuiltinModelItemRenderer)getRenderer();
             }
         });
@@ -83,14 +90,9 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         tooltip.add(Text.translatable(getTooltip()+"_1").formatted(getTooltipColor()));
         tooltip.add(Text.translatable(getTooltip()+"_2").formatted(getTooltipColor()));
-    }
-
-    @Override
-    public Supplier<Object> getRenderProvider() {
-        return renderProvider;
     }
 
     @Override
@@ -150,4 +152,80 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
         this.triggerAnim(entity, GeoItem.getOrAssignId(stack, (ServerWorld) entity.getWorld()), "mainController", animName);
     }
 
+
+    //Attributes
+    private final Identifier SIGN_INTENSITY= Identifier.of("witcher_rpg","sign_intensity");
+    private final Identifier GENERIC_ATTACK= Identifier.ofVanilla("generic.attack_damage");
+    private final Identifier ADRENALINE_GAIN = Identifier.of("witcher_rpg", "adrenaline_modifier");
+    private final Identifier GENERIC_ATTACK_SPEED = Identifier.ofVanilla("generic.attack_speed");
+    private final Identifier KNOCKBACK_RESISTANCE = Identifier.ofVanilla("generic.knockback_resistance");
+    private final Identifier SPELL_HASTE = Identifier.of("spell_power","haste");
+    private final Identifier GENERIC_SPEED = Identifier.ofVanilla("generic.movement_speed");
+    private final Identifier WITCHER_TOXICITY = Identifier.of("tcots-witcher","generic.witcher_toxicity");
+    @Override
+    public Multimap<RegistryEntry<EntityAttribute>, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, Identifier slotIdentifier) {
+        var modifiers = super.getModifiers(stack, slot, entity, slotIdentifier);
+
+        //If Witcher RPG its loaded applies attributes
+        if(FabricLoader.getInstance().isModLoaded("witcher_rpg")){
+            //Wolf / Ancient Wolf:
+            //+5% Sign Intensity
+            //+2% Attack Damage
+            if(stack.isOf(WitcherMedallions_Items.Witcher_WolfMedallion) || stack.isOf(WitcherMedallions_Items.Witcher_AncientWolfMedallion)){
+                MiscUtil.addMultiplyAttributeTrinket(modifiers, SIGN_INTENSITY,"wolf-sign", 0.05);
+                MiscUtil.addMultiplyAttributeTrinket(modifiers, GENERIC_ATTACK, "wolf-damage", 0.02);
+            }
+            //Cat:
+            //+4% Adrenaline Gain
+            //+2% Attack Speed
+            else if(stack.isOf(WitcherMedallions_Items.Witcher_CatMedallion)){
+                MiscUtil.addMultiplyAttributeTrinket(modifiers, ADRENALINE_GAIN, "cat-adrenaline", 0.04);
+                MiscUtil.addMultiplyAttributeTrinket(modifiers, GENERIC_ATTACK_SPEED, "cat-speed", 0.02);
+            }
+            //Bear
+            //+5% Adrenaline Gain
+            //+5% Knockback Resistance
+            else if(stack.isOf(WitcherMedallions_Items.Witcher_BearMedallion)){
+                MiscUtil.addMultiplyAttributeTrinket(modifiers, ADRENALINE_GAIN, "bear-adrenaline", 0.05);
+                MiscUtil.addMultiplyAttributeTrinket(modifiers, KNOCKBACK_RESISTANCE, "bear-resistance", 0.05);
+            }
+            //Griffin
+            //+10% Sign Intensity
+            //+2% Spell Haste
+            else if(stack.isOf(WitcherMedallions_Items.Witcher_GriffinMedallion)){
+                MiscUtil.addMultiplyAttributeTrinket(modifiers, SIGN_INTENSITY, "griffin-power", 0.10);
+                MiscUtil.addMultiplyAttributeTrinket(modifiers, SPELL_HASTE, "griffin-haste", 0.02);
+            }
+            //Viper
+            //+2% Movement Speed
+            //+5% Attack Speed
+            else if(stack.isOf(WitcherMedallions_Items.Witcher_ViperMedallion)){
+                MiscUtil.addMultiplyAttributeTrinket(modifiers, GENERIC_SPEED, "viper-swiftness", 0.02);
+                MiscUtil.addMultiplyAttributeTrinket(modifiers, GENERIC_ATTACK_SPEED, "viper-speed", 0.05);
+            }
+            //Manticore
+            //+10 Max Toxicity/+2% Sign Intensity
+            //+5% Adrenaline Gain
+            else if(stack.isOf(WitcherMedallions_Items.Witcher_ManticoreMedallion)){
+                //If TCOTS is loaded applies toxicity, in other case applies sign intensity
+                if(FabricLoader.getInstance().isModLoaded("tcots-witcher")){
+                    MiscUtil.addAdditionAttributeTrinket(modifiers, WITCHER_TOXICITY, "manticore-toxicity", 10);
+                } else {
+                    MiscUtil.addMultiplyAttributeTrinket(modifiers, SIGN_INTENSITY, "manticore-magic", 0.02);
+                }
+
+                MiscUtil.addMultiplyAttributeTrinket(modifiers, ADRENALINE_GAIN, "manticore-adrenaline", 0.05);
+            }
+        }
+        //If ONLY TCOTS is loaded, applies only toxicity
+        else if(FabricLoader.getInstance().isModLoaded("tcots-witcher")){
+            //Manticore
+            //+10 Max Toxicity
+            if(stack.isOf(WitcherMedallions_Items.Witcher_ManticoreMedallion)){
+                MiscUtil.addAdditionAttributeTrinket(modifiers, WITCHER_TOXICITY, "manticore-toxicity", 10);
+            }
+        }
+
+        return modifiers;
+    }
 }

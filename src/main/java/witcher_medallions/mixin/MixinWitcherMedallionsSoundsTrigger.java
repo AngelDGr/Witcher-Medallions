@@ -59,7 +59,7 @@ public abstract class MixinWitcherMedallionsSoundsTrigger extends AbstractClient
                                     //The player exists
                                     && MinecraftClient.getInstance().player!=null){
 
-                        MinecraftClient.getInstance().player.playSound(
+                        MinecraftClient.getInstance().player.playSoundToPlayer(
                                 this.witcherMedallionsMod$getHasStrongMagicNear()?
                                         ((ActivedMedallionBaseItem)(medallionStack.getItem())).getStrongAnimalSound():
                                         ((ActivedMedallionBaseItem)(medallionStack.getItem())).getAnimalSound(), SoundCategory.PLAYERS, 1, 1);
@@ -79,14 +79,14 @@ public abstract class MixinWitcherMedallionsSoundsTrigger extends AbstractClient
 
                         if(medallionStackOffhand.isPresent() && medallionStackOffhand.get().getItem() instanceof ActivedMedallionBaseItem medallion && MinecraftClient.getInstance().player!=null){
 
-                            MinecraftClient.getInstance().player.playSound(
+                            MinecraftClient.getInstance().player.playSoundToPlayer(
                                     this.witcherMedallionsMod$getHasStrongMagicNear()?
                                             medallion.getStrongAnimalSound():
                                             medallion.getAnimalSound(), SoundCategory.PLAYERS, 1, 1);
 
                         } else if (medallionStack.isPresent() && medallionStack.get().getItem() instanceof ActivedMedallionBaseItem medallion && MinecraftClient.getInstance().player!=null) {
 
-                            MinecraftClient.getInstance().player.playSound(
+                            MinecraftClient.getInstance().player.playSoundToPlayer(
                                     this.witcherMedallionsMod$getHasStrongMagicNear()?
                                             medallion.getStrongAnimalSound():
                                             medallion.getAnimalSound(), SoundCategory.PLAYERS, 1, 1);

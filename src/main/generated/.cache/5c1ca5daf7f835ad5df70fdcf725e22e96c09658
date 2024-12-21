@@ -1,0 +1,17 @@
+// 1.21	2024-12-19T23:52:15.0511545	Witcher Medallions/Recipes
+ed8a6e64c829f15c303c051f7919c746f5201600 data\witcher-medallions\advancement\recipes\combat\griffin-medallion.json
+fcb3eb97fae6e3ba2456ee6c875738ba3ff5c49f data\witcher-medallions\advancement\recipes\combat\cat-medallion.json
+5885bcad50cad6398e83e688cf7c02a87aa6cf70 data\witcher-medallions\advancement\recipes\misc\magic-nucleus.json
+74b0b27f267e72300e66ae26318a5a70e812f55f data\witcher-medallions\recipe\griffin-medallion.json
+3c8dea29e252e5b481f8a3f8f9604780fc7dfbe4 data\witcher-medallions\advancement\recipes\combat\ancient-wolf-medallion.json
+3291b18050f40f32e5aef57418b9a1f09eaf1834 data\witcher-medallions\recipe\magic-nucleus.json
+d8b22a872e67c3f22cc3e7a41b9be4e148f533e9 data\witcher-medallions\recipe\cat-medallion.json
+323703352f862bb9a388cbe73ecd69d71eb1a267 data\witcher-medallions\advancement\recipes\combat\wolf-medallion.json
+6982c0ee62e885277283592932434708cbb2c8c2 data\witcher-medallions\advancement\recipes\combat\bear-medallion.json
+54c53cfeb6b7bcbecf36186aca0fa78a82c8e477 data\witcher-medallions\recipe\ancient-wolf-medallion.json
+ae537d3272c92e2fc8478420a7e9b656f57ee382 data\witcher-medallions\recipe\wolf-medallion.json
+d73612fe8e5d1d17f229642440c539d1e85e06e7 data\witcher-medallions\recipe\manticore-medallion.json
+38eddb1e3df5b5bede23f981c8c40676a57737fa data\witcher-medallions\advancement\recipes\combat\viper-medallion.json
+d17b4c8a0254ad105f61aca2960aa383422700ec data\witcher-medallions\recipe\bear-medallion.json
+3b65af77cf86d7be6977556efddf74701758828f data\witcher-medallions\recipe\viper-medallion.json
+40f2242074a5926eeebaba1b1ed467cc7890303f data\witcher-medallions\advancement\recipes\combat\manticore-medallion.json

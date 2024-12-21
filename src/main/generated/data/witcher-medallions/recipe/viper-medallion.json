@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "witcher-medallions:magic_catalyst"
+  },
+  "base": {
+    "item": "witcher-medallions:viper-medallion-off"
+  },
+  "result": {
+    "count": 1,
+    "id": "witcher-medallions:viper-medallion"
+  },
+  "template": {
+    "item": "witcher-medallions:magic-nucleus"
+  }
+}
