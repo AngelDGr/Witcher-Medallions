@@ -1,7 +1,10 @@
 {
   "replace": false,
   "values": [
-    "minecraft:leather",
+    {
+      "id": "#more_rpg_classes:polar_bear_fur",
+      "required": false
+    },
     "minecraft:salmon",
     "minecraft:cooked_salmon"
   ]

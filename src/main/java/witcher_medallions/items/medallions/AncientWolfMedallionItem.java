@@ -22,4 +22,7 @@ public class AncientWolfMedallionItem extends ActivedMedallionBaseItem {
     protected Formatting getTooltipColor() {
         return Formatting.DARK_GRAY;
     }
+
+
+
 }

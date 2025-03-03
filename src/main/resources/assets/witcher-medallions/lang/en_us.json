@@ -103,5 +103,11 @@
     "text.config.witchermedallions-config.option.StrongpassiveDetectionXZ.tooltip": "Size (XZ) for the strong detection (Strong motion animation)\nWARNING: High value cause performance issues",
 
     "text.config.witchermedallions-config.option.StrongpassiveDetectionY": "Strong Detection - Y Size",
-    "text.config.witchermedallions-config.option.StrongpassiveDetectionY.tooltip": "Size (Y) for the strong detection.\nWARNING: High value cause performance issues"
+    "text.config.witchermedallions-config.option.StrongpassiveDetectionY.tooltip": "Size (Y) for the strong detection.\nWARNING: High value cause performance issues",
+
+    "tag.item.witcher-medallions.magic_catalyst": "Magic Catalyst",
+    "tag.item.witcher-medallions.manticore_medallion_ingredient": "Manticore Essence",
+    "tag.item.witcher-medallions.cat_medallion_ingredient": "Cat Essence",
+    "tag.item.witcher-medallions.bear_medallion_ingredient": "Bear Essence"
+
 }

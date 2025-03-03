@@ -88,6 +88,5 @@ public class MedallionOffBaseItem extends MedallionBaseItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("tooltip.witcher-medallions.off_1").formatted(Formatting.GRAY));
         tooltip.add(Text.translatable("tooltip.witcher-medallions.off_2").formatted(Formatting.GRAY));
-        super.appendTooltip(stack, world, tooltip, context);
     }
 }

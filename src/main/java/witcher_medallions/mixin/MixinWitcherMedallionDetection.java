@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import witcher_medallions.MedallionLogicUtil;
+import witcher_medallions.util.MedallionLogicUtil;
 import witcher_medallions.WitcherMedallions_Main;
 import witcher_medallions.injected.PlayerEntityMixinMedallions;
 import witcher_medallions.items.medallions.ActivedMedallionBaseItem;

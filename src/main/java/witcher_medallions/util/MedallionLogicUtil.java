@@ -1,4 +1,4 @@
-package witcher_medallions;
+package witcher_medallions.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -8,6 +8,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import witcher_medallions.WitcherMedallions_Main;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,5 +1,9 @@
 package witcher_medallions.event;
 
+import dev.emi.trinkets.api.TrinketComponent;
+import dev.emi.trinkets.api.TrinketsApi;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.Item;
 import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.client.MinecraftClient;
@@ -33,13 +37,13 @@ public class KeyInputHandler {
                     //DetectMedallion
                     if (!cooldown) {
                         if (
-                               (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_WolfMedallion))
-                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_CatMedallion))
-                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_BearMedallion))
-                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_GriffinMedallion))
-                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_ViperMedallion))
-                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_ManticoreMedallion))
-                            || (WitcherMedallions_Main.hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_AncientWolfMedallion))
+                               (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_WolfMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_CatMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_BearMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_GriffinMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_ViperMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_ManticoreMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_AncientWolfMedallion))
                         ) {
                             outliningMonsters = true;
                             ticks = 200;
@@ -73,6 +77,16 @@ public class KeyInputHandler {
         KEY_CATEGORY_MEDALLIONS
         ));
         registerKeyInputs();
+    }
+
+    //DetectsMedallions
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
+    public static TrinketComponent getTrinkets(LivingEntity entity) {
+        return TrinketsApi.getTrinketComponent(entity).get();
+    }
+
+    public static boolean hasTrinketEquipped(LivingEntity entity, Item trinket) {
+        return getTrinkets(entity).isEquipped(trinket);
     }
 
 }

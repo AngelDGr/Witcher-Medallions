@@ -60,12 +60,23 @@ public class WitcherMedallions_Client implements ClientModInitializer {
 
     private static void moveMedallionWhenArmor(PlayerEntity player, MatrixStack matrices, String armorID, float ZValue, float YValue){
         if(Registries.ITEM.getId(player.getEquippedStack(EquipmentSlot.CHEST).getItem())
-                .equals(new Identifier("tcots-witcher", armorID))){
+                .equals(Identifier.of("tcots-witcher", armorID))){
             matrices.translate(0F, -YValue, -ZValue);
         } else {
             matrices.translate(0F, 0F, 0F);
         }
     }
+
+    private static void moveMedallionWhenArmorWitcher(PlayerEntity player, MatrixStack matrices, float ZValue, float YValue){
+        if(Registries.ITEM.getId(player.getEquippedStack(EquipmentSlot.CHEST).getItem()).getNamespace()
+                .equals("witcher_rpg")){
+            matrices.translate(0F, -YValue, -ZValue);
+        } else {
+            matrices.translate(0F, 0F, 0F);
+        }
+    }
+
+
 
     @SuppressWarnings("unchecked")
     public static void RegisterTrinketRender(Item medallion){
@@ -79,7 +90,9 @@ public class WitcherMedallions_Client implements ClientModInitializer {
 
                         moveMedallionWhenArmor(player, matrices, "warriors_leather_jacket", 0.04f, 0.035f);
                         moveMedallionWhenArmor(player, matrices, "ravens_armor", 0.025f, 0.025f);
-                        moveMedallionWhenArmor(player, matrices, "manticore_armor", 0.04f, 0.025f);
+                        moveMedallionWhenArmor(player, matrices, "manticore_armor", 0.05f, 0.025f);
+
+                        moveMedallionWhenArmorWitcher(player, matrices, 0.05f, 0.035f);
 
                         MinecraftClient.getInstance().getItemRenderer()
                                 .renderItem(stack, ModelTransformationMode.HEAD, light, OverlayTexture.DEFAULT_UV,

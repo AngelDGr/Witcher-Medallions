@@ -8,4 +8,6 @@ public abstract class MedallionBaseItem extends TrinketItem implements GeoItem, 
     public MedallionBaseItem(Settings settings) {
         super(settings);
     }
+
+
 }
