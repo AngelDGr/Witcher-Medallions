@@ -19,11 +19,10 @@ import java.util.Map;
 public class ChangeRecipeMixin {
     @Inject(method = "apply(Ljava/util/Map;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/util/profiler/Profiler;)V", at = @At("HEAD"))
     public void interceptApply(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler, CallbackInfo ci) {
-//        for(Pair<Identifier, JsonObject> recipePair: WitcherMedallions_Main.recipes){
-//            if(recipePair.getRight()!=null){
-//             map.put(recipePair.getLeft(), recipePair.getRight());
-//            }
-//        }
+        for(Pair<Identifier, JsonObject> recipePair: WitcherMedallions_Main.recipes){
+            if(recipePair.getRight()!=null){
+                map.put(recipePair.getLeft(), recipePair.getRight());
+            }
+        }
     }
-
 }

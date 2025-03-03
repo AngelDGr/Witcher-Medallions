@@ -3,7 +3,6 @@ package witcher_medallions.mixin.witcher_rpg;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketsApi;
 import mod.azure.azurelibarmor.renderer.GeoArmorRenderer;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -46,15 +45,19 @@ public class DisableWitcherRPGArmorMedallionMixin {
 
             if (!medallionStackInTrinketSlot.isEmpty()) {
 
-                String textureId = "";
-                if(armor instanceof WitcherArmor){
-                    textureId="1.1.6/witcher_armor";
-                } else if(armor instanceof CatSchoolArmor){
-                    textureId="1.1.6/feline_armor";
-                } else if(armor instanceof BearSchoolArmor){
-                    textureId="1.1.6/ursine_armor";
-                } else if(armor instanceof GriffinSchoolArmor){
-                    textureId="1.1.6/griffin_armor";
+                Identifier armorID = Registries.ITEM.getId(player.getInventory().armor.get(2).getItem());
+
+                String textureId;
+                switch (armorID.getPath()){
+                    case "ursine_chest"-> textureId="ursine";
+                    case "superior_ursine_chest"-> textureId="superior_ursine";
+                    case "feline_chest"-> textureId="feline";
+                    case "superior_feline_chest"-> textureId="superior_feline";
+                    case "witcher_chest"-> textureId="witcher";
+                    case "superior_witcher_chest"-> textureId="superior_witcher";
+                    case "griffin_chest"-> textureId="griffin";
+                    case "superior_griffin_chest"-> textureId="superior_griffin";
+                    default-> textureId="";
                 }
 
                 return Identifier.of(WitcherMedallions_Main.MOD_ID, "textures/witcher_rpg-armor/" + textureId + ".png");
