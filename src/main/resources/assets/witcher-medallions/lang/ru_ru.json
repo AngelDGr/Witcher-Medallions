@@ -1,0 +1,116 @@
+{
+    "itemgroup.witcher-medallions": "Ведьмачьи Медальоны",
+
+    "item.witcher-medallions.magic-nucleus": "Магическое ядро",
+
+    "item.witcher-medallions.wolf-medallion": "Медальон Школы Волка",
+    "item.witcher-medallions.wolf-medallion-off": "Деактивированный Медальон Школы Волка",
+
+    "item.witcher-medallions.cat-medallion": "Медальон Школы Кота",
+    "item.witcher-medallions.cat-medallion-off": "Деактивированный Медальон Школы Кота",
+
+    "item.witcher-medallions.bear-medallion": "Медальон Школы Медведя",
+    "item.witcher-medallions.bear-medallion-off": "Деактивированный Медальон Школы Медведя",
+
+    "item.witcher-medallions.griffin-medallion": "Медальон Школы Грифона",
+    "item.witcher-medallions.griffin-medallion-off": "Деактивированный Медальон Школы Грифона",
+
+    "item.witcher-medallions.viper-medallion": "Медальон Школы Змеи",
+    "item.witcher-medallions.viper-medallion-off": "Деактивированный Медальон Школы Змеи",
+
+    "item.witcher-medallions.manticore-medallion": "Медальон Школы Мантикоры",
+    "item.witcher-medallions.manticore-medallion-off": "Деактивированный Медальон Школы Мантикоры",
+
+    "item.witcher-medallions.ancient-wolf-medallion": "Древний Медальон Школы Волка",
+    "item.witcher-medallions.ancient-wolf-medallion-off": "Деактивированный Древний Медальон Школы Волка",
+
+    "tooltip.witcher-medallions.wolf_medallion_tooltip_1": "Символ могучих воинов",
+    "tooltip.witcher-medallions.wolf_medallion_tooltip_2": "из Каэр Морхена",
+
+    "tooltip.witcher-medallions.cat_medallion_tooltip_1": "Символ проворных мясников",
+    "tooltip.witcher-medallions.cat_medallion_tooltip_2": "из Дын Марв",
+
+    "tooltip.witcher-medallions.bear_medallion_tooltip_1": "Символ свирепых бойцов",
+    "tooltip.witcher-medallions.bear_medallion_tooltip_2": "из Хаэрн Кадух",
+
+    "tooltip.witcher-medallions.griffin_medallion_tooltip_1": "Символ мудрых рыцарей",
+    "tooltip.witcher-medallions.griffin_medallion_tooltip_2": "из Каэр Серен",
+
+    "tooltip.witcher-medallions.viper_medallion_tooltip_1": "Символ безжалостных убийц",
+    "tooltip.witcher-medallions.viper_medallion_tooltip_2": "из Гортур Гваэд",
+
+    "tooltip.witcher-medallions.manticore_medallion_tooltip_1": "Символ загадочных мечников",
+    "tooltip.witcher-medallions.manticore_medallion_tooltip_2": "из Зеррикании",
+
+    "tooltip.witcher-medallions.ancient_wolf_medallion_tooltip_1": "Символ Каэр Морхена из",
+    "tooltip.witcher-medallions.ancient_wolf_medallion_tooltip_2": "забытой эпохи",
+
+
+    "tooltip.witcher-medallions.off": "Деактивированный медальон, напитайте его концентрированной магией, чтобы он заработал",
+    "tooltip.witcher-medallions.off_1": "Деактивированный медальон, напитайте его",
+    "tooltip.witcher-medallions.off_2": "концентрированной магией, чтобы он заработал",
+
+
+    "key.category.witchermedallions.medallions": "Ведьмачьи Медальоны",
+
+    "key.witchermedallions.activemedallion": "Активный Медальон",
+
+    "witcher-medallions.medallion_activate_sound": "Медальон Ведьмака активируется",
+
+    "witcher-medallions.medallion_restartcooldown_sound": "Медальон Ведьмака заряжается",
+
+    "witcher-medallions.medallion-wolf_sound": "Медальон Школы Волка рычит",
+    "witcher-medallions.medallion-cat_sound": "Медальон Школы Кота шипит",
+    "witcher-medallions.medallion-bear_sound": "Медальон Школы Медведя ревет",
+    "witcher-medallions.medallion-griffin_sound": "Медальон Школы Грифона кричит",
+    "witcher-medallions.medallion-viper_sound": "Медальон Школы Змеи шипит",
+    "witcher-medallions.medallion-manticore_sound": "Медальон Школы Мантикоры ревет",
+
+    "witcher-medallions.medallion-wolf-strong_sound": "Медальон Школы Волка агрессивно рычит",
+    "witcher-medallions.medallion-cat-strong_sound": "Медальон Школы Кота агрессивно шипит",
+    "witcher-medallions.medallion-bear-strong_sound": "Медальон Школы Медведя агрессивно ревет",
+    "witcher-medallions.medallion-griffin-strong_sound": "Медальон Школы Грифона агрессивно кричит",
+    "witcher-medallions.medallion-viper-strong_sound": "Медальон Школы Змеи агрессивно шипит",
+    "witcher-medallions.medallion-manticore-strong_sound": "Медальон Школы Мантикоры агрессивно ревет",
+
+	"modmenu.nameTranslation.witcher-medallions": "Ведьмачьи Медальоны",
+    "modmenu.descriptionTranslation.witcher-medallions": "Небольшой мод, добавляющий Ведьмачьи Медальоны!",
+
+    "text.config.witchermedallions-config.title": "Настройка Ведьмачьих Медальонов",
+
+    "text.config.witchermedallions-config.option.MobList": "Мобы, обнаруживаемые медальоном",
+    "text.config.witchermedallions-config.option.MobList.tooltip": "Добавьте или уберите обнаруживаемых с помощью медальона мобов \nИпользуйте id в формате '<ModId>:<Entity/BlockId>'",
+
+    "text.config.witchermedallions-config.option.activeDetectionSize": "Активное обнаружение - Размер",
+    "text.config.witchermedallions-config.option.activeDetectionSize.tooltip": "Размер зоны (XYZ) для активного обнаружения.\n(При нажатии клавиши)",
+
+    "text.config.witchermedallions-config.option.passiveDetectionXZ": "Пассивное обнаружение - размер зоны (XZ)",
+    "text.config.witchermedallions-config.option.passiveDetectionXZ.tooltip": "Размер зоны (XZ) для пассивного обнаружения.\n(Анимация небольшой тряски)",
+
+    "text.config.witchermedallions-config.option.passiveDetectionY": "Пассивное обнаружение - Размер по Y",
+    "text.config.witchermedallions-config.option.passiveDetectionY.tooltip": "Размер (Y) для пассивного обнаружения.\n",
+
+    "text.config.witchermedallions-config.option.medallionSounds": "Медальоны издают звуки",
+    "text.config.witchermedallions-config.option.medallionSounds.tooltip": "Включение или отключение звуков для пассивного обнаружения",
+
+    "text.config.witchermedallions-config.option.medallionsHaveSoulbound": "Медальоны привязаны к душе",
+    "text.config.witchermedallions-config.option.medallionsHaveSoulbound.tooltip": "После смерти медальон остаётся в инвентаре",
+
+    "text.config.witchermedallions-config.option.StrongMagicSourcesList": "Мобы или блоки с сильной магической аурой",
+    "text.config.witchermedallions-config.option.StrongMagicSourcesList.tooltip": "Добавляйте или удаляйте мобов или блоки для улучшенного обнаружения! \nИпользуйте id в формате '<ModId>:<Entity/BlockId>'",
+
+    "text.config.witchermedallions-config.option.StrongDetectionForBlocks": "Улучшенное обнаружение блоков",
+    "text.config.witchermedallions-config.option.StrongDetectionForBlocks.tooltip": "Обнаружение блоков может вызвать проблемы с производительностью, поэтому отключите его при необходимости.",
+
+    "text.config.witchermedallions-config.option.StrongpassiveDetectionXZ": "Улучшенное обнаружение - размер зоны (XZ)",
+    "text.config.witchermedallions-config.option.StrongpassiveDetectionXZ.tooltip": "Размер зоны (XZ) для улучшенного обнаружения. (Сильная анимация движения)\nОСТОРОЖНО: Высокие значения могут вызвать проблемы с производительностью",
+
+    "text.config.witchermedallions-config.option.StrongpassiveDetectionY": "Улучшенное обнаружение - Размер по Y",
+    "text.config.witchermedallions-config.option.StrongpassiveDetectionY.tooltip": "Размер (Y) для улучшенного обнаружения.\nОСТОРОЖНО: Высокие значения могут вызвать проблемы с производительностью",
+
+    "tag.item.witcher-medallions.magic_catalyst": "Магические катализаторы",
+    "tag.item.witcher-medallions.manticore_medallion_ingredient": "Эссенция Мантикоры",
+    "tag.item.witcher-medallions.cat_medallion_ingredient": "Эссенция Кота",
+    "tag.item.witcher-medallions.bear_medallion_ingredient": "Эссенция Медведя"
+
+}
