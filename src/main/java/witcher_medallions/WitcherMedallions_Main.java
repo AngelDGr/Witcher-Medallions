@@ -4,12 +4,12 @@ package witcher_medallions;
 import com.google.gson.JsonObject;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.util.Tuple;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import witcher_medallions.items.WitcherMedallions_ItemGroups;
@@ -33,7 +33,7 @@ public class WitcherMedallions_Main implements ModInitializer {
 	public static JsonObject VIPER_MEDALLION_OFF_RPG=null;
 	public static JsonObject MANTICORE_MEDALLION_OFF_RPG=null;
 	public static JsonObject ANCIENT_WOLF_MEDALLION_OFF_RPG=null;
-	public static List<Pair<Identifier, JsonObject>> recipes= new ArrayList<>();
+	public static List<Tuple<ResourceLocation, JsonObject>> recipes= new ArrayList<>();
 
 	@Override
 	public void onInitialize() {
@@ -48,21 +48,21 @@ public class WitcherMedallions_Main implements ModInitializer {
 		MANTICORE_MEDALLION_OFF_RPG = create(WitcherMedallions_Items.MANTICORE_MEDALLION_INGREDIENT, WitcherMedallions_Items.Witcher_OffManticoreMedallion);
 		ANCIENT_WOLF_MEDALLION_OFF_RPG = create(Items.PAPER, WitcherMedallions_Items.Witcher_OffAncientWolfMedallion);
 
-		recipes.add(new Pair<>(Identifier.of(WitcherMedallions_Main.MOD_ID, "wolf-medallion-off"), WOLF_MEDALLION_OFF_RPG));
-		recipes.add(new Pair<>(Identifier.of(WitcherMedallions_Main.MOD_ID, "cat-medallion-off"), CAT_MEDALLION_OFF_RPG));
-		recipes.add(new Pair<>(Identifier.of(WitcherMedallions_Main.MOD_ID, "bear-medallion-off"), BEAR_MEDALLION_OFF_RPG));
-		recipes.add(new Pair<>(Identifier.of(WitcherMedallions_Main.MOD_ID, "griffin-medallion-off"), GRIFFIN_MEDALLION_OFF_RPG));
-		recipes.add(new Pair<>(Identifier.of(WitcherMedallions_Main.MOD_ID, "viper-medallion-off"), VIPER_MEDALLION_OFF_RPG));
-		recipes.add(new Pair<>(Identifier.of(WitcherMedallions_Main.MOD_ID, "manticore-medallion-off"), MANTICORE_MEDALLION_OFF_RPG));
-		recipes.add(new Pair<>(Identifier.of(WitcherMedallions_Main.MOD_ID, "ancient-wolf-medallion-off"), ANCIENT_WOLF_MEDALLION_OFF_RPG));
+		recipes.add(new Tuple<>(ResourceLocation.fromNamespaceAndPath(WitcherMedallions_Main.MOD_ID, "wolf-medallion-off"), WOLF_MEDALLION_OFF_RPG));
+		recipes.add(new Tuple<>(ResourceLocation.fromNamespaceAndPath(WitcherMedallions_Main.MOD_ID, "cat-medallion-off"), CAT_MEDALLION_OFF_RPG));
+		recipes.add(new Tuple<>(ResourceLocation.fromNamespaceAndPath(WitcherMedallions_Main.MOD_ID, "bear-medallion-off"), BEAR_MEDALLION_OFF_RPG));
+		recipes.add(new Tuple<>(ResourceLocation.fromNamespaceAndPath(WitcherMedallions_Main.MOD_ID, "griffin-medallion-off"), GRIFFIN_MEDALLION_OFF_RPG));
+		recipes.add(new Tuple<>(ResourceLocation.fromNamespaceAndPath(WitcherMedallions_Main.MOD_ID, "viper-medallion-off"), VIPER_MEDALLION_OFF_RPG));
+		recipes.add(new Tuple<>(ResourceLocation.fromNamespaceAndPath(WitcherMedallions_Main.MOD_ID, "manticore-medallion-off"), MANTICORE_MEDALLION_OFF_RPG));
+		recipes.add(new Tuple<>(ResourceLocation.fromNamespaceAndPath(WitcherMedallions_Main.MOD_ID, "ancient-wolf-medallion-off"), ANCIENT_WOLF_MEDALLION_OFF_RPG));
 	}
 
 	private JsonObject create(TagKey<Item> addition, Item medallion){
-		return create(addition.id().toString(), medallion, true);
+		return create(addition.location().toString(), medallion, true);
 	}
 
 	private JsonObject create(Item addition, Item medallion){
-		return create(Registries.ITEM.getId(addition).toString(), medallion, false);
+		return create(BuiltInRegistries.ITEM.getKey(addition).toString(), medallion, false);
 	}
 
 	private JsonObject create(String addition, Item medallion, boolean isTag){
@@ -78,18 +78,18 @@ public class WitcherMedallions_Main implements ModInitializer {
 
 		//Base
 		JsonObject baseJson = new JsonObject();
-		baseJson.addProperty("item", FabricLoader.getInstance().isModLoaded("witcher_rpg")? "witcher_rpg:silver_ingot": Registries.ITEM.getId(Items.IRON_INGOT).toString());
+		baseJson.addProperty("item", FabricLoader.getInstance().isModLoaded("witcher_rpg")? "witcher_rpg:silver_ingot": BuiltInRegistries.ITEM.getKey(Items.IRON_INGOT).toString());
 		mainJson.add("base", baseJson);
 
 		//Result
 		JsonObject jsonobject = new JsonObject();
-		jsonobject.addProperty("id", Registries.ITEM.getId(medallion).toString());
+		jsonobject.addProperty("id", BuiltInRegistries.ITEM.getKey(medallion).toString());
 		jsonobject.addProperty("count", 1);
 		mainJson.add("result", jsonobject);
 
 		//Template
 		JsonObject templateJson = new JsonObject();
-		templateJson.addProperty("item", Registries.ITEM.getId(Items.CHAIN).toString());
+		templateJson.addProperty("item", BuiltInRegistries.ITEM.getKey(Items.CHAIN).toString());
 		mainJson.add("template", templateJson);
 
 		return mainJson;

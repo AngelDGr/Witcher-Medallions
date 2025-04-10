@@ -1,27 +1,28 @@
 package witcher_medallions.items.medallions;
 
 import com.google.common.collect.Multimap;
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketEnums;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.item.BuiltinModelItemRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
@@ -47,7 +48,7 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-    public ActivedMedallionBaseItem(Settings settings) {
+    public ActivedMedallionBaseItem(Properties settings) {
         super(settings);
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
@@ -68,8 +69,8 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
     public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
         consumer.accept(new GeoRenderProvider() {
             @Override
-            public @Nullable BuiltinModelItemRenderer getGeoItemRenderer() {
-                return (BuiltinModelItemRenderer)getRenderer();
+            public @Nullable BlockEntityWithoutLevelRenderer getGeoItemRenderer() {
+                return (BlockEntityWithoutLevelRenderer)getRenderer();
             }
         });
     }
@@ -77,7 +78,7 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
     //Trinkets
     @Override
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel,
-                       MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity,
+                       PoseStack matrices, MultiBufferSource vertexConsumers, int light, LivingEntity entity,
                        float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
     }
 
@@ -85,14 +86,14 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
         return "";
     }
 
-    protected Formatting getTooltipColor(){
-        return Formatting.GRAY;
+    protected ChatFormatting getTooltipColor(){
+        return ChatFormatting.GRAY;
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.add(Text.translatable(getTooltip()+"_1").formatted(getTooltipColor()));
-        tooltip.add(Text.translatable(getTooltip()+"_2").formatted(getTooltipColor()));
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, List<Component> tooltip, @NotNull TooltipFlag type) {
+        tooltip.add(Component.translatable(getTooltip()+"_1").withStyle(getTooltipColor()));
+        tooltip.add(Component.translatable(getTooltip()+"_2").withStyle(getTooltipColor()));
     }
 
     @Override
@@ -124,17 +125,17 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
     //Trinkets tick
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-        this.inventoryTick(stack, entity.getWorld(), entity, slot.index(), true);
+        this.inventoryTick(stack, entity.level(), entity, slot.index(), true);
     }
 
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if(entity.getWorld().isClient){
+    public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, Entity entity, int slot, boolean selected) {
+        if(entity.level().isClientSide){
             return;
         }
 
-        if(entity instanceof PlayerEntity player){
+        if(entity instanceof Player player){
             if(player.witcherMedallionsMod$getHasStrongMagicNear()){
                 this.triggerAnim(entity, stack, "strong");
             }
@@ -149,21 +150,21 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
     }
 
     private void triggerAnim(Entity entity, ItemStack stack, String animName){
-        this.triggerAnim(entity, GeoItem.getOrAssignId(stack, (ServerWorld) entity.getWorld()), "mainController", animName);
+        this.triggerAnim(entity, GeoItem.getOrAssignId(stack, (ServerLevel) entity.level()), "mainController", animName);
     }
 
 
     //Attributes
-    private final Identifier SIGN_INTENSITY= Identifier.of("witcher_rpg","sign_intensity");
-    private final Identifier GENERIC_ATTACK= Identifier.ofVanilla("generic.attack_damage");
-    private final Identifier ADRENALINE_GAIN = Identifier.of("witcher_rpg", "adrenaline_modifier");
-    private final Identifier GENERIC_ATTACK_SPEED = Identifier.ofVanilla("generic.attack_speed");
-    private final Identifier KNOCKBACK_RESISTANCE = Identifier.ofVanilla("generic.knockback_resistance");
-    private final Identifier SPELL_HASTE = Identifier.of("spell_power","haste");
-    private final Identifier GENERIC_SPEED = Identifier.ofVanilla("generic.movement_speed");
-    private final Identifier WITCHER_TOXICITY = Identifier.of("tcots-witcher","generic.witcher_toxicity");
+    private final ResourceLocation SIGN_INTENSITY= ResourceLocation.fromNamespaceAndPath("witcher_rpg","sign_intensity");
+    private final ResourceLocation GENERIC_ATTACK= ResourceLocation.withDefaultNamespace("generic.attack_damage");
+    private final ResourceLocation ADRENALINE_GAIN = ResourceLocation.fromNamespaceAndPath("witcher_rpg", "adrenaline_modifier");
+    private final ResourceLocation GENERIC_ATTACK_SPEED = ResourceLocation.withDefaultNamespace("generic.attack_speed");
+    private final ResourceLocation KNOCKBACK_RESISTANCE = ResourceLocation.withDefaultNamespace("generic.knockback_resistance");
+    private final ResourceLocation SPELL_HASTE = ResourceLocation.fromNamespaceAndPath("spell_power","haste");
+    private final ResourceLocation GENERIC_SPEED = ResourceLocation.withDefaultNamespace("generic.movement_speed");
+    private final ResourceLocation WITCHER_TOXICITY = ResourceLocation.fromNamespaceAndPath("tcots-witcher","generic.witcher_toxicity");
     @Override
-    public Multimap<RegistryEntry<EntityAttribute>, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, Identifier slotIdentifier) {
+    public Multimap<Holder<Attribute>, AttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, ResourceLocation slotIdentifier) {
         var modifiers = super.getModifiers(stack, slot, entity, slotIdentifier);
 
         //If Witcher RPG its loaded applies attributes
@@ -171,42 +172,42 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
             //Wolf / Ancient Wolf:
             //+5% Sign Intensity
             //+2% Attack Damage
-            if(stack.isOf(WitcherMedallions_Items.Witcher_WolfMedallion) || stack.isOf(WitcherMedallions_Items.Witcher_AncientWolfMedallion)){
+            if(stack.is(WitcherMedallions_Items.Witcher_WolfMedallion) || stack.is(WitcherMedallions_Items.Witcher_AncientWolfMedallion)){
                 MiscUtil.addMultiplyAttributeTrinket(modifiers, SIGN_INTENSITY,"wolf-sign", 0.05);
                 MiscUtil.addMultiplyAttributeTrinket(modifiers, GENERIC_ATTACK, "wolf-damage", 0.02);
             }
             //Cat:
             //+4% Adrenaline Gain
             //+2% Attack Speed
-            else if(stack.isOf(WitcherMedallions_Items.Witcher_CatMedallion)){
+            else if(stack.is(WitcherMedallions_Items.Witcher_CatMedallion)){
                 MiscUtil.addMultiplyAttributeTrinket(modifiers, ADRENALINE_GAIN, "cat-adrenaline", 0.04);
                 MiscUtil.addMultiplyAttributeTrinket(modifiers, GENERIC_ATTACK_SPEED, "cat-speed", 0.02);
             }
             //Bear
             //+5% Adrenaline Gain
             //+5% Knockback Resistance
-            else if(stack.isOf(WitcherMedallions_Items.Witcher_BearMedallion)){
+            else if(stack.is(WitcherMedallions_Items.Witcher_BearMedallion)){
                 MiscUtil.addMultiplyAttributeTrinket(modifiers, ADRENALINE_GAIN, "bear-adrenaline", 0.05);
                 MiscUtil.addMultiplyAttributeTrinket(modifiers, KNOCKBACK_RESISTANCE, "bear-resistance", 0.05);
             }
             //Griffin
             //+10% Sign Intensity
             //+2% Spell Haste
-            else if(stack.isOf(WitcherMedallions_Items.Witcher_GriffinMedallion)){
+            else if(stack.is(WitcherMedallions_Items.Witcher_GriffinMedallion)){
                 MiscUtil.addMultiplyAttributeTrinket(modifiers, SIGN_INTENSITY, "griffin-power", 0.10);
                 MiscUtil.addMultiplyAttributeTrinket(modifiers, SPELL_HASTE, "griffin-haste", 0.02);
             }
             //Viper
             //+2% Movement Speed
             //+5% Attack Speed
-            else if(stack.isOf(WitcherMedallions_Items.Witcher_ViperMedallion)){
+            else if(stack.is(WitcherMedallions_Items.Witcher_ViperMedallion)){
                 MiscUtil.addMultiplyAttributeTrinket(modifiers, GENERIC_SPEED, "viper-swiftness", 0.02);
                 MiscUtil.addMultiplyAttributeTrinket(modifiers, GENERIC_ATTACK_SPEED, "viper-speed", 0.05);
             }
             //Manticore
             //+10 Max Toxicity/+2% Sign Intensity
             //+5% Adrenaline Gain
-            else if(stack.isOf(WitcherMedallions_Items.Witcher_ManticoreMedallion)){
+            else if(stack.is(WitcherMedallions_Items.Witcher_ManticoreMedallion)){
                 //If TCOTS is loaded applies toxicity, in other case applies sign intensity
                 if(FabricLoader.getInstance().isModLoaded("tcots-witcher")){
                     MiscUtil.addAdditionAttributeTrinket(modifiers, WITCHER_TOXICITY, "manticore-toxicity", 10);
@@ -221,7 +222,7 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
         else if(FabricLoader.getInstance().isModLoaded("tcots-witcher")){
             //Manticore
             //+10 Max Toxicity
-            if(stack.isOf(WitcherMedallions_Items.Witcher_ManticoreMedallion)){
+            if(stack.is(WitcherMedallions_Items.Witcher_ManticoreMedallion)){
                 MiscUtil.addAdditionAttributeTrinket(modifiers, WITCHER_TOXICITY, "manticore-toxicity", 10);
             }
         }

@@ -1,12 +1,12 @@
 package witcher_medallions.items.medallions;
 
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.sounds.SoundEvent;
 import witcher_medallions.items.WitcherMedallions_Items;
 import witcher_medallions.items.gecko.renderer.WitcherMedallionRenderer;
 
 public class WolfMedallionItem extends ActivedMedallionBaseItem {
-    public WolfMedallionItem(Settings settings) {
+    public WolfMedallionItem(Properties settings) {
         super(settings);
     }
 
@@ -31,7 +31,7 @@ public class WolfMedallionItem extends ActivedMedallionBaseItem {
     }
 
     @Override
-    protected Formatting getTooltipColor() {
-        return Formatting.DARK_RED;
+    protected ChatFormatting getTooltipColor() {
+        return ChatFormatting.DARK_RED;
     }
 }

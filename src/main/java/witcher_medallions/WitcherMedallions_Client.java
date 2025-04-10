@@ -1,23 +1,23 @@
 package witcher_medallions;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.emi.trinkets.api.client.TrinketRenderer;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.AbstractClientPlayerEntity;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.PlayerEntityModel;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import witcher_medallions.event.KeyInputHandler;
 import witcher_medallions.items.WitcherMedallions_Items;
 
@@ -30,7 +30,7 @@ public class WitcherMedallions_Client implements ClientModInitializer {
     }
 
     @Override
-	public void onInitializeClient() {
+    public void onInitializeClient() {
         //Registers con Client
         KeyInputHandler.register();
         registerClient();
@@ -52,23 +52,24 @@ public class WitcherMedallions_Client implements ClientModInitializer {
         WitcherMedallions_Client.RegisterTrinketRender(WitcherMedallions_Items.Witcher_OffViperMedallion);
         WitcherMedallions_Client.RegisterTrinketRender(WitcherMedallions_Items.Witcher_OffManticoreMedallion);
         WitcherMedallions_Client.RegisterTrinketRender(WitcherMedallions_Items.Witcher_OffAncientWolfMedallion);
-	}
-
-    @SuppressWarnings("unused")
-    public static void medallionTrinketRender(MatrixStack matrices, EntityModel<? extends LivingEntity> model, LivingEntity entity, float headYaw, float headPitch) {
     }
 
-    private static void moveMedallionWhenArmor(PlayerEntity player, MatrixStack matrices, String armorID, float ZValue, float YValue){
-        if(Registries.ITEM.getId(player.getEquippedStack(EquipmentSlot.CHEST).getItem())
-                .equals(Identifier.of("tcots-witcher", armorID))){
+    @SuppressWarnings("unused")
+    public static void medallionTrinketRender(PoseStack matrices, EntityModel<? extends LivingEntity> model, LivingEntity entity, float headYaw, float headPitch) {
+    }
+
+    private static void moveMedallionWhenArmor(Player player, PoseStack matrices, String armorID, float ZValue, float YValue) {
+        if (BuiltInRegistries.ITEM.getKey(player.getItemBySlot(EquipmentSlot.CHEST).getItem())
+                .equals(ResourceLocation.fromNamespaceAndPath("tcots-witcher", armorID))) {
             matrices.translate(0F, -YValue, -ZValue);
         } else {
             matrices.translate(0F, 0F, 0F);
         }
     }
 
-    private static void moveMedallionWhenArmorWitcher(PlayerEntity player, MatrixStack matrices, float ZValue, float YValue){
-        if(Registries.ITEM.getId(player.getEquippedStack(EquipmentSlot.CHEST).getItem()).getNamespace()
+    @SuppressWarnings("all")
+    private static void moveMedallionWhenArmorWitcherRPG(Player player, PoseStack matrices, float ZValue, float YValue){
+        if(BuiltInRegistries.ITEM.getKey(player.getItemBySlot(EquipmentSlot.CHEST).getItem()).getNamespace()
                 .equals("witcher_rpg")){
             matrices.translate(0F, -YValue, -ZValue);
         } else {
@@ -84,18 +85,18 @@ public class WitcherMedallions_Client implements ClientModInitializer {
                 (stack, slotReference, contextModel, matrices, vertexConsumers, light, entity, limbAngle, limbDistance, tickDelta,
                  animationProgress, headYaw, headPitch) -> {
 
-                    if (entity instanceof AbstractClientPlayerEntity player) {
-                        TrinketRenderer.translateToChest(matrices, (PlayerEntityModel<AbstractClientPlayerEntity>) contextModel, player);
+                    if (entity instanceof AbstractClientPlayer player) {
+                        TrinketRenderer.translateToChest(matrices, (PlayerModel<AbstractClientPlayer>) contextModel, player);
 
 
                         moveMedallionWhenArmor(player, matrices, "warriors_leather_jacket", 0.04f, 0.035f);
                         moveMedallionWhenArmor(player, matrices, "ravens_armor", 0.025f, 0.025f);
                         moveMedallionWhenArmor(player, matrices, "manticore_armor", 0.05f, 0.025f);
 
-                        moveMedallionWhenArmorWitcher(player, matrices, 0.05f, 0.035f);
+                        moveMedallionWhenArmorWitcherRPG(player, matrices, 0.05f, 0.035f);
 
-                        MinecraftClient.getInstance().getItemRenderer()
-                                .renderItem(stack, ModelTransformationMode.HEAD, light, OverlayTexture.DEFAULT_UV,
+                        Minecraft.getInstance().getItemRenderer()
+                                .renderStatic(stack, ItemDisplayContext.HEAD, light, OverlayTexture.NO_OVERLAY,
                                         matrices, vertexConsumers,null, 0);
                     }
                 });

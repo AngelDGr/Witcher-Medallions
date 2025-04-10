@@ -1,12 +1,12 @@
 package witcher_medallions.items.medallions;
 
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.sounds.SoundEvent;
 import witcher_medallions.items.WitcherMedallions_Items;
 import witcher_medallions.items.gecko.renderer.WitcherMedallionRenderer;
 
 public class ViperMedallionItem extends ActivedMedallionBaseItem {
-    public ViperMedallionItem(Settings settings) {
+    public ViperMedallionItem(Properties settings) {
         super(settings);
     }
 
@@ -31,7 +31,7 @@ public class ViperMedallionItem extends ActivedMedallionBaseItem {
     }
 
     @Override
-    protected Formatting getTooltipColor() {
-        return Formatting.GREEN;
+    protected ChatFormatting getTooltipColor() {
+        return ChatFormatting.GREEN;
     }
 }

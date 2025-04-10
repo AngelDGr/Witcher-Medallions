@@ -5,18 +5,18 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.RecipeProvider;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import witcher_medallions.items.WitcherMedallions_Items;
 
 import java.util.concurrent.CompletableFuture;
@@ -33,18 +33,19 @@ public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint 
 
     private static class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
 
-        public ItemTagGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+        public ItemTagGenerator(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
             super(output, completableFuture);
         }
         public static final TagKey<Item> TRINKET_TAG =
-                TagKey.of(RegistryKeys.ITEM, Identifier.of("trinkets","chest/necklace"));
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("trinkets","chest/necklace"));
 
         @Override
-        protected void configure(RegistryWrapper.WrapperLookup arg) {
+        protected void addTags(HolderLookup.Provider arg) {
             this.getOrCreateTagBuilder(WitcherMedallions_Items.BEAR_MEDALLION_INGREDIENT)
-                    .addOptionalTag(Identifier.of("more_rpg_classes", "polar_bear_fur"))
+                    .addOptionalTag(ResourceLocation.fromNamespaceAndPath("more_rpg_classes", "polar_bear_fur"))
                     .add(Items.SALMON)
                     .add(Items.COOKED_SALMON);
+
 
             this.getOrCreateTagBuilder(WitcherMedallions_Items.CAT_MEDALLION_INGREDIENT)
                     .add(Items.STRING)
@@ -86,23 +87,23 @@ public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint 
 
     private static class RecipesGenerator extends FabricRecipeProvider {
 
-        public RecipesGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        public RecipesGenerator(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
             super(output,registriesFuture);
         }
 
         @Override
-        public void generate(RecipeExporter exporter) {
+        public void buildRecipes(RecipeOutput exporter) {
             //Magic Nucleus
             {
-                ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, WitcherMedallions_Items.Witcher_MagicCore)
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, WitcherMedallions_Items.Witcher_MagicCore)
                         .pattern("LGL")
                         .pattern("GEG")
                         .pattern("LGL")
-                        .input('L', Items.LAPIS_LAZULI)
-                        .input('G', Items.GOLD_INGOT)
-                        .input('E', Items.ENDER_PEARL)
-                        .criterion(FabricRecipeProvider.hasItem(Items.ENDER_PEARL), FabricRecipeProvider.conditionsFromItem(Items.ENDER_PEARL))
-                        .offerTo(exporter);
+                        .define('L', Items.LAPIS_LAZULI)
+                        .define('G', Items.GOLD_INGOT)
+                        .define('E', Items.ENDER_PEARL)
+                        .unlockedBy(FabricRecipeProvider.getHasName(Items.ENDER_PEARL), FabricRecipeProvider.has(Items.ENDER_PEARL))
+                        .save(exporter);
             }
 
             //On
@@ -117,21 +118,21 @@ public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint 
             }
         }
 
-        private void createMedallionRecipe(RecipeExporter exporter, Item OFF_Medallion, Item ON_Medallion){
-            SmithingTransformRecipeJsonBuilder.create(
+        private void createMedallionRecipe(RecipeOutput exporter, Item OFF_Medallion, Item ON_Medallion){
+            SmithingTransformRecipeBuilder.smithing(
                             //Template
-                            Ingredient.ofItems(WitcherMedallions_Items.Witcher_MagicCore),
+                            Ingredient.of(WitcherMedallions_Items.Witcher_MagicCore),
                             //Base
-                            Ingredient.ofItems(OFF_Medallion),
+                            Ingredient.of(OFF_Medallion),
                             //Addition
-                            Ingredient.fromTag(WitcherMedallions_Items.MAGIC_CATALYST),
+                            Ingredient.of(WitcherMedallions_Items.MAGIC_CATALYST),
                             //Category
                             RecipeCategory.COMBAT,
                             //Result
                             ON_Medallion
                     )
-                    .criterion(FabricRecipeProvider.hasItem(Items.CHAIN), FabricRecipeProvider.conditionsFromItem(Items.CHAIN))
-                    .offerTo(exporter, RecipeProvider.getItemPath(ON_Medallion));
+                    .unlocks(FabricRecipeProvider.getHasName(Items.CHAIN), FabricRecipeProvider.has(Items.CHAIN))
+                    .save(exporter, RecipeProvider.getItemName(ON_Medallion));
         }
     }
 }

@@ -1,24 +1,23 @@
 package witcher_medallions.event;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.sound.SoundCategory;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import org.lwjgl.glfw.GLFW;
 import witcher_medallions.items.WitcherMedallions_Items;
-
 
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_MEDALLIONS = "key.category.witchermedallions.medallions";
     public static final String KEY_ACTIVE_MEDALLION = "key.witchermedallions.activemedallion";
 
-    public static KeyBinding medallion_key;
+    public static KeyMapping medallion_key;
     public static boolean outliningMonsters = false;
     private static boolean cooldown = false;
     private static int ticks = 0;
@@ -26,7 +25,7 @@ public class KeyInputHandler {
     @SuppressWarnings("all")
     public static void registerKeyInputs(){
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-                while(medallion_key.wasPressed()) {
+                while(medallion_key.consumeClick()) {
                     //DetectMedallion
                     if (!cooldown) {
                         if (
@@ -41,7 +40,7 @@ public class KeyInputHandler {
                             outliningMonsters = true;
                             ticks = 200;
                             cooldown = true;
-                            MinecraftClient.getInstance().player.playSound(WitcherMedallions_Items.MEDALLION_ACTIVATE_SOUND, 1, 1);
+                            Minecraft.getInstance().player.playSound(WitcherMedallions_Items.MEDALLION_ACTIVATE_SOUND, 1, 1);
                         }
                     }
                 }
@@ -53,8 +52,8 @@ public class KeyInputHandler {
                     }
                     //Time cooldown last
                     if (ticks==0) {
-                        if(MinecraftClient.getInstance().player!=null){
-                        MinecraftClient.getInstance().player.playSoundToPlayer(WitcherMedallions_Items.MEDALLION_RESTART_COOLDOWN_SOUND, SoundCategory.PLAYERS, 1, 1);
+                        if(Minecraft.getInstance().player!=null){
+                        Minecraft.getInstance().player.playNotifySound(WitcherMedallions_Items.MEDALLION_RESTART_COOLDOWN_SOUND, SoundSource.PLAYERS, 1, 1);
                         }
                     cooldown=false;
                     }
@@ -63,9 +62,9 @@ public class KeyInputHandler {
     }
 
     public static void register(){
-        medallion_key = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        medallion_key = KeyBindingHelper.registerKeyBinding(new KeyMapping(
         KEY_ACTIVE_MEDALLION,
-        InputUtil.Type.KEYSYM,
+        InputConstants.Type.KEYSYM,
         GLFW.GLFW_KEY_T,
         KEY_CATEGORY_MEDALLIONS
         ));

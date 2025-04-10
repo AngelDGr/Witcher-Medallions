@@ -1,12 +1,12 @@
 package witcher_medallions.items.medallions;
 
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.sounds.SoundEvent;
 import witcher_medallions.items.WitcherMedallions_Items;
 import witcher_medallions.items.gecko.renderer.WitcherMedallionRenderer;
 
 public class GriffinMedallionItem extends ActivedMedallionBaseItem {
-    public GriffinMedallionItem(Settings settings) {
+    public GriffinMedallionItem(Properties settings) {
         super(settings);
     }
 
@@ -31,8 +31,8 @@ public class GriffinMedallionItem extends ActivedMedallionBaseItem {
     }
 
     @Override
-    protected Formatting getTooltipColor() {
-        return Formatting.YELLOW;
+    protected ChatFormatting getTooltipColor() {
+        return ChatFormatting.YELLOW;
     }
 }
 

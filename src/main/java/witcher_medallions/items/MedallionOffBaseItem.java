@@ -1,17 +1,18 @@
 package witcher_medallions.items;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.emi.trinkets.api.SlotReference;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.item.BuiltinModelItemRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.client.GeoRenderProvider;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -28,7 +29,7 @@ public class MedallionOffBaseItem extends MedallionBaseItem {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private final Object renderer;
 
-    public MedallionOffBaseItem(Settings settings, int index) {
+    public MedallionOffBaseItem(Properties settings, int index) {
         super(settings);
         if(FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER){
             this.renderer=null;
@@ -58,7 +59,7 @@ public class MedallionOffBaseItem extends MedallionBaseItem {
 
     //Trinkets
     @Override
-    public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, PoseStack matrices, MultiBufferSource vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
     }
 
     @Override
@@ -66,8 +67,8 @@ public class MedallionOffBaseItem extends MedallionBaseItem {
         consumer.accept(new GeoRenderProvider() {
 
             @Override
-            public @Nullable BuiltinModelItemRenderer getGeoItemRenderer() {
-                return (BuiltinModelItemRenderer) getRenderer();
+            public @Nullable BlockEntityWithoutLevelRenderer getGeoItemRenderer() {
+                return (BlockEntityWithoutLevelRenderer) getRenderer();
             }
         });
     }
@@ -79,8 +80,8 @@ public class MedallionOffBaseItem extends MedallionBaseItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.add(Text.translatable("tooltip.witcher-medallions.off_1").formatted(Formatting.GRAY));
-        tooltip.add(Text.translatable("tooltip.witcher-medallions.off_2").formatted(Formatting.GRAY));
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, List<Component> tooltip, @NotNull TooltipFlag type) {
+        tooltip.add(Component.translatable("tooltip.witcher-medallions.off_1").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.witcher-medallions.off_2").withStyle(ChatFormatting.GRAY));
     }
 }

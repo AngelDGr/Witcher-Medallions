@@ -3,11 +3,11 @@ package witcher_medallions.mixin.witcher_rpg;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketsApi;
 import mod.azure.azurelibarmor.common.api.client.renderer.GeoArmorRenderer;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Tuple;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.spell_engine.api.item.armor.Armor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -23,30 +23,30 @@ public class DisableWitcherRPGArmorMedallionMixin {
     @Unique
     GeoArmorRenderer<?> THIS = (GeoArmorRenderer<?>)(Object) this;
 
-    @ModifyArg(method = "render",
+    @ModifyArg(method = "renderToBuffer",
             at = @At(
     value = "INVOKE",
-    target = "Lmod/azure/azurelibarmor/common/api/client/renderer/GeoArmorRenderer;getRenderType(Lnet/minecraft/item/Item;Lnet/minecraft/util/Identifier;Lnet/minecraft/client/render/VertexConsumerProvider;F)Lnet/minecraft/client/render/RenderLayer;"))
-    private Identifier changeTexture(Identifier instance){
+    target = "Lmod/azure/azurelibarmor/common/api/client/renderer/GeoArmorRenderer;getRenderType(Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/MultiBufferSource;F)Lnet/minecraft/client/renderer/RenderType;"))
+    private ResourceLocation changeTexture(ResourceLocation instance){
         if(THIS.getAnimatable() instanceof Armor.CustomItem armor
-                && Registries.ITEM.getId(THIS.getAnimatable()).getNamespace().contains("witcher_rpg")
-                && THIS.getCurrentEntity() instanceof PlayerEntity player){
+                && BuiltInRegistries.ITEM.getKey(THIS.getAnimatable()).getNamespace().contains("witcher_rpg")
+                && THIS.getCurrentEntity() instanceof Player player){
             ItemStack medallionStackInTrinketSlot = ItemStack.EMPTY;
             //Checks if it has any Trinket equipped
             if(TrinketsApi.getTrinketComponent(player).isPresent()){
 
                 //Get all the medallions equipped
-                List<Pair<SlotReference, ItemStack>> equippedMedallions =
+                List<Tuple<SlotReference, ItemStack>> equippedMedallions =
                         TrinketsApi.getTrinketComponent(player).get().getEquipped(stack -> stack.getItem() instanceof MedallionBaseItem);
 
                 //Get the first medallion equipped if it has any, otherwise it's an empty stack
-                medallionStackInTrinketSlot = equippedMedallions.stream().findFirst().isPresent()? equippedMedallions.stream().findFirst().get().getRight(): ItemStack.EMPTY;
+                medallionStackInTrinketSlot = equippedMedallions.stream().findFirst().isPresent()? equippedMedallions.stream().findFirst().get().getB(): ItemStack.EMPTY;
             }
 
             if (!medallionStackInTrinketSlot.isEmpty()) {
 
-                Identifier textureId = armor.getFirstLayerId();
-                return Identifier.of(WitcherMedallions_Main.MOD_ID, "textures/witcher_rpg-armor/" + textureId.getPath() + ".png");
+                ResourceLocation textureId = armor.getFirstLayerId();
+                return ResourceLocation.fromNamespaceAndPath(WitcherMedallions_Main.MOD_ID, "textures/witcher_rpg-armor/" + textureId.getPath() + ".png");
             }
         }
 

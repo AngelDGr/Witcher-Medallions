@@ -1,10 +1,10 @@
 package witcher_medallions.items.medallions;
 
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import witcher_medallions.items.gecko.renderer.WitcherMedallionRenderer;
 
 public class AncientWolfMedallionItem extends ActivedMedallionBaseItem {
-    public AncientWolfMedallionItem(Settings settings) {
+    public AncientWolfMedallionItem(Properties settings) {
         super(settings);
     }
 
@@ -19,8 +19,8 @@ public class AncientWolfMedallionItem extends ActivedMedallionBaseItem {
     }
 
     @Override
-    protected Formatting getTooltipColor() {
-        return Formatting.DARK_GRAY;
+    protected ChatFormatting getTooltipColor() {
+        return ChatFormatting.DARK_GRAY;
     }
 
 

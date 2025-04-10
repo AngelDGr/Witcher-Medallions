@@ -1,41 +1,42 @@
 package witcher_medallions.util;
 
 import com.google.common.collect.Multimap;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import witcher_medallions.WitcherMedallions_Main;
 
+@SuppressWarnings("all")
 public class MiscUtil {
 
-    public static void addMultiplyAttributeTrinket(Multimap<RegistryEntry<EntityAttribute>, EntityAttributeModifier> modifiers,
-                                                   Identifier attribute, String id,
+    public static void addMultiplyAttributeTrinket(Multimap<Holder<Attribute>, AttributeModifier> modifiers,
+                                                   ResourceLocation attribute, String id,
                                                    double value){
 
-        if(Registries.ATTRIBUTE.getEntry(Registries.ATTRIBUTE.get(attribute))!=null)
+        if(BuiltInRegistries.ATTRIBUTE.wrapAsHolder(BuiltInRegistries.ATTRIBUTE.get(attribute))!=null)
         {
             modifiers.put(
-                    Registries.ATTRIBUTE.getEntry(
-                            Registries.ATTRIBUTE.get(attribute)
+                    BuiltInRegistries.ATTRIBUTE.wrapAsHolder(
+                            BuiltInRegistries.ATTRIBUTE.get(attribute)
                     ),
-                    new EntityAttributeModifier(Identifier.of(WitcherMedallions_Main.MOD_ID, id), value,
-                            EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(WitcherMedallions_Main.MOD_ID, id), value,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         }
     }
 
-    public static void addAdditionAttributeTrinket(Multimap<RegistryEntry<EntityAttribute>, EntityAttributeModifier> modifiers,
-                                                   Identifier attribute, String id,
+    public static void addAdditionAttributeTrinket(Multimap<Holder<Attribute>, AttributeModifier> modifiers,
+                                                   ResourceLocation attribute, String id,
                                                    double value){
-        if(Registries.ATTRIBUTE.getEntry(Registries.ATTRIBUTE.get(attribute))!=null)
+        if(BuiltInRegistries.ATTRIBUTE.wrapAsHolder(BuiltInRegistries.ATTRIBUTE.get(attribute))!=null)
         {
             modifiers.put(
-                    Registries.ATTRIBUTE.getEntry(
-                            Registries.ATTRIBUTE.get(attribute)
+                    BuiltInRegistries.ATTRIBUTE.wrapAsHolder(
+                            BuiltInRegistries.ATTRIBUTE.get(attribute)
                     ),
-                    new EntityAttributeModifier(Identifier.of(WitcherMedallions_Main.MOD_ID, id), value,
-                            EntityAttributeModifier.Operation.ADD_VALUE));
+                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(WitcherMedallions_Main.MOD_ID, id), value,
+                            AttributeModifier.Operation.ADD_VALUE));
         }
     }
 
