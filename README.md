@@ -1,23 +1,32 @@
-<center><p><img src="https://i.imgur.com/bINq6EX.png" alt="" width="800" height="220"></p></center>
+# MultiLoader Template
 
-<u><h2><strong>Dependencies:</strong></span></h2></u>
-<center><a href="https://modrinth.com/mod/fabric-api" rel="nofollow"><img src="https://i.imgur.com/JlvhlNa.png" alt="" width="200" height="71"></a> <a href="https://modrinth.com/mod/trinkets" rel="nofollow"><img src="https://i.imgur.com/A8r9S3T.png" alt="" width="200" height="71"></a> <a href="https://modrinth.com/mod/geckolib" rel="nofollow"><img src="https://i.imgur.com/bW7JkP3.png" alt="" width="200" height="71"></a> <a href="https://modrinth.com/mod/owo-lib" rel="nofollow"><img src="https://i.imgur.com/f6LodW0.png" alt="" width="200" height="71"></a></center>
-<h2></h2>
- <center><em>The witcher medallion is not only an insignia of our profession, it is also one of its tools. It has numerous useful capabilities that are accessible, of course, only to one who possesses the necessary knowledge and training.</em></p></center>
-<em>- Vesemir, The World of the Witcher</em></p>
+This project provides a Gradle project template that can compile Minecraft mods for multiple modloaders using a common project for the sources. This project does not require any third party libraries or dependencies. If you have any questions or want to discuss the project, please join our [Discord](https://discord.myceliummod.network).
 
-<p>Inspired by The Witcher series of books and games, this mod add functional Witcher Medallions to the world of Minecraft!</p>
+## Getting Started
 
-<u></u><h2><strong>Features:</strong></h2>
-* Added 6 different medallions from each Witcher school plus an Ancient Wolf Medallion inspired by the design of the Netflix show, they all work exactly the same, they only differ aesthetically.
-* The medallion you have equipped will have a "soulbound" enchantment by default, so you will keep it even when you die.
-* The medallion has two ways of detecting monsters, passive and active.
+### IntelliJ IDEA
+This guide will show how to import the MultiLoader Template into IntelliJ IDEA. The setup process is roughly equivalent to setting up the modloaders independently and should be very familiar to anyone who has worked with their MDKs.
 
-[For a more extensive description, visit <a href="https://modrinth.com/mod/witcher-medallions">Modrinth</a> or <a href="https://www.curseforge.com/minecraft/mc-mods/witcher-medallions">Curseforge</a>]
+1. Clone or download this repository to your computer.
+2. Configure the project by setting the properties in the `gradle.properties` file. You will also need to change the `rootProject.name`  property in `settings.gradle`, this should match the folder name of your project, or else IDEA may complain.
+3. Open the template's root folder as a new project in IDEA. This is the folder that contains this README.md file and the gradlew executable.
+4. If your default JVM/JDK is not Java 21 you will encounter an error when opening the project. This error is fixed by going to `File > Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM` and changing the value to a valid Java 21 JVM. You will also need to set the Project SDK to Java 21. This can be done by going to `File > Project Structure > Project SDK`. Once both have been set open the Gradle tab in IDEA and click the refresh button to reload the project.
+5. Open your Run/Debug Configurations. Under the `Application` category there should now be options to run Fabric and NeoForge projects. Select one of the client options and try to run it.
+6. Assuming you were able to run the game in step 5 your workspace should now be set up.
 
-<u></u><h2><strong>Credits and Recommended mods:</strong></span></h2>
-* Thanks to <a href="https://legacy.curseforge.com/members/mlodziak00/projects">Mlodziak00</a> for helping me with the Trinkets+Geckolib integration! Check the <a href="https://www.curseforge.com/minecraft/mc-mods/familiarity">Familiarity</a> mod! </p>
-* Take a look at <a href="https://legacy.curseforge.com/minecraft/mc-mods/witcher-origin">A Witcher - An Origins Addon</a> my principal inspiration and the reason this mod even exist! Seriously, check it out, it's a really amazing mod.</p>
-* And of course thanks to Andrzej Sapkowski and CD Projekt RED for creating this amazing universe!</p>
+### Eclipse
+While it is possible to use this template in Eclipse it is not recommended. During the development of this template multiple critical bugs and quirks related to Eclipse were found at nearly every level of the required build tools. While we continue to work with these tools to report and resolve issues support for projects like these are not there yet. For now Eclipse is considered unsupported by this project. The development cycle for build tools is notoriously slow so there are no ETAs available.
 
-<i>Disclaimer: Sounds are modified versions of sounds from Zapsplat.com, Witcher 2: Assassins of Kings, Witcher 3: Wild Hunt and Minecraft itself.</i>
+## Development Guide
+When using this template the majority of your mod should be developed in the `common` project. The `common` project is compiled against the vanilla game and is used to hold code that is shared between the different loader-specific versions of your mod. The `common` project has no knowledge or access to ModLoader specific code, apis, or concepts. Code that requires something from a specific loader must be done through the project that is specific to that loader, such as the `fabric` or `neoforge` projects.
+
+Loader specific projects such as the `fabric` and `neoforge` project are used to load the `common` project into the game. These projects also define code that is specific to that loader. Loader specific projects can access all the code in the `common` project. It is important to remember that the `common` project can not access code from loader specific projects.
+
+## Removing Platforms and Loaders
+While this template has support for many modloaders, new loaders may appear in the future, and existing loaders may become less relevant.
+
+Removing loader specific projects is as easy as deleting the folder, and removing the `include("projectname")` line from the `settings.gradle` file.
+For example if you wanted to remove support for `forge` you would follow the following steps:
+
+1. Delete the subproject folder. For example, delete `MultiLoader-Template/forge`.
+2. Remove the project from `settings.gradle`. For example, remove `include("forge")`. 

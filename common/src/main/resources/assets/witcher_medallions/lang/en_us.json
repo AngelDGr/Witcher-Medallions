@@ -1,0 +1,113 @@
+{
+    "itemgroup.witcher_medallions": "Witcher Medallions",
+
+    "item.witcher_medallions.magic-nucleus": "Magic Nucleus",
+
+    "item.witcher_medallions.wolf-medallion": "Wolf Medallion",
+    "item.witcher_medallions.wolf-medallion-off": "Deactivated Wolf Medallion",
+
+    "item.witcher_medallions.cat-medallion": "Cat Medallion",
+    "item.witcher_medallions.cat-medallion-off": "Deactivated Cat Medallion",
+
+    "item.witcher_medallions.bear-medallion": "Bear Medallion",
+    "item.witcher_medallions.bear-medallion-off": "Deactivated Bear Medallion",
+
+    "item.witcher_medallions.griffin-medallion": "Griffin Medallion",
+    "item.witcher_medallions.griffin-medallion-off": "Deactivated Griffin Medallion",
+
+    "item.witcher_medallions.viper-medallion": "Viper Medallion",
+    "item.witcher_medallions.viper-medallion-off": "Deactivated Viper Medallion",
+
+    "item.witcher_medallions.manticore-medallion": "Manticore Medallion",
+    "item.witcher_medallions.manticore-medallion-off": "Deactivated Manticore Medallion",
+
+    "item.witcher_medallions.ancient-wolf-medallion": "Ancient Wolf Medallion",
+    "item.witcher_medallions.ancient-wolf-medallion-off": "Deactivated Ancient Wolf Medallion",
+
+    "tooltip.witcher_medallions.wolf_medallion_tooltip_1": "Symbol of the mighty warriors",
+    "tooltip.witcher_medallions.wolf_medallion_tooltip_2": "of Kaer Morhen",
+
+    "tooltip.witcher_medallions.cat_medallion_tooltip_1": "Symbol of the agile butchers",
+    "tooltip.witcher_medallions.cat_medallion_tooltip_2": "of Dyn Marv",
+
+    "tooltip.witcher_medallions.bear_medallion_tooltip_1": "Symbol of the fierce fighters",
+    "tooltip.witcher_medallions.bear_medallion_tooltip_2": "of Haern Caduch",
+
+    "tooltip.witcher_medallions.griffin_medallion_tooltip_1": "Symbol of the wise knights",
+    "tooltip.witcher_medallions.griffin_medallion_tooltip_2": "of Kaer Seren",
+
+    "tooltip.witcher_medallions.viper_medallion_tooltip_1": "Symbol of the ruthless assassins",
+    "tooltip.witcher_medallions.viper_medallion_tooltip_2": "of Gorthur Gvaed",
+
+    "tooltip.witcher_medallions.manticore_medallion_tooltip_1": "Symbol of the enigmatic swordsmen",
+    "tooltip.witcher_medallions.manticore_medallion_tooltip_2": "of Zerrikania",
+
+    "tooltip.witcher_medallions.ancient_wolf_medallion_tooltip_1": "A symbol of Kaer Morhen, from",
+    "tooltip.witcher_medallions.ancient_wolf_medallion_tooltip_2": "a forgotten age",
+
+
+    "tooltip.witcher_medallions.off": "A deactivated medallion, imbue with concentrated magic to make it work",
+    "tooltip.witcher_medallions.off_1": "A deactivated medallion, imbue with",
+    "tooltip.witcher_medallions.off_2": "concentrated magic to make it work",
+
+
+    "key.category.witchermedallions.medallions": "Witcher Medallions",
+
+    "key.witchermedallions.activemedallion": "Active Medallion",
+
+    "witcher_medallions.medallion_activate_sound": "Witcher Medallion activates",
+
+    "witcher_medallions.medallion_restartcooldown_sound": "Witcher Medallion recharges",
+
+    "witcher_medallions.medallion-wolf_sound": "Wolf medallion growls",
+    "witcher_medallions.medallion-cat_sound": "Cat medallion hisses",
+    "witcher_medallions.medallion-bear_sound": "Bear medallion roars",
+    "witcher_medallions.medallion-griffin_sound": "Griffin medallion screech",
+    "witcher_medallions.medallion-viper_sound": "Viper medallion hisses",
+    "witcher_medallions.medallion-manticore_sound": "Manticore medallion roars",
+
+    "witcher_medallions.medallion-wolf-strong_sound": "Wolf medallion growls aggressively",
+    "witcher_medallions.medallion-cat-strong_sound": "Cat medallion hisses aggressively",
+    "witcher_medallions.medallion-bear-strong_sound": "Bear medallion roars aggressively",
+    "witcher_medallions.medallion-griffin-strong_sound": "Griffin medallion screech aggressively",
+    "witcher_medallions.medallion-viper-strong_sound": "Viper medallion hisses aggressively",
+    "witcher_medallions.medallion-manticore-strong_sound": "Manticore medallion roars aggressively",
+
+    "text.config.witchermedallions-config.title": "Witcher Medallions Config",
+
+    "text.config.witchermedallions-config.option.MobList": "Detectable mobs with the Witcher Medallions",
+    "text.config.witchermedallions-config.option.MobList.tooltip": "Add or remove mobs for detection! \nUse the id with the format '<ModId>:<Entity/BlockId>'",
+
+    "text.config.witchermedallions-config.option.activeDetectionSize": "Active Detection - Size",
+    "text.config.witchermedallions-config.option.activeDetectionSize.tooltip": "Size (XYZ) for the active detection.\n(When you press the keybind)",
+
+    "text.config.witchermedallions-config.option.passiveDetectionXZ": "Passive Detection - XZ Size",
+    "text.config.witchermedallions-config.option.passiveDetectionXZ.tooltip": "Size (XZ) for the passive detection.\n(Small motion animation)",
+
+    "text.config.witchermedallions-config.option.passiveDetectionY": "Passive Detection - Y Size",
+    "text.config.witchermedallions-config.option.passiveDetectionY.tooltip": "Size (Y) for the passive detection.\n",
+
+    "text.config.witchermedallions-config.option.medallionSounds": "Medallions make sounds",
+    "text.config.witchermedallions-config.option.medallionSounds.tooltip": "Active o deactivate the sounds for the passive detection",
+
+    "text.config.witchermedallions-config.option.medallionsHaveSoulbound": "Medallions have Soulbound",
+    "text.config.witchermedallions-config.option.medallionsHaveSoulbound.tooltip": "Makes you keep the medallion equipped when you die",
+
+    "text.config.witchermedallions-config.option.StrongMagicSourcesList": "Mobs or blocks with strong magical auras",
+    "text.config.witchermedallions-config.option.StrongMagicSourcesList.tooltip": "Add or remove mobs or blocks for strong detection! \nUse the id with the format '<ModId>:<Entity/BlockId>'",
+
+    "text.config.witchermedallions-config.option.StrongDetectionForBlocks": "Strong Detection for Blocks",
+    "text.config.witchermedallions-config.option.StrongDetectionForBlocks.tooltip": "The block detection can cause performance issues, so deactivate if it's necessary",
+
+    "text.config.witchermedallions-config.option.StrongpassiveDetectionXZ": "Strong Detection - XZ Size",
+    "text.config.witchermedallions-config.option.StrongpassiveDetectionXZ.tooltip": "Size (XZ) for the strong detection (Strong motion animation)\nWARNING: High value cause performance issues",
+
+    "text.config.witchermedallions-config.option.StrongpassiveDetectionY": "Strong Detection - Y Size",
+    "text.config.witchermedallions-config.option.StrongpassiveDetectionY.tooltip": "Size (Y) for the strong detection.\nWARNING: High value cause performance issues",
+
+    "tag.item.witcher_medallions.magic_catalyst": "Magic Catalyst",
+    "tag.item.witcher_medallions.manticore_medallion_ingredient": "Manticore Essence",
+    "tag.item.witcher_medallions.cat_medallion_ingredient": "Cat Essence",
+    "tag.item.witcher_medallions.bear_medallion_ingredient": "Bear Essence"
+
+}

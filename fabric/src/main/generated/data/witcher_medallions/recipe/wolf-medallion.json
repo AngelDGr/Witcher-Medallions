@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "witcher_medallions:magic_catalyst"
+  },
+  "base": {
+    "item": "witcher_medallions:wolf-medallion-off"
+  },
+  "result": {
+    "count": 1,
+    "id": "witcher_medallions:wolf-medallion"
+  },
+  "template": {
+    "item": "witcher_medallions:magic-nucleus"
+  }
+}
