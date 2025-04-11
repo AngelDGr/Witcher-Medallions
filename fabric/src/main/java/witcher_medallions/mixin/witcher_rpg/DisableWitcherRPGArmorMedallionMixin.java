@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import witcher_medallions.WitcherMedallions_MainCommon;
-import witcher_medallions.items.MedallionBaseItem;
+import witcher_medallions.items.MedallionBaseItem_Fabric;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class DisableWitcherRPGArmorMedallionMixin {
 
                 //Get all the medallions equipped
                 List<Tuple<SlotReference, ItemStack>> equippedMedallions =
-                        TrinketsApi.getTrinketComponent(player).get().getEquipped(stack -> stack.getItem() instanceof MedallionBaseItem);
+                        TrinketsApi.getTrinketComponent(player).get().getEquipped(stack -> stack.getItem() instanceof MedallionBaseItem_Fabric);
 
                 //Get the first medallion equipped if it has any, otherwise it's an empty stack
                 medallionStackInTrinketSlot = equippedMedallions.stream().findFirst().isPresent()? equippedMedallions.stream().findFirst().get().getB(): ItemStack.EMPTY;

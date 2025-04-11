@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import org.jetbrains.annotations.NotNull;
@@ -25,11 +26,11 @@ import witcher_medallions.items.gecko.renderer.WitcherMedallionRenderer;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class MedallionOffBaseItem extends MedallionBaseItem {
+public class MedallionOffBaseItem extends MedallionBaseItem_Fabric {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private final Object renderer;
 
-    public MedallionOffBaseItem(Properties settings, int index) {
+    public MedallionOffBaseItem(Item.Properties settings, int index) {
         super(settings);
         if(FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER){
             this.renderer=null;
@@ -54,7 +55,6 @@ public class MedallionOffBaseItem extends MedallionBaseItem {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "controller", 0, state -> PlayState.CONTINUE));
-
     }
 
     //Trinkets
@@ -73,14 +73,13 @@ public class MedallionOffBaseItem extends MedallionBaseItem {
         });
     }
 
-
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, List<Component> tooltip, @NotNull TooltipFlag type) {
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull Item.TooltipContext context, List<Component> tooltip, @NotNull TooltipFlag type) {
         tooltip.add(Component.translatable("tooltip.witcher_medallions.off_1").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.witcher_medallions.off_2").withStyle(ChatFormatting.GRAY));
     }

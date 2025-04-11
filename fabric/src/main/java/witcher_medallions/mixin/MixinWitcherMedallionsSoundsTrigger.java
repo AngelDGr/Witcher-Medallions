@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import witcher_medallions.WitcherMedallions_MainFabric;
-import witcher_medallions.items.medallions.ActivedMedallionBaseItem;
+import witcher_medallions.items.medallions.ActivatedMedallionBaseItem;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +47,7 @@ public abstract class MixinWitcherMedallionsSoundsTrigger extends AbstractClient
 
                     //Get all the medallions equipped
                     List<Tuple<SlotReference, ItemStack>> equippedMedallions =
-                            TrinketsApi.getTrinketComponent(this).get().getEquipped(stack -> stack.getItem() instanceof ActivedMedallionBaseItem);
+                            TrinketsApi.getTrinketComponent(this).get().getEquipped(stack -> stack.getItem() instanceof ActivatedMedallionBaseItem);
 
                     //Get the first medallion equipped if it has any, otherwise it's an empty stack
                     ItemStack medallionStack = equippedMedallions.stream().findFirst().isPresent()? equippedMedallions.stream().findFirst().get().getB(): ItemStack.EMPTY;
@@ -61,8 +61,8 @@ public abstract class MixinWitcherMedallionsSoundsTrigger extends AbstractClient
 
                         Minecraft.getInstance().player.playNotifySound(
                                 this.witcherMedallionsMod$getHasStrongMagicNear()?
-                                        ((ActivedMedallionBaseItem)(medallionStack.getItem())).getStrongAnimalSound():
-                                        ((ActivedMedallionBaseItem)(medallionStack.getItem())).getAnimalSound(), SoundSource.PLAYERS, 1, 1);
+                                        ((ActivatedMedallionBaseItem)(medallionStack.getItem())).getStrongAnimalSound():
+                                        ((ActivatedMedallionBaseItem)(medallionStack.getItem())).getAnimalSound(), SoundSource.PLAYERS, 1, 1);
 
                         soundTriggered=true;
                     }
@@ -77,14 +77,14 @@ public abstract class MixinWitcherMedallionsSoundsTrigger extends AbstractClient
                     //If detect something magic nearby, it sounds
                     if(this.witcherMedallionsMod$getHasMagicMobNear() || this.witcherMedallionsMod$getHasStrongMagicNear()){
 
-                        if(medallionStackOffhand.isPresent() && medallionStackOffhand.get().getItem() instanceof ActivedMedallionBaseItem medallion && Minecraft.getInstance().player!=null){
+                        if(medallionStackOffhand.isPresent() && medallionStackOffhand.get().getItem() instanceof ActivatedMedallionBaseItem medallion && Minecraft.getInstance().player!=null){
 
                             Minecraft.getInstance().player.playNotifySound(
                                     this.witcherMedallionsMod$getHasStrongMagicNear()?
                                             medallion.getStrongAnimalSound():
                                             medallion.getAnimalSound(), SoundSource.PLAYERS, 1, 1);
 
-                        } else if (medallionStack.isPresent() && medallionStack.get().getItem() instanceof ActivedMedallionBaseItem medallion && Minecraft.getInstance().player!=null) {
+                        } else if (medallionStack.isPresent() && medallionStack.get().getItem() instanceof ActivatedMedallionBaseItem medallion && Minecraft.getInstance().player!=null) {
 
                             Minecraft.getInstance().player.playNotifySound(
                                     this.witcherMedallionsMod$getHasStrongMagicNear()?
@@ -114,6 +114,6 @@ public abstract class MixinWitcherMedallionsSoundsTrigger extends AbstractClient
 
     @Unique
     private boolean getStackIsMedallionWithSounds(ItemStack stack){
-        return stack.getItem() instanceof ActivedMedallionBaseItem medallion && medallion.getAnimalSound()!=null && medallion.getStrongAnimalSound()!=null;
+        return stack.getItem() instanceof ActivatedMedallionBaseItem medallion && medallion.getAnimalSound()!=null && medallion.getStrongAnimalSound()!=null;
     }
 }

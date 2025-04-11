@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import witcher_medallions.util.MedallionLogicUtil;
 import witcher_medallions.WitcherMedallions_MainFabric;
 import witcher_medallions.injected.PlayerEntityMixinMedallions;
-import witcher_medallions.items.medallions.ActivedMedallionBaseItem;
+import witcher_medallions.items.medallions.ActivatedMedallionBaseItem;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +44,7 @@ public abstract class MixinWitcherMedallionDetection extends LivingEntity implem
 
             //Get all the medallions equipped
             List<Tuple<SlotReference, ItemStack>> equippedMedallions =
-                    TrinketsApi.getTrinketComponent(this).get().getEquipped(stack -> stack.getItem() instanceof ActivedMedallionBaseItem);
+                    TrinketsApi.getTrinketComponent(this).get().getEquipped(stack -> stack.getItem() instanceof ActivatedMedallionBaseItem);
 
             //Get the first medallion equipped if it has any, otherwise it's an empty stack
             medallionStackInTrinketSlot = equippedMedallions.stream().findFirst().isPresent()? equippedMedallions.stream().findFirst().get().getB(): ItemStack.EMPTY;
@@ -52,7 +52,7 @@ public abstract class MixinWitcherMedallionDetection extends LivingEntity implem
         }
 
         //If the player has any medallion in the inventory or as Trinket, starts all the logic
-        if (this.inventory.hasAnyMatching(stack -> stack.getItem() instanceof ActivedMedallionBaseItem) || !medallionStackInTrinketSlot.isEmpty()) {
+        if (this.inventory.hasAnyMatching(stack -> stack.getItem() instanceof ActivatedMedallionBaseItem) || !medallionStackInTrinketSlot.isEmpty()) {
             //Block detection
             if(WitcherMedallions_MainFabric.CONFIG.StrongDetectionForBlocks()){
                 searchNearMagicBlocks(THIS);

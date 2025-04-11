@@ -118,7 +118,7 @@ public class WitcherMedallions_Items {
 			new Item(new Item.Properties().stacksTo(16)));
 
 	public static void registerModItems() {
-		WitcherMedallions_MainCommon.LOGGER.info("Registering Mod Items for " + WitcherMedallions_MainCommon.MOD_ID);
+//		WitcherMedallions_MainCommon.LOGGER.info("Registering Mod Items for " + WitcherMedallions_MainCommon.MOD_ID);
 	}
 
 }

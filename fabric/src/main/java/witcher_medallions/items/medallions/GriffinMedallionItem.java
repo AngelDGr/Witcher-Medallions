@@ -5,7 +5,7 @@ import net.minecraft.sounds.SoundEvent;
 import witcher_medallions.items.WitcherMedallions_Items;
 import witcher_medallions.items.gecko.renderer.WitcherMedallionRenderer;
 
-public class GriffinMedallionItem extends ActivedMedallionBaseItem {
+public class GriffinMedallionItem extends ActivatedMedallionBaseItem {
     public GriffinMedallionItem(Properties settings) {
         super(settings);
     }

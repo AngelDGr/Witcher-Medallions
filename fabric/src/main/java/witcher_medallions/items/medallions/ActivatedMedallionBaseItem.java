@@ -34,21 +34,21 @@ import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import witcher_medallions.WitcherMedallions_MainFabric;
-import witcher_medallions.items.MedallionBaseItem;
+import witcher_medallions.items.MedallionBaseItem_Fabric;
 import witcher_medallions.items.WitcherMedallions_Items;
-import witcher_medallions.util.MiscUtil;
+import witcher_medallions.MiscUtil;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
+public abstract class ActivatedMedallionBaseItem extends MedallionBaseItem_Fabric {
     protected final RawAnimation SWING_ANIMATION = RawAnimation.begin().thenLoop("medallion_animation");
     protected final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
     protected final RawAnimation STRONG_ANIMATION = RawAnimation.begin().thenLoop("medallion_animation_strong");
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-    public ActivedMedallionBaseItem(Properties settings) {
+    public ActivatedMedallionBaseItem(Properties settings) {
         super(settings);
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
@@ -83,7 +83,7 @@ public abstract class ActivedMedallionBaseItem extends MedallionBaseItem {
     }
 
     protected String getTooltip(){
-        return "";
+        return "tooltip.witcher_medallions";
     }
 
     protected ChatFormatting getTooltipColor(){

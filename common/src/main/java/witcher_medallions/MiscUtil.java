@@ -1,4 +1,4 @@
-package witcher_medallions.util;
+package witcher_medallions;
 
 import com.google.common.collect.Multimap;
 import net.minecraft.core.Holder;
@@ -6,7 +6,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import witcher_medallions.WitcherMedallions_MainCommon;
 
 @SuppressWarnings("all")
 public class MiscUtil {

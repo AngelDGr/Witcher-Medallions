@@ -5,7 +5,7 @@ import net.minecraft.sounds.SoundEvent;
 import witcher_medallions.items.WitcherMedallions_Items;
 import witcher_medallions.items.gecko.renderer.WitcherMedallionRenderer;
 
-public class BearMedallionItem extends ActivedMedallionBaseItem {
+public class BearMedallionItem extends ActivatedMedallionBaseItem {
     public BearMedallionItem(Properties settings) {
         super(settings);
     }

@@ -3,7 +3,7 @@ package witcher_medallions.items.medallions;
 import net.minecraft.ChatFormatting;
 import witcher_medallions.items.gecko.renderer.WitcherMedallionRenderer;
 
-public class AncientWolfMedallionItem extends ActivedMedallionBaseItem {
+public class AncientWolfMedallionItem extends ActivatedMedallionBaseItem {
     public AncientWolfMedallionItem(Properties settings) {
         super(settings);
     }
@@ -22,7 +22,4 @@ public class AncientWolfMedallionItem extends ActivedMedallionBaseItem {
     protected ChatFormatting getTooltipColor() {
         return ChatFormatting.DARK_GRAY;
     }
-
-
-
 }
