@@ -1,38 +1,14 @@
 package witcher_medallions.items.medallions;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.sounds.SoundEvent;
-import witcher_medallions.items.WitcherMedallions_Items;
-import witcher_medallions.items.gecko.renderer.WitcherMedallionRenderer;
+import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
 
-public class GriffinMedallionItem extends ActivatedMedallionBaseItem {
-    public GriffinMedallionItem(Properties settings) {
-        super(settings);
-    }
-
-    @Override
-    public SoundEvent getAnimalSound() {
-        return WitcherMedallions_Items.GRIFFIN_MEDALLION_SOUND;
-    }
-
-    @Override
-    public SoundEvent getStrongAnimalSound() {
-        return WitcherMedallions_Items.STRONG_GRIFFIN_MEDALLION_SOUND;
-    }
-
-    @Override
-    protected Object getRenderer() {
-        return new WitcherMedallionRenderer("griffin",false);
-    }
-
-    @Override
-    protected String getTooltip() {
-        return "tooltip.witcher_medallions.griffin_medallion_tooltip";
-    }
-
-    @Override
-    protected ChatFormatting getTooltipColor() {
-        return ChatFormatting.YELLOW;
+/**
+ Needs to be a different class, otherwise the SingletonGeoAnimatable.registerSyncedAnimatable() doesn't work
+ */
+public class GriffinMedallionItem extends ActivatedMedallionBaseItem{
+    public GriffinMedallionItem() {
+        super(new Properties().stacksTo(1), "griffin", ChatFormatting.YELLOW);
+        SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
 }
-

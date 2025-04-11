@@ -11,7 +11,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import org.lwjgl.glfw.GLFW;
-import witcher_medallions.items.WitcherMedallions_Items;
+import witcher_medallions.WitcherMedallions_MainCommon;
+import witcher_medallions.items.WitcherMedallions_ItemsCommon;
 
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_MEDALLIONS = "key.category.witchermedallions.medallions";
@@ -29,18 +30,18 @@ public class KeyInputHandler {
                     //DetectMedallion
                     if (!cooldown) {
                         if (
-                               (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_WolfMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_CatMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_BearMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_GriffinMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_ViperMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_ManticoreMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_Items.Witcher_AncientWolfMedallion))
+                               (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_WolfMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_CatMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_BearMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_GriffinMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_ViperMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_ManticoreMedallion))
+                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_AncientWolfMedallion))
                         ) {
                             outliningMonsters = true;
                             ticks = 200;
                             cooldown = true;
-                            Minecraft.getInstance().player.playSound(WitcherMedallions_Items.MEDALLION_ACTIVATE_SOUND, 1, 1);
+                            Minecraft.getInstance().player.playSound(WitcherMedallions_MainCommon.MEDALLION_ACTIVATE_SOUND, 1, 1);
                         }
                     }
                 }
@@ -53,7 +54,7 @@ public class KeyInputHandler {
                     //Time cooldown last
                     if (ticks==0) {
                         if(Minecraft.getInstance().player!=null){
-                        Minecraft.getInstance().player.playNotifySound(WitcherMedallions_Items.MEDALLION_RESTART_COOLDOWN_SOUND, SoundSource.PLAYERS, 1, 1);
+                        Minecraft.getInstance().player.playNotifySound(WitcherMedallions_MainCommon.MEDALLION_RESTART_COOLDOWN_SOUND, SoundSource.PLAYERS, 1, 1);
                         }
                     cooldown=false;
                     }

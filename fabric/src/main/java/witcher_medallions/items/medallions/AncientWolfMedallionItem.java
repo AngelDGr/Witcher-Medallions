@@ -1,25 +1,14 @@
 package witcher_medallions.items.medallions;
 
 import net.minecraft.ChatFormatting;
-import witcher_medallions.items.gecko.renderer.WitcherMedallionRenderer;
+import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
 
-public class AncientWolfMedallionItem extends ActivatedMedallionBaseItem {
-    public AncientWolfMedallionItem(Properties settings) {
-        super(settings);
-    }
-
-    @Override
-    protected Object getRenderer() {
-        return new WitcherMedallionRenderer("ancient_wolf",false);
-    }
-
-    @Override
-    protected String getTooltip() {
-        return "tooltip.witcher_medallions.ancient_wolf_medallion_tooltip";
-    }
-
-    @Override
-    protected ChatFormatting getTooltipColor() {
-        return ChatFormatting.DARK_GRAY;
+/**
+ Needs to be a different class, otherwise the SingletonGeoAnimatable.registerSyncedAnimatable() doesn't work
+ */
+public class AncientWolfMedallionItem extends ActivatedMedallionBaseItem{
+    public AncientWolfMedallionItem() {
+        super(new Properties().stacksTo(1), "ancient_wolf", ChatFormatting.DARK_GRAY);
+        SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
 }

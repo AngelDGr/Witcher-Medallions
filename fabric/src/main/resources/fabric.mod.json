@@ -28,6 +28,7 @@
 		]
 	},
 	"mixins": [
+		"witcher_medallions.mixins.json",
 		"witcher_medallions.fabric.mixins.json"
 	],
 

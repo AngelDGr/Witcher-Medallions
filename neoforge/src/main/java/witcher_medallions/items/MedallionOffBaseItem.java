@@ -1,18 +1,12 @@
 package witcher_medallions.items;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import dev.emi.trinkets.api.SlotReference;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.neoforged.neoforgespi.Environment;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.client.GeoRenderProvider;
@@ -26,13 +20,13 @@ import witcher_medallions.items.gecko.WitcherMedallionRenderer;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class MedallionOffBaseItem extends MedallionBaseItem_Fabric {
+public class MedallionOffBaseItem extends MedallionBaseItem_NeoForge {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private final Object renderer;
 
     public MedallionOffBaseItem(Item.Properties settings, int index) {
         super(settings);
-        if(FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER){
+        if(!Environment.get().getDist().isClient()){
             this.renderer=null;
         } else {
             this.renderer = switch (index) {
@@ -55,11 +49,6 @@ public class MedallionOffBaseItem extends MedallionBaseItem_Fabric {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "controller", 0, state -> PlayState.CONTINUE));
-    }
-
-    //Trinkets
-    @Override
-    public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, PoseStack matrices, MultiBufferSource vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
     }
 
     @Override

@@ -10,7 +10,6 @@
     "witcher_rpg.DisableWitcherRPGArmorMedallionMixin"
   ],
   "client": [
-    "MixinTitleScreen",
     "MixinWitcherMedallionsSoundsTrigger",
     "MixinWitcherSetOutline",
     "MixinWitcherSetOutlineColor"

@@ -21,7 +21,7 @@ public class ChangeRecipeMixin {
     @Inject(method = "apply(Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V", at = @At("HEAD"))
     public void interceptApply(Map<ResourceLocation, JsonElement> map, ResourceManager resourceManager, ProfilerFiller profiler, CallbackInfo ci) {
         for(Tuple<ResourceLocation, JsonObject> recipePair: WitcherMedallions_MainCommon.recipes){
-            if(recipePair.getB()!=null){
+            if(recipePair.getB()!=null && recipePair.getA()!=null){
              map.put(recipePair.getA(), recipePair.getB());
             }
         }
