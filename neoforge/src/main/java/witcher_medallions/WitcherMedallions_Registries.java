@@ -16,4 +16,6 @@ public class WitcherMedallions_Registries {
 
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
             DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, WitcherMedallions_MainCommon.MOD_ID);
+
+
 }

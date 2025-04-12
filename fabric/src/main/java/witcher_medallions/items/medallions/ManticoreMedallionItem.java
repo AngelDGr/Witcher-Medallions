@@ -2,11 +2,12 @@ package witcher_medallions.items.medallions;
 
 import net.minecraft.ChatFormatting;
 import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
+import witcher_medallions.items.ActivatedMedallionBaseItem;
 
 /**
  Needs to be a different class, otherwise the SingletonGeoAnimatable.registerSyncedAnimatable() doesn't work
  */
-public class ManticoreMedallionItem extends ActivatedMedallionBaseItem{
+public class ManticoreMedallionItem extends ActivatedMedallionBaseItem {
     public ManticoreMedallionItem() {
         super(new Properties().stacksTo(1), "manticore", ChatFormatting.DARK_PURPLE);
         SingletonGeoAnimatable.registerSyncedAnimatable(this);

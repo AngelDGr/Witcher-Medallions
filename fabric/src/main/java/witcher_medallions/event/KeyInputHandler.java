@@ -3,45 +3,36 @@ package witcher_medallions.event;
 import com.mojang.blaze3d.platform.InputConstants;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Item;
 import org.lwjgl.glfw.GLFW;
-import witcher_medallions.WitcherMedallions_MainCommon;
-import witcher_medallions.items.WitcherMedallions_ItemsCommon;
+import witcher_medallions.Constants;
+import witcher_medallions.WitcherMedallions_MainFabric;
+import witcher_medallions.items.ActivatedMedallionBaseItem;
 
+@Environment(EnvType.CLIENT)
 public class KeyInputHandler {
-    public static final String KEY_CATEGORY_MEDALLIONS = "key.category.witchermedallions.medallions";
-    public static final String KEY_ACTIVE_MEDALLION = "key.witchermedallions.activemedallion";
 
     public static KeyMapping medallion_key;
-    public static boolean outliningMonsters = false;
     private static boolean cooldown = false;
     private static int ticks = 0;
 
-    @SuppressWarnings("all")
     public static void registerKeyInputs(){
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
                 while(medallion_key.consumeClick()) {
                     //DetectMedallion
                     if (!cooldown) {
-                        if (
-                               (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_WolfMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_CatMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_BearMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_GriffinMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_ViperMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_ManticoreMedallion))
-                            || (hasTrinketEquipped(client.player, WitcherMedallions_ItemsCommon.Witcher_AncientWolfMedallion))
-                        ) {
-                            outliningMonsters = true;
+                        if (Minecraft.getInstance().player!=null && hasMedallionEquipped(client.player)) {
+                            Constants.outliningMonsters = true;
                             ticks = 200;
                             cooldown = true;
-                            Minecraft.getInstance().player.playSound(WitcherMedallions_MainCommon.MEDALLION_ACTIVATE_SOUND, 1, 1);
+                            Minecraft.getInstance().player.playSound(WitcherMedallions_MainFabric.MEDALLION_ACTIVATE_SOUND, 1, 1);
                         }
                     }
                 }
@@ -49,12 +40,12 @@ public class KeyInputHandler {
                     --ticks;
                     //Time that the effect shows up
                     if (ticks == 100) {
-                        outliningMonsters= false;
+                        Constants.outliningMonsters= false;
                     }
                     //Time cooldown last
                     if (ticks==0) {
                         if(Minecraft.getInstance().player!=null){
-                        Minecraft.getInstance().player.playNotifySound(WitcherMedallions_MainCommon.MEDALLION_RESTART_COOLDOWN_SOUND, SoundSource.PLAYERS, 1, 1);
+                        Minecraft.getInstance().player.playNotifySound(WitcherMedallions_MainFabric.MEDALLION_RESTART_COOLDOWN_SOUND, SoundSource.PLAYERS, 1, 1);
                         }
                     cooldown=false;
                     }
@@ -63,12 +54,13 @@ public class KeyInputHandler {
     }
 
     public static void register(){
-        medallion_key = KeyBindingHelper.registerKeyBinding(new KeyMapping(
-        KEY_ACTIVE_MEDALLION,
-        InputConstants.Type.KEYSYM,
-        GLFW.GLFW_KEY_T,
-        KEY_CATEGORY_MEDALLIONS
-        ));
+        medallion_key = KeyBindingHelper.registerKeyBinding(
+                new KeyMapping(
+                        Constants.KEY_ACTIVE_MEDALLION,
+                        InputConstants.Type.KEYSYM,
+                        GLFW.GLFW_KEY_T,
+                        Constants.KEY_CATEGORY_MEDALLIONS
+                ));
         registerKeyInputs();
     }
 
@@ -78,8 +70,8 @@ public class KeyInputHandler {
         return TrinketsApi.getTrinketComponent(entity).get();
     }
 
-    public static boolean hasTrinketEquipped(LivingEntity entity, Item trinket) {
-        return getTrinkets(entity).isEquipped(trinket);
+    public static boolean hasMedallionEquipped(LivingEntity entity) {
+        return getTrinkets(entity).isEquipped(stack-> stack.getItem() instanceof ActivatedMedallionBaseItem);
     }
 
 }

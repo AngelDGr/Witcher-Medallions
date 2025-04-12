@@ -12,4 +12,10 @@ public class Constants {
 	public static final RawAnimation SWING_ANIMATION = RawAnimation.begin().thenLoop("medallion_animation");
 	public static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
 	public static final RawAnimation STRONG_ANIMATION = RawAnimation.begin().thenLoop("medallion_animation_strong");
+
+
+
+    public static final String KEY_CATEGORY_MEDALLIONS = "key.category.witchermedallions.medallions";
+    public static final String KEY_ACTIVE_MEDALLION = "key.witchermedallions.activemedallion";
+	public static boolean outliningMonsters = false;
 }

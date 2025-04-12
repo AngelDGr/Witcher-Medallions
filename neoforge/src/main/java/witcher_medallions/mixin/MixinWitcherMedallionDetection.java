@@ -1,7 +1,12 @@
 package witcher_medallions.mixin;
 
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketsApi;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -9,27 +14,22 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import witcher_medallions.util.MedallionLogicUtil;
-import witcher_medallions.WitcherMedallions_MainFabric;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+import witcher_medallions.WitcherMedallions_MainNeoForge;
 import witcher_medallions.injected.PlayerEntityMixinMedallions;
 import witcher_medallions.items.ActivatedMedallionBaseItem;
+import witcher_medallions.util.MedallionLogicUtil;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.Tuple;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 
 @Mixin(Player.class)
 public abstract class MixinWitcherMedallionDetection extends LivingEntity implements PlayerEntityMixinMedallions {
     protected MixinWitcherMedallionDetection(EntityType<? extends LivingEntity> entityType, Level world) {
         super(entityType, world);
     }
+
     @Shadow @Final
     Inventory inventory;
     @Unique
@@ -40,20 +40,27 @@ public abstract class MixinWitcherMedallionDetection extends LivingEntity implem
         ItemStack medallionStackInTrinketSlot = ItemStack.EMPTY;
 
         //Checks if it has any Trinket equipped
-        if(TrinketsApi.getTrinketComponent(this).isPresent()){
-
+        if(CuriosApi.getCuriosInventory(this).isPresent()){
             //Get all the medallions equipped
-            List<Tuple<SlotReference, ItemStack>> equippedMedallions =
-                    TrinketsApi.getTrinketComponent(this).get().getEquipped(stack -> stack.getItem() instanceof ActivatedMedallionBaseItem);
+            Map<String, ICurioStacksHandler> equippedMedallions =
+                    CuriosApi.getCuriosInventory(this).get().getCurios();
 
-            //Get the first medallion equipped if it has any, otherwise it's an empty stack
-            medallionStackInTrinketSlot = equippedMedallions.stream().findFirst().isPresent()? equippedMedallions.stream().findFirst().get().getB(): ItemStack.EMPTY;
+            for(int i=0; i< equippedMedallions.get("necklace").getSlots();i++){
+                ItemStack medallion=equippedMedallions.get("necklace").getStacks().getStackInSlot(i);
+                //Get the first medallion equipped if it has any, otherwise it's an empty stack
+                if(medallion.getItem() instanceof ActivatedMedallionBaseItem){
+                    medallionStackInTrinketSlot = medallion;
+                    break;
+                } else {
+                    medallionStackInTrinketSlot = ItemStack.EMPTY;
+                }
+            }
         }
 
         //If the player has any medallion in the inventory or as Trinket, starts all the logic
         if (this.inventory.hasAnyMatching(stack -> stack.getItem() instanceof ActivatedMedallionBaseItem) || !medallionStackInTrinketSlot.isEmpty()) {
             //Block detection
-            if(WitcherMedallions_MainFabric.CONFIG.StrongDetectionForBlocks()){
+            if(WitcherMedallions_MainNeoForge.CONFIG.StrongDetectionForBlocks()){
                 searchNearMagicBlocks(THIS);
                 hasMagicBlockNear=optionalBlockPos.isPresent();
             } else {
@@ -61,7 +68,7 @@ public abstract class MixinWitcherMedallionDetection extends LivingEntity implem
             }
 
             //Mob detection
-             hasMobNear=MedallionLogicUtil.detectMobs(this.level(), THIS, false);
+             hasMobNear= MedallionLogicUtil.detectMobs(this.level(), THIS, false);
              hasStrongMobNear=MedallionLogicUtil.detectMobs(this.level(), THIS, true);
         }
     }
@@ -79,10 +86,11 @@ public abstract class MixinWitcherMedallionDetection extends LivingEntity implem
                 optionalBlockPos.isPresent()
                         && (
                         !MedallionLogicUtil.checkIsMagicBlock(player.level().getBlockState(optionalBlockPos.get()).getBlock())
-                        || Math.abs(optionalBlockPos.get().getZ() - player.getZ()) > WitcherMedallions_MainFabric.CONFIG.StrongpassiveDetectionXZ()
-                        || Math.abs(optionalBlockPos.get().getX() - player.getX()) > WitcherMedallions_MainFabric.CONFIG.StrongpassiveDetectionXZ()
-                        || Math.abs(optionalBlockPos.get().getY() - player.getY()) > WitcherMedallions_MainFabric.CONFIG.StrongpassiveDetectionY())
-        ){
+                        || Math.abs(optionalBlockPos.get().getZ() - player.getZ()) > WitcherMedallions_MainNeoForge.CONFIG.StrongpassiveDetectionXZ()
+                        || Math.abs(optionalBlockPos.get().getX() - player.getX()) > WitcherMedallions_MainNeoForge.CONFIG.StrongpassiveDetectionXZ()
+                        || Math.abs(optionalBlockPos.get().getY() - player.getY()) > WitcherMedallions_MainNeoForge.CONFIG.StrongpassiveDetectionY())
+        )
+        {
             optionalBlockPos=Optional.empty();
         }
     }

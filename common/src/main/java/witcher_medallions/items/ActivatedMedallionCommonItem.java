@@ -12,7 +12,6 @@ import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.animation.AnimationController;
 import software.bernie.geckolib.animation.PlayState;
 import witcher_medallions.Constants;
-import witcher_medallions.MiscUtil;
 
 import java.util.function.Consumer;
 
@@ -20,13 +19,9 @@ public interface ActivatedMedallionCommonItem extends GeoItem {
 
     String getId();
 
-     default SoundEvent getAnimalSound(){
-        return MiscUtil.selectAnimalSound(getId());
-    }
+    SoundEvent getAnimalSound();
 
-    default SoundEvent getStrongAnimalSound(){
-        return MiscUtil.selectAnimalSound(getId(), true);
-    }
+    SoundEvent getStrongAnimalSound();
 
     Object getRenderer();
 

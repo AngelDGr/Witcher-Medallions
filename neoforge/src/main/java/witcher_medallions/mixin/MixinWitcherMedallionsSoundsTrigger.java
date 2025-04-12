@@ -1,8 +1,6 @@
 package witcher_medallions.mixin;
 
 import com.mojang.authlib.GameProfile;
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketsApi;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -10,17 +8,18 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import witcher_medallions.WitcherMedallions_MainFabric;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+import witcher_medallions.WitcherMedallions_MainNeoForge;
 import witcher_medallions.items.ActivatedMedallionBaseItem;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
@@ -36,21 +35,30 @@ public abstract class MixinWitcherMedallionsSoundsTrigger extends AbstractClient
     @Inject(method = "aiStep", at = @At("HEAD"))
     public void tickMovement(CallbackInfo ci) {
 
-        if(WitcherMedallions_MainFabric.CONFIG.medallionSounds()){
+        if(WitcherMedallions_MainNeoForge.CONFIG.medallionSounds()){
             boolean soundTriggered=false;
-
 
             if(!cooldownSound && !Minecraft.getInstance().isPaused()) {
                 //Makes sound when trinket equipped
                 //Checks if it has any Trinket equipped
-                if(TrinketsApi.getTrinketComponent(this).isPresent()){
+                if(CuriosApi.getCuriosInventory(this).isPresent()){
 
                     //Get all the medallions equipped
-                    List<Tuple<SlotReference, ItemStack>> equippedMedallions =
-                            TrinketsApi.getTrinketComponent(this).get().getEquipped(stack -> stack.getItem() instanceof ActivatedMedallionBaseItem);
+                    Map<String, ICurioStacksHandler> equippedMedallions =
+                            CuriosApi.getCuriosInventory(this).get().getCurios();
 
-                    //Get the first medallion equipped if it has any, otherwise it's an empty stack
-                    ItemStack medallionStack = equippedMedallions.stream().findFirst().isPresent()? equippedMedallions.stream().findFirst().get().getB(): ItemStack.EMPTY;
+                    ItemStack medallionStack = ItemStack.EMPTY;
+
+                    for(int i=0; i< equippedMedallions.get("necklace").getSlots();i++){
+                        ItemStack medallion=equippedMedallions.get("necklace").getStacks().getStackInSlot(i);
+                        //Get the first medallion equipped if it has any, otherwise it's an empty stack
+                        if(medallion.getItem() instanceof ActivatedMedallionBaseItem){
+                            medallionStack = medallion;
+                            break;
+                        } else {
+                            medallionStack = ItemStack.EMPTY;
+                        }
+                    }
 
                     //Check if the medallion has sounds and any monster is nearby
                     if((this.witcherMedallionsMod$getHasStrongMagicNear() || this.witcherMedallionsMod$getHasMagicMobNear())
@@ -63,12 +71,11 @@ public abstract class MixinWitcherMedallionsSoundsTrigger extends AbstractClient
                                 this.witcherMedallionsMod$getHasStrongMagicNear()?
                                         ((ActivatedMedallionBaseItem)(medallionStack.getItem())).getStrongAnimalSound():
                                         ((ActivatedMedallionBaseItem)(medallionStack.getItem())).getAnimalSound(), SoundSource.PLAYERS, 1, 1);
-
                         soundTriggered=true;
                     }
                 }
 
-                //If none medallion equipped triggered the sound already, search in the inventory and offhand
+                //If none equipped medallion triggered the sound already, search in the inventory and offhand
                 if(!soundTriggered && (this.getInventory().items.stream().anyMatch(this::getStackIsMedallionWithSounds) || this.getInventory().offhand.stream().anyMatch(this::getStackIsMedallionWithSounds))){
 
                     Optional<ItemStack> medallionStackOffhand = this.getInventory().offhand.stream().filter(this::getStackIsMedallionWithSounds).findFirst();

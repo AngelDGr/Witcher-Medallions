@@ -18,6 +18,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import witcher_medallions.items.WitcherMedallions_ItemsCommon;
+import witcher_medallions.items.WitcherMedallions_ItemsFabric;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -68,20 +69,20 @@ public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint 
 
 
             this.getOrCreateTagBuilder(TRINKET_TAG)
-                    .add(WitcherMedallions_ItemsCommon.Witcher_WolfMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_CatMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_BearMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_GriffinMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_ViperMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_ManticoreMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_AncientWolfMedallion)
-                    .add(WitcherMedallions_ItemsCommon.Witcher_OffWolfMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_OffCatMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_OffBearMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_OffGriffinMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_OffViperMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_OffManticoreMedallion,
-                            WitcherMedallions_ItemsCommon.Witcher_OffAncientWolfMedallion);
+                    .add(WitcherMedallions_ItemsFabric.Witcher_WolfMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_CatMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_BearMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_GriffinMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_ViperMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_ManticoreMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_AncientWolfMedallion)
+                    .add(WitcherMedallions_ItemsFabric.Witcher_OffWolfMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_OffCatMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_OffBearMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_OffGriffinMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_OffViperMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_OffManticoreMedallion,
+                            WitcherMedallions_ItemsFabric.Witcher_OffAncientWolfMedallion);
         }
     }
 
@@ -95,7 +96,7 @@ public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint 
         public void buildRecipes(RecipeOutput exporter) {
             //Magic Nucleus
             {
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, WitcherMedallions_ItemsCommon.Witcher_MagicCore)
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, WitcherMedallions_ItemsFabric.Witcher_MagicCore)
                         .pattern("LGL")
                         .pattern("GEG")
                         .pattern("LGL")
@@ -108,20 +109,20 @@ public class WitcherMedallions_DataGenerator implements DataGeneratorEntrypoint 
 
             //On
             {
-                createMedallionRecipe(exporter, WitcherMedallions_ItemsCommon.Witcher_OffWolfMedallion, WitcherMedallions_ItemsCommon.Witcher_WolfMedallion);
-                createMedallionRecipe(exporter, WitcherMedallions_ItemsCommon.Witcher_OffCatMedallion, WitcherMedallions_ItemsCommon.Witcher_CatMedallion);
-                createMedallionRecipe(exporter, WitcherMedallions_ItemsCommon.Witcher_OffBearMedallion, WitcherMedallions_ItemsCommon.Witcher_BearMedallion);
-                createMedallionRecipe(exporter, WitcherMedallions_ItemsCommon.Witcher_OffGriffinMedallion, WitcherMedallions_ItemsCommon.Witcher_GriffinMedallion);
-                createMedallionRecipe(exporter, WitcherMedallions_ItemsCommon.Witcher_OffViperMedallion, WitcherMedallions_ItemsCommon.Witcher_ViperMedallion);
-                createMedallionRecipe(exporter, WitcherMedallions_ItemsCommon.Witcher_OffManticoreMedallion, WitcherMedallions_ItemsCommon.Witcher_ManticoreMedallion);
-                createMedallionRecipe(exporter, WitcherMedallions_ItemsCommon.Witcher_OffAncientWolfMedallion, WitcherMedallions_ItemsCommon.Witcher_AncientWolfMedallion);
+                createMedallionRecipe(exporter, WitcherMedallions_ItemsFabric.Witcher_OffWolfMedallion, WitcherMedallions_ItemsFabric.Witcher_WolfMedallion);
+                createMedallionRecipe(exporter, WitcherMedallions_ItemsFabric.Witcher_OffCatMedallion, WitcherMedallions_ItemsFabric.Witcher_CatMedallion);
+                createMedallionRecipe(exporter, WitcherMedallions_ItemsFabric.Witcher_OffBearMedallion, WitcherMedallions_ItemsFabric.Witcher_BearMedallion);
+                createMedallionRecipe(exporter, WitcherMedallions_ItemsFabric.Witcher_OffGriffinMedallion, WitcherMedallions_ItemsFabric.Witcher_GriffinMedallion);
+                createMedallionRecipe(exporter, WitcherMedallions_ItemsFabric.Witcher_OffViperMedallion, WitcherMedallions_ItemsFabric.Witcher_ViperMedallion);
+                createMedallionRecipe(exporter, WitcherMedallions_ItemsFabric.Witcher_OffManticoreMedallion, WitcherMedallions_ItemsFabric.Witcher_ManticoreMedallion);
+                createMedallionRecipe(exporter, WitcherMedallions_ItemsFabric.Witcher_OffAncientWolfMedallion, WitcherMedallions_ItemsFabric.Witcher_AncientWolfMedallion);
             }
         }
 
         private void createMedallionRecipe(RecipeOutput exporter, Item OFF_Medallion, Item ON_Medallion){
             SmithingTransformRecipeBuilder.smithing(
                             //Template
-                            Ingredient.of(WitcherMedallions_ItemsCommon.Witcher_MagicCore),
+                            Ingredient.of(WitcherMedallions_ItemsFabric.Witcher_MagicCore),
                             //Base
                             Ingredient.of(OFF_Medallion),
                             //Addition

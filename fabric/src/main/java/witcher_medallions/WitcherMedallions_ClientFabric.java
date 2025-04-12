@@ -7,19 +7,17 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import witcher_medallions.event.KeyInputHandler;
-import witcher_medallions.items.WitcherMedallions_ItemsCommon;
+import witcher_medallions.items.WitcherMedallions_ItemsFabric;
 
 
 @Environment(EnvType.CLIENT)
@@ -36,48 +34,23 @@ public class WitcherMedallions_ClientFabric implements ClientModInitializer {
         registerClient();
 
         //Medallions
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_WolfMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_CatMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_BearMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_GriffinMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_ViperMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_ManticoreMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_AncientWolfMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_WolfMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_CatMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_BearMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_GriffinMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_ViperMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_ManticoreMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_AncientWolfMedallion);
 
         //Medallions off
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_OffWolfMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_OffCatMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_OffBearMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_OffGriffinMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_OffViperMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_OffManticoreMedallion);
-        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsCommon.Witcher_OffAncientWolfMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_OffWolfMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_OffCatMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_OffBearMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_OffGriffinMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_OffViperMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_OffManticoreMedallion);
+        WitcherMedallions_ClientFabric.RegisterTrinketRender(WitcherMedallions_ItemsFabric.Witcher_OffAncientWolfMedallion);
     }
-
-    @SuppressWarnings("unused")
-    public static void medallionTrinketRender(PoseStack matrices, EntityModel<? extends LivingEntity> model, LivingEntity entity, float headYaw, float headPitch) {
-    }
-
-    private static void moveMedallionWhenArmor(Player player, PoseStack matrices, String armorID, float ZValue, float YValue) {
-        if (BuiltInRegistries.ITEM.getKey(player.getItemBySlot(EquipmentSlot.CHEST).getItem())
-                .equals(ResourceLocation.fromNamespaceAndPath("tcots-witcher", armorID))) {
-            matrices.translate(0F, -YValue, -ZValue);
-        } else {
-            matrices.translate(0F, 0F, 0F);
-        }
-    }
-
-    @SuppressWarnings("all")
-    private static void moveMedallionWhenArmorWitcherRPG(Player player, PoseStack matrices, float ZValue, float YValue){
-        if(BuiltInRegistries.ITEM.getKey(player.getItemBySlot(EquipmentSlot.CHEST).getItem()).getNamespace()
-                .equals("witcher_rpg")){
-            matrices.translate(0F, -YValue, -ZValue);
-        } else {
-            matrices.translate(0F, 0F, 0F);
-        }
-    }
-
-
 
     @SuppressWarnings("unchecked")
     public static void RegisterTrinketRender(Item medallion){
@@ -100,6 +73,25 @@ public class WitcherMedallions_ClientFabric implements ClientModInitializer {
                                         matrices, vertexConsumers,null, 0);
                     }
                 });
+    }
+
+    private static void moveMedallionWhenArmor(Player player, PoseStack matrices, String armorID, float ZValue, float YValue) {
+        if (BuiltInRegistries.ITEM.getKey(player.getItemBySlot(EquipmentSlot.CHEST).getItem())
+                .equals(ResourceLocation.fromNamespaceAndPath("tcots-witcher", armorID))) {
+            matrices.translate(0F, -YValue, -ZValue);
+        } else {
+            matrices.translate(0F, 0F, 0F);
+        }
+    }
+
+    @SuppressWarnings("all")
+    private static void moveMedallionWhenArmorWitcherRPG(Player player, PoseStack matrices, float ZValue, float YValue){
+        if(BuiltInRegistries.ITEM.getKey(player.getItemBySlot(EquipmentSlot.CHEST).getItem()).getNamespace()
+                .equals("witcher_rpg")){
+            matrices.translate(0F, -YValue, -ZValue);
+        } else {
+            matrices.translate(0F, 0F, 0F);
+        }
     }
 
 }

@@ -64,6 +64,8 @@ dependencies {
 }
 
 neoForge {
+    interfaceInjectionData.from "interfaces.json"
+
     version = neoforge_version
     // Automatically enable neoforge AccessTransformers if the file exists
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')

@@ -11,8 +11,7 @@
   ],
   "client": [
     "MixinWitcherMedallionsSoundsTrigger",
-    "MixinWitcherSetOutline",
-    "MixinWitcherSetOutlineColor"
+    "MixinWitcherSetOutline"
   ],
   "server": [],
   "injectors": {

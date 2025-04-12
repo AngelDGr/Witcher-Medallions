@@ -19,73 +19,35 @@ public class WitcherMedallions_ItemsCommon {
         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(WitcherMedallions_MainCommon.MOD_ID,id));
     }
 
-    //WolfMedallion
-    //Wolf Medallion (wolf-medallion)
-    public static Item Witcher_WolfMedallion;
-    public static Supplier<Item> Witcher_WolfMedallion_Sup;
+    public static Supplier<Item> Witcher_WolfMedallion;
 
-    //Deactivated Wolf Medallion (wolf-medallion-off)
-    public static Item Witcher_OffWolfMedallion;
-    public static Supplier<Item> Witcher_OffWolfMedallion_Sup;
+    public static Supplier<Item> Witcher_OffWolfMedallion;
 
-    //CatMedallion
-    //Cat Medallion (cat-medallion)
-    public static Item Witcher_CatMedallion;
-    public static Supplier<Item> Witcher_CatMedallion_Sup;
+    public static Supplier<Item> Witcher_CatMedallion;
 
-    //Deactivated Cat Medallion (cat-medallion-off)
-    public static Item Witcher_OffCatMedallion;
-    public static Supplier<Item> Witcher_OffCatMedallion_Sup;
+    public static Supplier<Item> Witcher_OffCatMedallion;
 
-    //BearMedallion
-    //Bear Medallion (bear-medallion)
-    public static Item Witcher_BearMedallion;
-    public static Supplier<Item> Witcher_BearMedallion_Sup;
+    public static Supplier<Item> Witcher_BearMedallion;
 
-    //Deactivated Bear Medallion (bear-medallion-off)
-    public static Item Witcher_OffBearMedallion;
-    public static Supplier<Item> Witcher_OffBearMedallion_Sup;
+    public static Supplier<Item> Witcher_OffBearMedallion;
 
-    //GriffinMedallion
-    //Griffin Medallion (griffin-medallion)
-    public static Item Witcher_GriffinMedallion;
-    public static Supplier<Item> Witcher_GriffinMedallion_Sup;
+    public static Supplier<Item> Witcher_GriffinMedallion;
 
-    //Deactivated Griffin Medallion (griffin-medallion-off)
-    public static Item Witcher_OffGriffinMedallion;
-    public static Supplier<Item> Witcher_OffGriffinMedallion_Sup;
+    public static Supplier<Item> Witcher_OffGriffinMedallion;
 
-    //ViperMedallion
-    //Viper Medallion (viper-medallion)
-    public static Item Witcher_ViperMedallion;
-    public static Supplier<Item> Witcher_ViperMedallion_Sup;
+    public static Supplier<Item> Witcher_ViperMedallion;
 
-    //Deactivated Viper Medallion (viper-medallion-off)
-    public static Item Witcher_OffViperMedallion;
-    public static Supplier<Item> Witcher_OffViperMedallion_Sup;
+    public static Supplier<Item> Witcher_OffViperMedallion;
 
-    //ManticoreMedallion
-    //Manticore Medallion (manticore-medallion)
-    public static Item Witcher_ManticoreMedallion;
-    public static Supplier<Item> Witcher_ManticoreMedallion_Sup;
+    public static Supplier<Item> Witcher_ManticoreMedallion;
 
-    //Deactivated Manticore Medallion (manticore-medallion-off)
-    public static Item Witcher_OffManticoreMedallion;
-    public static Supplier<Item> Witcher_OffManticoreMedallion_Sup;
+    public static Supplier<Item> Witcher_OffManticoreMedallion;
 
-    //AncientWolfMedallion
-    //Ancient Wolf Medallion (ancient-wolf-medallion)
-    public static Item Witcher_AncientWolfMedallion;
-    public static Supplier<Item> Witcher_AncientWolfMedallion_Sup;
+    public static Supplier<Item> Witcher_AncientWolfMedallion;
 
-    //Deactivated Ancient Wolf Medallion (ancient-wolf-medallion-off)
-    public static Item Witcher_OffAncientWolfMedallion;
-    public static Supplier<Item> Witcher_OffAncientWolfMedallion_Sup;
+    public static Supplier<Item> Witcher_OffAncientWolfMedallion;
 
-    //OtherItems
-    //Magic Core (magic-nucleus)
-    public static Item Witcher_MagicCore;
-    public static Supplier<Item> Witcher_MagicCore_Sup;
+    public static Supplier<Item> Witcher_MagicCore;
 
     public static void registerItems() {
     }
