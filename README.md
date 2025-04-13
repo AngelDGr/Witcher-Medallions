@@ -2,10 +2,12 @@
 
 <u><h2><strong>Dependencies:</strong></span></h2></u>
 <center>
-<a href="https://modrinth.com/mod/geckolib" rel="nofollow"><img src="https://i.imgur.com/bW7JkP3.png" alt="" width="200" height="71"></a> </center>
+<a href="https://modrinth.com/mod/geckolib" rel="nofollow"><img src="https://i.imgur.com/bW7JkP3.png" alt="" width="200" height="71"></a> 
 <a href="https://modrinth.com/mod/owo-lib" rel="nofollow"><img src="https://i.imgur.com/f6LodW0.png" alt="" width="200" height="71"></a>
-<u><h3><strong>Fabric:</strong></h3></u><a href="https://modrinth.com/mod/trinkets" rel="nofollow"><img src="https://i.imgur.com/A8r9S3T.png" alt="" width="200" height="71"></a>
-<center><u><h3><strong>NeoForge:</strong></h3></u><a href="https://modrinth.com/mod/curios" rel="nofollow"><img src="https://imgur.com/t82zRXF.png" alt="" width="200" height="71"></a>
+<u><h3><strong>Fabric:</strong></h3></u>
+<a href="https://modrinth.com/mod/trinkets" rel="nofollow"><img src="https://i.imgur.com/A8r9S3T.png" alt="" width="200" height="71"></a>
+<u><h3><strong>NeoForge:</strong></h3></u>
+<a href="https://modrinth.com/mod/curios" rel="nofollow"><img src="https://imgur.com/t82zRXF.png" alt="" width="200" height="71"></a>
 </center>
 <h2></h2>
  <center><em>The witcher medallion is not only an insignia of our profession, it is also one of its tools. It has numerous useful capabilities that are accessible, of course, only to one who possesses the necessary knowledge and training.</em></p></center>
