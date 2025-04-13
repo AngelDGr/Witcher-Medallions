@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import witcher_medallions.WitcherMedallions_MainNeoForge;
-import witcher_medallions.injected.PlayerEntityMixinMedallions;
+import witcher_medallions.injection.PlayerGetNearMagicInjection;
 import witcher_medallions.items.ActivatedMedallionBaseItem;
 import witcher_medallions.util.MedallionLogicUtil;
 
@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Mixin(Player.class)
-public abstract class MixinWitcherMedallionDetection extends LivingEntity implements PlayerEntityMixinMedallions {
+public abstract class MixinWitcherMedallionDetection extends LivingEntity implements PlayerGetNearMagicInjection {
     protected MixinWitcherMedallionDetection(EntityType<? extends LivingEntity> entityType, Level world) {
         super(entityType, world);
     }

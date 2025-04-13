@@ -64,7 +64,7 @@ dependencies {
 }
 
 neoForge {
-    interfaceInjectionData.from "interfaces.json"
+    interfaceInjectionData.from(file("src/main/resources/interface_injections.json"))
 
     version = neoforge_version
     // Automatically enable neoforge AccessTransformers if the file exists

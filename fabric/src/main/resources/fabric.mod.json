@@ -53,7 +53,7 @@
 		},
 
 		"loom:injected_interfaces": {
-			"net/minecraft/class_1657": ["witcher_medallions/injected/PlayerEntityMixinMedallions"]
+			"net/minecraft/class_1657": ["witcher_medallions/injection/PlayerGetNearMagicInjection"]
 		}
 	}
 }

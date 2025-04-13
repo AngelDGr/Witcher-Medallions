@@ -1,6 +1,6 @@
-package witcher_medallions.injected;
+package witcher_medallions.injection;
 
-public interface PlayerEntityMixinMedallions {
+public interface PlayerGetNearMagicInjection {
 
     boolean witcherMedallionsMod$getHasMagicMobNear();
 

@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 @Mixin(LocalPlayer.class)
-public abstract class MixinWitcherMedallionsSoundsTrigger extends AbstractClientPlayer  {
+public abstract class MixinWitcherMedallionsSoundsTrigger extends AbstractClientPlayer {
     public MixinWitcherMedallionsSoundsTrigger(ClientLevel world, GameProfile profile) {
         super(world, profile);
     }

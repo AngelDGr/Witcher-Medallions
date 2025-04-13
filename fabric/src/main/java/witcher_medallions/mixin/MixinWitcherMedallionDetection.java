@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import witcher_medallions.util.MedallionLogicUtil;
 import witcher_medallions.WitcherMedallions_MainFabric;
-import witcher_medallions.injected.PlayerEntityMixinMedallions;
+import witcher_medallions.injection.PlayerGetNearMagicInjection;
 import witcher_medallions.items.ActivatedMedallionBaseItem;
 
 import java.util.List;
@@ -26,7 +26,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 @Mixin(Player.class)
-public abstract class MixinWitcherMedallionDetection extends LivingEntity implements PlayerEntityMixinMedallions {
+public abstract class MixinWitcherMedallionDetection extends LivingEntity implements PlayerGetNearMagicInjection {
     protected MixinWitcherMedallionDetection(EntityType<? extends LivingEntity> entityType, Level world) {
         super(entityType, world);
     }

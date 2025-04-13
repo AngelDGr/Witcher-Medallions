@@ -1,5 +1,0 @@
-{
-  "net/minecraft/world/entity/player/Player": [
-    "witcher_medallions/injected/PlayerEntityMixinMedallions"
-  ]
-}
