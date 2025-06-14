@@ -1,14 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "witcher_medallions.mixin",
+  "package": "neoforge.witcher_medallions.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "MixinWitcherMedallionDetection"
   ],
   "client": [
-    "MixinWitcherMedallionsSoundsTrigger",
-    "MixinWitcherSetOutline"
+    "MixinWitcherMedallionsSoundsTrigger"
   ],
   "server": [],
   "injectors": {

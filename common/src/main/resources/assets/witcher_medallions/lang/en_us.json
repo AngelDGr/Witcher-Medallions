@@ -1,5 +1,9 @@
 {
-    "itemgroup.witcher_medallions": "Witcher Medallions",
+    "itemGroup.witcher_medallions.main": "Witcher Medallions",
+    "itemGroup.witcher_medallions.main.tab.medallions": "Medallions",
+    "itemGroup.witcher_medallions.main.button.github": "GitHub",
+    "itemGroup.witcher_medallions.main.button.curseforge": "CurseForge",
+    "itemGroup.witcher_medallions.main.button.modrinth": "Modrinth",
 
     "item.witcher_medallions.magic-nucleus": "Magic Nucleus",
 

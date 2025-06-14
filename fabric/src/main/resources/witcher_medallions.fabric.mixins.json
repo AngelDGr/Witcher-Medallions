@@ -1,17 +1,15 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "witcher_medallions.mixin",
-  "refmap": "${mod_id}.refmap.json",
+  "package": "fabric.witcher_medallions.mixin",
   "compatibilityLevel": "JAVA_21",
-  "plugin": "witcher_medallions.mixin.WitcherMedallionsMixinConfigPlugin",
+  "plugin": "fabric.witcher_medallions.mixin.WitcherMedallionsMixinConfigPlugin",
   "mixins": [
-    "MixinWitcherMedallionDetection",
-    "witcher_rpg.DisableWitcherRPGArmorMedallionMixin"
+    "MixinWitcherMedallionDetection"
   ],
   "client": [
     "MixinWitcherMedallionsSoundsTrigger",
-    "MixinWitcherSetOutline"
+    "witcher_rpg.DisableWitcherRPGArmorMedallionMixin"
   ],
   "server": [],
   "injectors": {

@@ -9,6 +9,7 @@
     "defaultRequire": 1
   },
   "client": [
-    "MixinWitcherSetOutlineColor"
+    "MedallionsOutline\u0024MixinWitcherSetOutline",
+    "MedallionsOutline\u0024MixinWitcherSetOutlineColor"
   ]
 }

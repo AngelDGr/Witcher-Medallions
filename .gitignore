@@ -18,7 +18,18 @@ out
 build
 .gradle
 
-# other
-eclipse
-run
-runs
+#other
+/.gitattributes
+/.architectury-transformer/
+
+/common/.architectury-transformer/
+/common/.gradle/
+/common/build/
+
+/neoforge/.gradle/
+/neoforge/run/
+/neoforge/build/
+
+/fabric/build/
+/fabric/.gradle/
+/fabric/run/

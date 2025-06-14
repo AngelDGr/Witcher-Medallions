@@ -1,5 +1,9 @@
 {
-    "itemgroup.witcher_medallions": "Ведьмачьи Медальоны",
+    "itemGroup.witcher_medallions.main": "Ведьмачьи Медальоны",
+    "itemGroup.witcher_medallions.main.tab.medallions": "Медальоны",
+    "itemGroup.witcher_medallions.main.button.github": "GitHub",
+    "itemGroup.witcher_medallions.main.button.curseforge": "CurseForge",
+    "itemGroup.witcher_medallions.main.button.modrinth": "Modrinth",
 
     "item.witcher_medallions.magic-nucleus": "Магическое ядро",
 

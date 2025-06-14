@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "witcher_medallions",
-	"version": "3.1.1",
+	"version": "3.1.2",
 	"name": "Witcher Medallions",
 	"description": "A simple mod that adds Witcher Medallions!",
 	"authors": [
@@ -16,15 +16,15 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "witcher_medallions.WitcherMedallions_MainFabric"
+          "fabric.witcher_medallions.WitcherMedallions_MainFabric"
 		],
 
 		"client": [
-			"witcher_medallions.WitcherMedallions_ClientFabric"
+          "fabric.witcher_medallions.WitcherMedallions_ClientFabric"
 		],
 
 		"fabric-datagen": [
-			"witcher_medallions.WitcherMedallions_DataGenerator"
+          "fabric.witcher_medallions.WitcherMedallions_DataGenerator"
 		]
 	},
 	"mixins": [
@@ -38,9 +38,9 @@
 		"java": ">=17",
 		"fabric-api": "*",
 		
-		"trinkets" :">=3.7.1",
 		"geckolib": ">=4.2",
-		"owo": "*"
+		"owo": "*",
+		"trinkets" :">=3.7.1"
 	},
 	"suggests": {
 		"another-mod": "*"
